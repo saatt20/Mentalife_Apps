@@ -67,7 +67,7 @@ const Profile = () => {
                             
                             <Box alignContent={"center"} w={"100%"} h={"100%"} mt={"0"} bgColor={"darkBlue.200"} borderRadius={5}>
                                 <Heading ml={2} mt={3} fontSize={20} fontWeight={"bold"} color={"light.100"}>
-                                Identitas Pasien
+                                Identitas Pasien Tes
                                 </Heading>
 
                                 <Box alignSelf={"flex-end"} mt={"-6"} mr={"4"}>
