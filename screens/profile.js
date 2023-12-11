@@ -6,7 +6,7 @@ const Profile = () => {
     <>
       <Header title={"Home"} />
       <Center flex={1}>
-        <Heading>Ini Profile</Heading>
+        <Heading>Ini Satria</Heading>
       </Center>
     </>
   );
