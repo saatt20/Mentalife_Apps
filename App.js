@@ -44,14 +44,14 @@ const Tabs = () => {
           return (
             <Ionicons
               name={iconName}
-              size={28}
+              size={30}
               color={focused ? "black" : color}
             />
           );
         },
         tabBarIconStyle: { marginTop: 5 },
         tabBarStyle: {
-          height: 100,
+          height: 80,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           borderBottomRightRadius: 20,

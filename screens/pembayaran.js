@@ -6,7 +6,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Pembayaran = () => {
   const navigation = useNavigation();
-  const [showModal, setShowModal] = useState();
+  const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
  
  
