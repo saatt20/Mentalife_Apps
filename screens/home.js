@@ -1,6 +1,6 @@
-import { Box, Text, Image, HStack, Button, Heading, Stack, ScrollView, Seg, Center } from "native-base";
-import { Hi_profile } from "../components";
+import { Box, Text, Image, HStack, Button, Heading, Stack, ScrollView, Center} from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { Header } from "../components";
 import { VStack } from 'native-base';
 import { AspectRatio } from "native-base";
 import { TouchableOpacity } from "react-native";
@@ -11,11 +11,9 @@ const Home = () => {
 
   return (
     <>
+    <Header title={"Home"} />
       <ScrollView>
-        <Center>
-          <Hi_profile title={"Halo, Belinda Agni"} />
           <Stack flexDirection="row-reverse">
-
             <Box flex={1} ml={5} bg={"#7dd3fc"} w={"150"} borderRadius={"30"} h={48} mr={5} mt={5} >
 
               <HStack>
@@ -39,7 +37,6 @@ const Home = () => {
               </HStack>
             </Box>
           </Stack>
-        </Center>
 
         <Text bold fontSize={15} w={"300"} pt={"5"} mt={5} ml={6}>Komunikasi Dengan Cara Pilihanmu</Text>
         <Text fontSize={13} mb={5} ml={6}> Konseling yang efektif dari rasa nyaman.</Text>

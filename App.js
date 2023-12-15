@@ -11,6 +11,11 @@ import {
   AboutPsikolog,
   Pembayaran,
   Konsultasi,
+  Login,
+  Register,
+  AdminHome,
+  AdminProfile,
+  Splash
 } from "./screens"
 // import Pembayaran from "./screens/pembayaran";
 
@@ -44,14 +49,14 @@ const Tabs = () => {
           return (
             <Ionicons
               name={iconName}
-              size={28}
+              size={30}
               color={focused ? "black" : color}
             />
           );
         },
         tabBarIconStyle: { marginTop: 5 },
         tabBarStyle: {
-          height: 100,
+          height: 80,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           borderBottomRightRadius: 20,
@@ -87,15 +92,84 @@ const Tabs = () => {
   );
 };
 
+const TabsAdmin = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color }) => {
+          let iconName;
+          switch (route.name) {
+            case "Home":
+              iconName = "home";
+              break;
+
+            case "Psikolog":
+              iconName = "git-network-outline";
+              break;
+
+            case "Profile":
+              iconName = "person-circle-outline";
+              break;
+          
+          }
+          return (
+            <Ionicons
+              name={iconName}
+              size={30}
+              color={focused ? "black" : color}
+            />
+          );
+        },
+        tabBarIconStyle: { marginTop: 5 },
+        tabBarStyle: {
+          height: 80,
+          borderTopLeftRadius: 20,
+          borderTopRightRadius: 20,
+          borderBottomRightRadius: 20,
+          borderBottomLeftRadius: 20,
+          margin: 20,
+          borderTopWidth: 0,
+          position: 'absolute',
+          backgroundColor: '#C4E9F5',
+          // paddingTop: insets.center,
+          // paddingBottom: insets.center, 
+          padding: 5,
+          shadowOffset: {
+            width: 0,
+            height: 8,
+          },
+          shadowOpacity: 0.50,
+          shadowRadius: 10.0,
+          
+        },
+        tabBarLabel: ({ children, color, focused }) => {
+          return (
+            <Text color={focused ? "black" : color} mb={2}>
+              {children}
+            </Text>
+          );
+        },
+      })}
+    >
+      <Tab.Screen name="AdminHome" component={AdminHome} options={noHead} />
+      <Tab.Screen name="AdminProfile" component={AdminProfile} options={noHead} />
+    </Tab.Navigator>
+  );
+};
+
 const App = () => {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Splash">
           <Stack.Screen name="Tabs" component={Tabs} options={noHead} />
+          <Stack.Screen name="Splash" component={Splash} options={noHead} />
+          <Stack.Screen name="AdminTabs" component={TabsAdmin} options={noHead} />
           <Stack.Screen name="about-psikolog" component={AboutPsikolog} options={noHead} />
           <Stack.Screen name="Pembayaran" component={Pembayaran} options={noHead} />
           <Stack.Screen name="Konsultasi" component={Konsultasi} options={noHead} />
+          <Stack.Screen name="Login" component={Login} options={noHead} />
+          <Stack.Screen name="Register" component={Register} options={noHead} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
