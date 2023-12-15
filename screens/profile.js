@@ -1,10 +1,30 @@
+import { useState } from "react";
 import { StatusBar, Image, Box, Heading, Text, ScrollView, Pressable, Center } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { Header } from "../components";
 import { useNavigation } from '@react-navigation/native';
+import FIREBASE from "../config/FIREBASE";
 
 const Profile = () => {
+    const [profile, setProfile] = useState(null);
+    const onSubmit = (profile) => {
+        if (profile) {
+          FIREBASE.auth()
+            .signOut()
+            .then(() => {
+              // Sign-out successful.
+              clearStorage();
+              navigation.replace("Login");
+            })
+            .catch((error) => {
+              // An error happened.
+              alert(error);
+            });
+        } else {
+          navigation.replace("Login");
+        }
+      };
     const navigation = useNavigation();
   return (
     <>
@@ -72,7 +92,7 @@ const Profile = () => {
                 {/* Logout */}
                 <Box w={"100%"} bgColor={"red.500"} h={"75"}  mt={"5"} 
                 shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
-                    <Pressable onPress={() => navigation.navigate("Logout")} >
+                    <Pressable onPress={() => onSubmit(profile)} >
                             
                                 <Box w={"100%"} h={"100%"} mt={"0"}>
                                     <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"}>
