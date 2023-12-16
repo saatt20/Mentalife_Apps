@@ -15,7 +15,7 @@ import {
   Register,
   AdminHome,
   AdminProfile,
-  Splash
+  Splash,
 } from "./screens"
 // import Pembayaran from "./screens/pembayaran";
 
@@ -99,15 +99,11 @@ const TabsAdmin = () => {
         tabBarIcon: ({ focused, color }) => {
           let iconName;
           switch (route.name) {
-            case "Home":
+            case "AdminHome":
               iconName = "home";
               break;
 
-            case "Psikolog":
-              iconName = "git-network-outline";
-              break;
-
-            case "Profile":
+            case "AdminProfile":
               iconName = "person-circle-outline";
               break;
           
@@ -163,8 +159,8 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Splash">
           <Stack.Screen name="Tabs" component={Tabs} options={noHead} />
-          <Stack.Screen name="Splash" component={Splash} options={noHead} />
           <Stack.Screen name="AdminTabs" component={TabsAdmin} options={noHead} />
+          <Stack.Screen name="Splash" component={Splash} options={noHead} />
           <Stack.Screen name="about-psikolog" component={AboutPsikolog} options={noHead} />
           <Stack.Screen name="Pembayaran" component={Pembayaran} options={noHead} />
           <Stack.Screen name="Konsultasi" component={Konsultasi} options={noHead} />

@@ -30,8 +30,8 @@ const Home = () => {
                   mt={9}
                   ml={5}
                   borderRadius={20}
-                  alignSelf={"flex-end"}
-                  alignContent={"center"}
+                  // alignSelf={"flex-end"}
+                  // alignContent={"center"}
                   alt="image">
                 </Image>
               </HStack>
@@ -41,7 +41,7 @@ const Home = () => {
         <Text bold fontSize={15} w={"300"} pt={"5"} mt={5} ml={6}>Komunikasi Dengan Cara Pilihanmu</Text>
         <Text fontSize={13} mb={5} ml={6}> Konseling yang efektif dari rasa nyaman.</Text>
         <Center>
-          <Box w={300} h={90} borderRadius={10} borderWidth={2} p={3} backgroundColor={"#e0f2fe"} justifyContent={'center'}>
+          <Box w={300} h={90} borderRadius={10} borderWidth={2} p={3} backgroundColor={"#e0f2fe"} justifyContent={"center"}>
             <HStack>
               <Ionicons name="heart-outline" size={30} />
               <VStack flex={1} ml={5}>
