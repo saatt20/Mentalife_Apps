@@ -1,31 +1,54 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar, Image, Box, Heading, Text, ScrollView, Pressable, Center } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { Header } from "../components";
 import { useNavigation } from '@react-navigation/native';
 import FIREBASE from "../config/FIREBASE";
+import { clearStorage, getData } from "../src/utils/localStorage";
 
-const Profile = () => {
-    const [profile, setProfile] = useState(null);
-    const onSubmit = (profile) => {
-        if (profile) {
-          FIREBASE.auth()
+const Profile = ({navigation}) => {
+    const [Profile, setProfile] = useState(null);
+    const getUserData = () => {
+        getData("user").then((res) => {
+          const data = res;
+          if (data) {
+            console.log("isi data", data);
+            setProfile(data);
+          } else {
+            // navigation.replace('Login');
+          }
+        });
+      };
+
+      const onSubmit = (Profile) => {
+        if (Profile) {
+        FIREBASE.auth()
             .signOut()
             .then(() => {
-              // Sign-out successful.
-              clearStorage();
-              navigation.replace("Login");
+            // Sign-out successful.
+            clearStorage();
+            navigation.replace("Login");
             })
             .catch((error) => {
-              // An error happened.
-              alert(error);
+            // An error happened.
+            alert(error);
             });
         } else {
-          navigation.replace("Login");
+        navigation.replace("Login");
         }
-      };
-    const navigation = useNavigation();
+    };
+    
+      useEffect(() => {
+        const unsubscribe = navigation.addListener("focus", () => {
+          getUserData();
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, [navigation]);
+
   return (
     <>
     <Header title={"Profile"}/>
@@ -47,7 +70,7 @@ const Profile = () => {
                     <Ionicons name="person-circle-outline" color={"white"} size={39}/>
                 </Box>
                 <Heading shadow={5} alignSelf={"center"} ml={8} mt={-41} fontSize={20} fontWeight={"extrabold"} color={"black"}>
-                    ADMIN
+                DETAIL USER
                 </Heading>
 
                 <Box marginTop={6} ml={"16"}>
@@ -55,7 +78,7 @@ const Profile = () => {
                     />
                     <Text ml={"10"} mt={-6} fontSize={14} fontWeight={"normal"} 
                         color={"black"}>
-                        Boger Bojinov Bocor
+                        {Profile?.email}
                     </Text>
                 </Box>
 
@@ -71,7 +94,7 @@ const Profile = () => {
                     <Ionicons name="call-outline" color={"red"} size={28}/>
                      <Text  ml={"10"} mt={-6} fontSize={16} fontWeight={"normal"} 
                         color={"black"}>
-                        867092635156
+                        {Profile?.nomorhp}
                     </Text>
                 </Box>
 
@@ -89,10 +112,11 @@ const Profile = () => {
                     </Box>
                 </Box>
 
+                
                 {/* Logout */}
                 <Box w={"100%"} bgColor={"red.500"} h={"75"}  mt={"5"} 
                 shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
-                    <Pressable onPress={() => onSubmit(profile)} >
+                    <Pressable onPress={() => onSubmit(Profile)} >
                             
                                 <Box w={"100%"} h={"100%"} mt={"0"}>
                                     <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"}>

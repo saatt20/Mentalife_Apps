@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import FIREBASE from "../../config/firebase";
+import FIREBASE from "../../../config/FIREBASE";
 
 export const storeData = async (key, value) => {
   try {
