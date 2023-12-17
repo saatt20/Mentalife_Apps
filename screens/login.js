@@ -1,4 +1,5 @@
-import { Text, Button, Box, VStack, Input, Heading, FormControl, HStack, Center} from "native-base";
+import { Text, Button, Box, VStack, Input, Heading, FormControl, 
+  Pressable, StatusBar, Image, HStack, Center} from "native-base";
 import { useState } from "react";
 import { loginUser } from "../src/actions/AuthAction";
 import { storeData } from "../src/utils/localStorage";
@@ -47,51 +48,103 @@ const login = () => {
         };
 
         return (
-          <Box flex={1} bgColor={"gray.300"}>
-          <Center>
-          <Box 
-          bgColor={"white"}
-          borderRadius={"xl"}
-          mt={40}
-          width={325}
-          h={"63%"}
-          >
-            <Box marginLeft={5} mr={5} my={2}>
-            <Heading mt={5} size="xl" fontWeight="600" color="coolGray.800" _dark={{
-            color: "warmGray.50"
-          }} >
-              MENTALIFE
-            <Heading/>
-            </Heading>
-            <Heading mt="2" _dark={{
-            color: "warmGray.200"
-          }} color="coolGray.600" fontWeight="medium" size="sm">
-              Masukan Akun Anda
-            </Heading>
+          <Box mt={"0"}>
+      <StatusBar backgroundColor="#343A40" barStyle="light-content" />
+
+      <Box alignItems={"flex-end"} bgColor={"blueGray.30"}
+      w={"container"} mr={-5} mt={0} h={"container"}>
+        <Box alignItems="center" mb={1} mt={12}>
+          <Image source={require("../assets/logo1.png")}
+            w={200} h={100}/>
+        </Box>
+      </Box>
+
+      <Box>
+        <Heading fontSize={"3xl"} ml={"8"} mt={-11} color={"info.400"} alignSelf={"start"}>
+          LOGIN
+        </Heading>
+      </Box>
+
+      <Center>
+        <Box bgColor={"info.400"} mt={4} width={"400"} h={"full"} 
+          borderTopLeftRadius={"50"} borderTopRightRadius={"50"} shadow={"4"}>
+          
+        <Box mt={"6"} alignSelf={"start"} ml={4} >
+          <Heading fontSize={"2xl"} color={"white"} fontWeight={"light"} shadow={"4"} >
+            Silahkan melakukan Login
+          </Heading>
+        </Box>  
+
+        <Box>    
             <VStack space={3} mt="3">
+              
               <FormControl>
-                <FormControl.Label ml={1}>Email</FormControl.Label>
-                <Input placeholder="Masukan Email" value={email} onChangeText={(email) => setEmail(email)}/>
+                <Box mt={0} ml={7}>
+                <FormControl.Label fontSize={""}> Email</FormControl.Label>
+                </Box>
+                <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
+                    mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
+                <Input borderColor={"blue.200"} h={12} mt={""} borderWidth={"2"} borderRadius={20} fontSize={"md"}
+                placeholder="Masukan Email" value={email} onChangeText={(email) => setEmail(email)}/>
+                </Box>
               </FormControl>
+              
+
               <FormControl>
-                <FormControl.Label ml={1}>Password</FormControl.Label>
-                <Input
-                  placeholder="Masukan Password"
-                  value={password} onChangeText={(password) => setPassword(password)} secureTextEntry/>
+                <Box mt={0} ml={7}>
+                <FormControl.Label> Password</FormControl.Label>
+                </Box>
+                <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
+                    mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
+                <Input borderColor={"blue.200"} h={12} mt={""} borderWidth={"2"} borderRadius={20} fontSize={"md"}
+                placeholder="Masukan Password" value={password} onChangeText={(password) => setPassword(password)} secureTextEntry/>
+                </Box>
               </FormControl>
-              <Button backgroundColor={"#38bdf8"} mt={5} onPress={() => login()}>
-             <Text bold color={"white"}>Login</Text>
+
+            <Button h={12} borderColor={"info.400"} bgColor={"white"} borderWidth={"2"} ml={5} mr={5}
+              fontSize={18} borderRadius={20} shadow={"6"} mt={5} 
+              onPress={() => login()}>
+             <Text color={"blue.400"} fontSize={"md"}>Login</Text>
            </Button>
 
-              <HStack mt="6" justifyContent="center">
-                <Text mt={2} fontSize="sm" color="coolGray.600" bold  _dark={{
-                color: "warmGray.500"
-              }}>
-                  I'm a new user.
+           <Box mt={"12"} alignSelf={"center"} ml={""} >
+      <Heading fontSize={16} color={"white"} fontWeight={"light"} shadow={"4"} >
+      _______ Login menggunakan Akun Sosial Media _______
+      </Heading>
+    </Box>
+
+    <Pressable>
+    <Box h={"12"}  borderColor={"white"} borderWidth={"1"} 
+      mt={4} ml={5} mr={5} borderRadius={20} shadow={""}>
+      <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"7"} fontWeight={"semibold"}>
+        Facebook
+      </Text>
+      
+          <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/145/145802.png'}} 
+            alignSelf={"center"} mr={"20"} mt={"-6"} h={6} w={6}/>
+    </Box>
+    </Pressable>
+
+    <Pressable>
+    <Box h={"12"}  borderColor={"white"} borderWidth={"1"} 
+      mt={4} ml={5} mr={5} borderRadius={20} shadow={""}>
+      <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"7"} fontWeight={"semibold"}>
+        Google
+      </Text>
+      
+          <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/300/300221.png'}} 
+            alignSelf={"center"} mr={"16"} mt={"-6"} h={6} w={6}/>
+    </Box>
+    </Pressable>
+
+              <HStack mt="-1" justifyContent="center">
+                <Text fontSize={15} color={"white"} fontWeight={"light"} shadow={"4"}>
+                Belum memiliki Akun?
                 </Text>
-                <Button onPress={Register} ml={3} backgroundColor={"#38bdf8"}>
-                  <Text bold>Sign Up</Text>
-                </Button>
+                <Pressable onPress={Register} ml={0} mt={-1} h={""}backgroundColor={"#38bdf8"}>
+                  <Text fontStyle={"italic"} ml={1} mt={"1"} fontSize={15} color={"blue.600"} 
+                      fontWeight={"light"} shadow={"4"}> Registrasi</Text>
+                </Pressable>
               </HStack>
             </VStack>
             </Box>
