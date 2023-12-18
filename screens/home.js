@@ -68,7 +68,7 @@ const Home = () => {
         </Center>
 
 
-        <Text bold fontSize={15} w={"300"} pt={"3"} textAlign={"start"} mt={3} ml={5}>Berbagi Cerita Yuk</Text>
+        <Text bold fontSize={20} w={"300"} pt={"3"} alignSelf={"flex-start"} mt={3} ml={5}>Berbagi Cerita Yuk</Text>
 
         <ScrollView horizontal={true} m={1} >
           <TouchableOpacity onPress={() => { navigation.navigate('Berita'); }}>
@@ -91,7 +91,7 @@ const Home = () => {
                 </Box>
                 <Stack p="4" space={3}>
                   <Stack space={2}>
-                    <Heading size="md" ml="-1">
+                    <Heading size="sm" ml="-1">
                       hal ini, yang bisa mencegah dan mengurangi risiko bunuh diri.
                     </Heading>
                     <Text fontSize="xs" _light={{
@@ -128,7 +128,8 @@ const Home = () => {
             }} _light={{
               backgroundColor: "gray.50"
             }}>
-              <Box >
+              
+              <Box>
                 <AspectRatio w="100%" ratio={16 / 9}>
                   <Image source={{
                     uri: "https://rm.id/files/konten/berita/menkes-jaga-kesehatan-itu-mudah-cukup-atur-2-hal-ini_196639.jpg"
@@ -137,7 +138,7 @@ const Home = () => {
               </Box>
               <Stack p="4" space={2}>
                 <Stack space={2}>
-                  <Heading size="md" ml="-1">
+                  <Heading size="sm" ml="-1">
                     cara memilih terapi yang paling sesuai untukmu
                   </Heading>
                   <Text fontSize="xs" _light={{

@@ -9,5 +9,7 @@ import Register from "./register";
 import AdminHome from "./admin-home";
 import AdminProfile from "./admin-profile";
 import Splash from "./splash";
+import Lainnya from "./lainnya";
+import Pengaturan from "./pengaturan";
 
-export {Home, Psikolog, Profile, AboutPsikolog, Pembayaran, Konsultasi, Login, Register, AdminHome, AdminProfile, Splash};
+export {Home, Psikolog, Profile, AboutPsikolog, Pembayaran, Konsultasi, Login, Register, AdminHome, AdminProfile, Splash, Lainnya, Pengaturan};
