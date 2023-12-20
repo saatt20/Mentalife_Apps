@@ -57,12 +57,12 @@ const login = () => {
       w={"container"} mr={-5} mt={0} h={"container"}>
         <Box alignItems="center" mb={1} mt={12}>
           <Image source={require("../assets/logo1.png")}
-            w={200} h={100}/>
+            w={200} h={100} alt="image1"/>
         </Box>
       </Box>
 
       <Box>
-        <Heading fontSize={"3xl"} ml={"8"} mt={-11} color={"info.400"} alignSelf={"start"}>
+        <Heading fontSize={"3xl"} ml={"8"} mt={-11} color={"info.400"} alignSelf={"flex-start"}>
           LOGIN
         </Heading>
       </Box>
@@ -82,7 +82,7 @@ const login = () => {
               
               <FormControl>
                 <Box mt={0} ml={7}>
-                <FormControl.Label fontSize={""}> Email</FormControl.Label>
+                <FormControl.Label> Email</FormControl.Label>
                 </Box>
                 <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
                     mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
@@ -123,7 +123,7 @@ const login = () => {
       </Text>
       
           <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/145/145802.png'}} 
-            alignSelf={"center"} mr={"20"} mt={"-6"} h={6} w={6}/>
+            alignSelf={"center"} mr={"20"} mt={"-6"} h={6} w={6} alt="image2"/>
     </Box>
     </Pressable>
 
@@ -135,7 +135,7 @@ const login = () => {
       </Text>
       
           <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/300/300221.png'}} 
-            alignSelf={"center"} mr={"16"} mt={"-6"} h={6} w={6}/>
+            alignSelf={"center"} mr={"16"} mt={"-6"} h={6} w={6} alt="image3"/>
     </Box>
     </Pressable>
 

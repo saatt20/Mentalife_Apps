@@ -15,8 +15,11 @@ import {
   Register,
   AdminHome,
   AdminProfile,
+  Lainnya,
+  Pengaturan,
   Splash,
 } from "./screens"
+import Bantuan from "./screens/bantuan";
 // import Pembayaran from "./screens/pembayaran";
 
 // Navigator Declaration
@@ -44,7 +47,11 @@ const Tabs = () => {
             case "Profile":
               iconName = "person-circle-outline";
               break;
-          
+
+              case "Lainnya":
+                iconName = "menu-outline";
+                break;
+
           }
           return (
             <Ionicons
@@ -74,7 +81,7 @@ const Tabs = () => {
           },
           shadowOpacity: 0.50,
           shadowRadius: 10.0,
-          
+
         },
         tabBarLabel: ({ children, color, focused }) => {
           return (
@@ -88,6 +95,7 @@ const Tabs = () => {
       <Tab.Screen name="Home" component={Home} options={noHead} />
       <Tab.Screen name="Psikolog" component={Psikolog} options={noHead} />
       <Tab.Screen name="Profile" component={Profile} options={noHead} />
+      <Tab.Screen name="Lainnya" component={Lainnya} options={noHead} />
     </Tab.Navigator>
   );
 };
@@ -106,7 +114,7 @@ const TabsAdmin = () => {
             case "AdminProfile":
               iconName = "person-circle-outline";
               break;
-          
+
           }
           return (
             <Ionicons
@@ -136,7 +144,7 @@ const TabsAdmin = () => {
           },
           shadowOpacity: 0.50,
           shadowRadius: 10.0,
-          
+
         },
         tabBarLabel: ({ children, color, focused }) => {
           return (
@@ -166,6 +174,8 @@ const App = () => {
           <Stack.Screen name="Konsultasi" component={Konsultasi} options={noHead} />
           <Stack.Screen name="Login" component={Login} options={noHead} />
           <Stack.Screen name="Register" component={Register} options={noHead} />
+          <Stack.Screen name="Bantuan" component={Bantuan} options={noHead} />
+          <Stack.Screen name="Pengaturan" component={Pengaturan} options={noHead} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

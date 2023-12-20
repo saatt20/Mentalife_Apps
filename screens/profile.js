@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar, Image, Box, Heading, Text, ScrollView, Pressable, Center } from "native-base";
+import { StatusBar, Image, Box, Heading, Text,  Pressable } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { Header } from "../components";
-import { useNavigation } from '@react-navigation/native';
 import FIREBASE from "../config/FIREBASE";
 import { clearStorage, getData } from "../src/utils/localStorage";
 
@@ -52,24 +51,18 @@ const Profile = ({navigation}) => {
   return (
     <>
     <Header title={"Profile"}/>
-    <ScrollView h={"full"}>
     <SafeAreaView>
         <StatusBar backgroundColor= "#ffffff" barStyle='dark-content'/>
-        <Box mt={-12} padding={"0"} w="100%">
+            <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
                 <Image
-                    source={require("../assets/RS.jpeg")} alignSelf={"center"}
-                    blurRadius={2} borderRadius={0} borderBottomRadius={60} resizeMode="cover" h={200} w= "100%"/>
+                    source={require("../assets/admin.png")} 
+                    borderRadius={5} h={200} w= "100%"
+                    alt="-"/>
             </Box>
                 
-            {/* <Box flex={1} alignItems={"center"}>
-                <Image
-                    source={{ uri: 'https://cdn-icons-png.flaticon.com/128/847/847969.png'}}
-                    h={120} w={120} mt={-90} borderRadius={999} borderColor={"light.100"}/>
-            </Box> */}
-                
             {/*Identitas */}
-        <Box mt={-8} alignSelf="center" w={"80%"} bgColor={"info.100"} h={"43%"} 
-            shadow={"9"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
+        <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"30%"} 
+            shadow={"9"} mb={280} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
 
             <Box alignItems={"start"} >
                 <Box alignItems={"center"} w={58} h={58} bgColor={"blue.400"} borderRadius={90} borderColor={"blue.100"} borderWidth={8} mt={1} ml={2}>
@@ -78,47 +71,45 @@ const Profile = ({navigation}) => {
                 <Heading shadow={5} alignSelf={"center"} ml={8} mt={-41} fontSize={20} fontWeight={"extrabold"} color={"black"}>
                 DETAIL USER
                 </Heading>
-            </Box>
 
                 <Box marginTop={6} ml={"16"}>
-                    <Ionicons name="information-circle-outline" color={"red"} size={28}
+                    <Ionicons name="information-circle" color={"red"} size={28}
                     />
-                    <Text ml={"10"} mt={-6} fontSize={14} fontWeight={"normal"} 
+                    <Text ml={"10"} mt={-6} fontSize={18} fontWeight={"normal"} 
+                        color={"black"}>
+                        {Profile?.name}
+                    </Text>
+                </Box>
+
+                <Box marginTop={"6"} ml={"16"}>
+                    <Ionicons name="mail" color={"red"} size={28}/>
+                    <Text ml={"10"} mt={-7} fontSize={18} fontWeight={"normal"} 
                         color={"black"}>
                         {Profile?.email}
                     </Text>
                 </Box>
 
-                <Box marginTop={"5"} ml={"16"}>
-                    <Ionicons name="location-outline" color={"red"} size={28}/>
-                    <Text ml={"10"} mt={-7} fontSize={14} fontWeight={"normal"} 
-                        color={"black"}>
-                        Jl. Ketintang 100 Surabaya, Jawa Timur 60231
-                    </Text>
-                </Box>
-
-                <Box  marginTop={"3"} ml={"16"}>
-                    <Ionicons name="call-outline" color={"red"} size={28}/>
-                     <Text  ml={"10"} mt={"-6"} fontSize={16} fontWeight={"normal"} 
+                <Box marginTop={"6"} ml={"16"}>
+                    <Ionicons name="call" color={"red"} size={28}/>
+                     <Text  ml={"10"} mt={-7} fontSize={18} fontWeight={"normal"} 
                         color={"black"}>
                         {Profile?.nomorhp}
                     </Text>
                 </Box>
-            </Box>
 
-                    {/* Detail Profile */}
-                <Box alignSelf={"center"} w={"80%"} bgColor={"blue.600"}  mt={"5"} 
+                    {/* Edit Profile */}
+                    <Box w={"100%"} bg={"#7dd3fc"} h={"75"}  mt={"10"} 
                 shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
                     <Pressable onPress={() => navigation.navigate("Logout")} >
 
-                                <Box  w={"100%"} h={16} mt={"0"}>
+                                <Box  w={"100%"} h={"100%"} mt={"0"}>
                                     <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"} >
-                                    Detail Profile
+                                    Edit Profile
                                     </Heading>
                         </Box>
                         </Pressable>              
                     </Box>
-                
+                </Box>
 
                 
                 {/* Logout */}
@@ -133,9 +124,8 @@ const Profile = ({navigation}) => {
                                 </Box>
                     </Pressable>
                 </Box>
-        
+            </Box>
     </SafeAreaView>
-    </ScrollView>
     </>
   );
 };
@@ -155,4 +145,4 @@ export default Profile;
                   </Box>
                </Box>
                 </Pressable>
-            </Box> */}
+            </Box> */}
