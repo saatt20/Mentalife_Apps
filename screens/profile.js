@@ -52,18 +52,24 @@ const Profile = ({navigation}) => {
   return (
     <>
     <Header title={"Profile"}/>
+    <ScrollView h={"full"}>
     <SafeAreaView>
         <StatusBar backgroundColor= "#ffffff" barStyle='dark-content'/>
-            <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
+        <Box mt={-12} padding={"0"} w="100%">
                 <Image
-                    source={require("../assets/admin.png")} 
-                    borderRadius={5} h={200} w= "100%"
-                    alt="-"/>
+                    source={require("../assets/RS.jpeg")} alignSelf={"center"}
+                    blurRadius={2} borderRadius={0} borderBottomRadius={60} resizeMode="cover" h={200} w= "100%"/>
             </Box>
                 
+            {/* <Box flex={1} alignItems={"center"}>
+                <Image
+                    source={{ uri: 'https://cdn-icons-png.flaticon.com/128/847/847969.png'}}
+                    h={120} w={120} mt={-90} borderRadius={999} borderColor={"light.100"}/>
+            </Box> */}
+                
             {/*Identitas */}
-        <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"30%"} 
-            shadow={"9"} mb={280} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
+        <Box mt={-8} alignSelf="center" w={"80%"} bgColor={"info.100"} h={"43%"} 
+            shadow={"9"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
 
             <Box alignItems={"start"} >
                 <Box alignItems={"center"} w={58} h={58} bgColor={"blue.400"} borderRadius={90} borderColor={"blue.100"} borderWidth={8} mt={1} ml={2}>
@@ -72,6 +78,7 @@ const Profile = ({navigation}) => {
                 <Heading shadow={5} alignSelf={"center"} ml={8} mt={-41} fontSize={20} fontWeight={"extrabold"} color={"black"}>
                 DETAIL USER
                 </Heading>
+            </Box>
 
                 <Box marginTop={6} ml={"16"}>
                     <Ionicons name="information-circle-outline" color={"red"} size={28}
@@ -90,27 +97,28 @@ const Profile = ({navigation}) => {
                     </Text>
                 </Box>
 
-                <Box marginTop={"3"} ml={"16"}>
+                <Box  marginTop={"3"} ml={"16"}>
                     <Ionicons name="call-outline" color={"red"} size={28}/>
-                     <Text  ml={"10"} mt={-6} fontSize={16} fontWeight={"normal"} 
+                     <Text  ml={"10"} mt={"-6"} fontSize={16} fontWeight={"normal"} 
                         color={"black"}>
                         {Profile?.nomorhp}
                     </Text>
                 </Box>
+            </Box>
 
                     {/* Detail Profile */}
-                    <Box w={"100%"} bgColor={"blue.600"} h={"75"}  mt={"10"} 
+                <Box alignSelf={"center"} w={"80%"} bgColor={"blue.600"}  mt={"5"} 
                 shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
                     <Pressable onPress={() => navigation.navigate("Logout")} >
 
-                                <Box  w={"100%"} h={"100%"} mt={"0"}>
+                                <Box  w={"100%"} h={16} mt={"0"}>
                                     <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"} >
                                     Detail Profile
                                     </Heading>
                         </Box>
                         </Pressable>              
                     </Box>
-                </Box>
+                
 
                 
                 {/* Logout */}
@@ -125,8 +133,9 @@ const Profile = ({navigation}) => {
                                 </Box>
                     </Pressable>
                 </Box>
-            </Box>
+        
     </SafeAreaView>
+    </ScrollView>
     </>
   );
 };

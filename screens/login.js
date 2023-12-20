@@ -3,6 +3,7 @@ import { Text, Button, Box, VStack, Input, Heading, FormControl,
 import { useState } from "react";
 import { loginUser } from "../src/actions/AuthAction";
 import { storeData } from "../src/utils/localStorage";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
@@ -47,11 +48,12 @@ const login = () => {
           navigation.navigate("Register")
         };
 
-        return (
-          <Box mt={"0"}>
-      <StatusBar backgroundColor="#343A40" barStyle="light-content" />
+    return (
+    <SafeAreaView>
+      <Box mt={"0"}  bgColor={"blue.100"}>
+      <StatusBar backgroundColor="" barStyle="dark-content" />
 
-      <Box alignItems={"flex-end"} bgColor={"blueGray.30"}
+      <Box alignItems={"flex-end"}
       w={"container"} mr={-5} mt={0} h={"container"}>
         <Box alignItems="center" mb={1} mt={12}>
           <Image source={require("../assets/logo1.png")}
@@ -84,7 +86,7 @@ const login = () => {
                 </Box>
                 <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
                     mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
-                <Input borderColor={"blue.200"} h={12} mt={""} borderWidth={"2"} borderRadius={20} fontSize={"md"}
+                <Input h={12} mt={""} borderColor={"blue.200"} borderWidth={"2"} borderRadius={20} fontSize={"md"}
                 placeholder="Masukan Email" value={email} onChangeText={(email) => setEmail(email)}/>
                 </Box>
               </FormControl>
@@ -151,6 +153,7 @@ const login = () => {
           </Box>
           </Center>
           </Box>  
+          </SafeAreaView>
             );
           };
 
