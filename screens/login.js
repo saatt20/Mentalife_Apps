@@ -70,7 +70,7 @@ const login = () => {
           borderTopLeftRadius={"50"} borderTopRightRadius={"50"} shadow={"4"}>
           
         <Box mt={"6"} alignSelf={"start"} ml={4} >
-          <Heading fontSize={"2xl"} color={"white"} fontWeight={"light"} shadow={"4"} >
+          <Heading fontSize={"2xl"} color={"white"} fontWeight={"light"} shadow={"4"} ml={2} bold>
             Silahkan melakukan Login
           </Heading>
         </Box>  
@@ -80,7 +80,9 @@ const login = () => {
               
               <FormControl>
                 <Box mt={0} ml={7}>
-                <FormControl.Label> Email</FormControl.Label>
+                <FormControl.Label>
+                  <Text fontSize={"md"} color={"white"}>Email</Text> 
+                  </FormControl.Label>
                 </Box>
                 <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
                     mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
@@ -92,7 +94,9 @@ const login = () => {
 
               <FormControl>
                 <Box mt={0} ml={7}>
-                <FormControl.Label> Password</FormControl.Label>
+                <FormControl.Label>
+                  <Text fontSize={"md"} color={"white"}>Password</Text> 
+                  </FormControl.Label>
                 </Box>
                 <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
                     mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
@@ -107,16 +111,16 @@ const login = () => {
              <Text color={"blue.400"} fontSize={"md"}>Login</Text>
            </Button>
 
-           <Box mt={"12"} alignSelf={"center"} ml={""} >
-      <Heading fontSize={16} color={"white"} fontWeight={"light"} shadow={"4"} >
+           <Box mt={"10"} alignSelf={"center"} ml={""} >
+      <Heading fontSize={16} color={"white"} fontWeight={"light"} shadow={"4"} bold>
       _______ Login menggunakan Akun Sosial Media _______
       </Heading>
     </Box>
 
     <Pressable>
     <Box h={"12"}  borderColor={"white"} borderWidth={"1"} 
-      mt={4} ml={5} mr={5} borderRadius={20} shadow={""}>
-      <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"7"} fontWeight={"semibold"}>
+      mt={2} ml={5} mr={5} borderRadius={20} shadow={""}>
+      <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"10"} fontWeight={"semibold"}>
         Facebook
       </Text>
       
@@ -127,8 +131,8 @@ const login = () => {
 
     <Pressable>
     <Box h={"12"}  borderColor={"white"} borderWidth={"1"} 
-      mt={4} ml={5} mr={5} borderRadius={20} shadow={""}>
-      <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"7"} fontWeight={"semibold"}>
+      mt={2} ml={5} mr={5} borderRadius={20} shadow={""}>
+      <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"10"} fontWeight={"semibold"}>
         Google
       </Text>
       
@@ -137,13 +141,13 @@ const login = () => {
     </Box>
     </Pressable>
 
-              <HStack mt="-1" justifyContent="center">
-                <Text fontSize={15} color={"white"} fontWeight={"light"} shadow={"4"}>
+              <HStack mt="2" justifyContent="center">
+                <Text fontSize={15} color={"white"} fontWeight={"light"} shadow={"4"} bold>
                 Belum memiliki Akun?
                 </Text>
                 <Pressable onPress={Register} ml={0} mt={-1} h={""}backgroundColor={"#38bdf8"}>
                   <Text fontStyle={"italic"} ml={1} mt={"1"} fontSize={15} color={"blue.600"} 
-                      fontWeight={"light"} shadow={"4"}> Registrasi</Text>
+                      fontWeight={"light"} shadow={"4"} bold> Registrasi</Text>
                 </Pressable>
               </HStack>
             </VStack>
