@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { VStack, Text, Center, Divider, Card, FlatList, HStack, Box, Button } from "native-base";
 import { Header } from '../components';
 import { useNavigation } from "@react-navigation/native";
-import datas from "../datas"
+import datars from "../datars";
 
 const HospitalList = () => {
   const navigation = useNavigation();
@@ -47,7 +47,7 @@ const HospitalList = () => {
     <VStack flex={1}>
       <Header title={"List Rumah Sakit"} withBack={true} />
       <FlatList
-        data={datas}
+        data={datars}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />

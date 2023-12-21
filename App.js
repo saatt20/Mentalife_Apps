@@ -20,6 +20,8 @@ import {
   Splash,
 } from "./screens"
 import Bantuan from "./screens/bantuan";
+import Berita from "./screens/berita";
+import Hospital from "./screens/hospital";
 // import Pembayaran from "./screens/pembayaran";
 
 // Navigator Declaration
@@ -176,6 +178,8 @@ const App = () => {
           <Stack.Screen name="Register" component={Register} options={noHead} />
           <Stack.Screen name="Bantuan" component={Bantuan} options={noHead} />
           <Stack.Screen name="Pengaturan" component={Pengaturan} options={noHead} />
+          <Stack.Screen name="Berita" component={Berita} options={noHead} />
+          <Stack.Screen name="Hospital" component={Hospital} options={noHead} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
