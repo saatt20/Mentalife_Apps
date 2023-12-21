@@ -48,10 +48,7 @@ const Pembayaran = () => {
         </HStack>
       </Box>
       <Box  p={"2"} mt={"5"} bg={"#D9E8ED"}  >
-          <Button onPress={() => navigation.navigate("Konsultasi")}>Konsultasi Sekarang</Button >
-      </Box>
-      <Box  p={"16"} mt={"72"} bg={"#D9E8ED"}>
-      <Button onPress={() => setShowModal(true)}>Bayar Sekarang</Button>
+      <Button onPress={() => setShowModal(true)} bg={"#28AADC"}>Bayar Sekarang</Button>
       <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
         <Modal.Content maxWidth="350">
           <Modal.CloseButton />
@@ -116,11 +113,15 @@ const Pembayaran = () => {
           <Button flex="1" onPress={() => {
             setShowModal(false);
             setShowModal2(false);
+            alert('Pembayaran Berhasil')
           }}>Bayar
             </Button>
           </Modal.Footer>
         </Modal.Content>
       </Modal>
+      </Box>
+      <Box  p={"16"} mt={"72"} bg={"#D9E8ED"}>
+      <Button onPress={() => navigation.navigate("Konsultasi")} bg={"#28AADC"}>Konsultasi Sekarang</Button > 
     </Box>
       </>
   );
@@ -130,7 +131,7 @@ export default Pembayaran;
 
 
 
-
+{/* <Button onPress={() => navigation.navigate("Konsultasi")}>Bayar Sekarang</Button > */}
 
 
 
