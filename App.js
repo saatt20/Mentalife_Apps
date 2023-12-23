@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider, Text } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Home,
   Psikolog,
@@ -22,6 +22,10 @@ import {
 import Bantuan from "./screens/bantuan";
 import Berita from "./screens/berita";
 import Hospital from "./screens/hospital";
+import AdminBerita from "./screens/admin-berita" 
+import AdminPsikolog from "./screens/admin-psikolog"
+import AdminObat from "./screens/admin-obat"
+import Edit from "./screens/edit-profile";
 // import Pembayaran from "./screens/pembayaran";
 
 // Navigator Declaration
@@ -33,6 +37,7 @@ const noHead = { headerShown: false };
 
 const Tabs = () => {
   return (
+  
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color }) => {
@@ -63,9 +68,9 @@ const Tabs = () => {
             />
           );
         },
-        tabBarIconStyle: { marginTop: 5 },
+        tabBarIconStyle: { marginTop: -2 },
         tabBarStyle: {
-          height: 80,
+          height: 85,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           borderBottomRightRadius: 20,
@@ -94,11 +99,14 @@ const Tabs = () => {
         },
       })}
     >
+    
       <Tab.Screen name="Home" component={Home} options={noHead} />
       <Tab.Screen name="Psikolog" component={Psikolog} options={noHead} />
       <Tab.Screen name="Profile" component={Profile} options={noHead} />
       <Tab.Screen name="Lainnya" component={Lainnya} options={noHead} />
+    
     </Tab.Navigator>
+
   );
 };
 
@@ -180,6 +188,10 @@ const App = () => {
           <Stack.Screen name="Pengaturan" component={Pengaturan} options={noHead} />
           <Stack.Screen name="Berita" component={Berita} options={noHead} />
           <Stack.Screen name="Hospital" component={Hospital} options={noHead} />
+          <Stack.Screen name="admin-berita" component={AdminBerita} options={noHead}/>
+          <Stack.Screen name="admin-psikolog" component={AdminPsikolog} options={noHead}/>
+          <Stack.Screen name="admin-obat" component={AdminObat} options={noHead}/>
+          <Stack.Screen name="edit-profile" component={Edit} options={noHead}/>
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
