@@ -179,3 +179,4 @@ export const getBeritaData = () => {
       console.error("Error retrieving data: ", error);
     });
 };
+

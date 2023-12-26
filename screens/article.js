@@ -14,10 +14,11 @@ const Article = () => {
         >
         <Box
           p={"4"}
-          borderBottomColor={"coolGray.300"}
-          borderBottomWidth={1}
+          borderBottomColor={"coolGray.600"}
+          borderBottomWidth={2}
           flexDirection="row"
-          flex={1} >
+          flex={1} 
+          bg={"#C4E9F5"}>
 
             <Box flex={1} mr={"5"}>
               <Image
@@ -27,15 +28,11 @@ const Article = () => {
                 alt="Image Data"
                 role="img"/>
             </Box>
-            <Box flex={2} >
-                <Text fontSize={"sm"}>{item.date}</Text>
-                <Heading lineHeight={"lg"} fontSize={"lg"}>
+            <Box flex={2} mt={1} >
+                <Text fontSize={"md"}>{item.date}</Text>
+                <Heading lineHeight={"md"} fontSize={"lg"}>
                 {item.title}
                 </Heading>
-                <Text 
-                bold
-                color="#db2777" 
-                fontSize="lg">{item.title2}</Text> 
             </Box>
           </Box>
         </TouchableOpacity>
