@@ -1,9 +1,11 @@
 import { Heading, Center, Text, Box, Image, ScrollView, Button, HStack } from "native-base";
 import { Header } from "../components";
 import { useNavigation } from "@react-navigation/native";
-import datakonsultasi from "../datakonsultasi";
 
-const Konsultasi = () => {
+
+const Konsultasi = ({ route }) => {
+  const navigation = useNavigation();
+  const params = route.params?.item;
   return (
     <>
       <Header title={"Konsultasi"} withBack="true"/>
@@ -18,28 +20,28 @@ const Konsultasi = () => {
         >
           <Box flex={1}>
             <Image
-              src={"https://i.pinimg.com/564x/23/56/a9/2356a9f5370e67942a6c79a927fd30ad.jpg"}
+              source={{ uri: params.image }}
               w="150"
               h="40"
               borderRadius={10}
               alt="image"
             />
           </Box>
-          <Box flex={1} alignSelf={"center"}>
-            <Heading lineHeight={"md"} fontSize={"md"}>
-              {"Dr. Nadia Utami, M.Psi"}
+          <Box flex={1} alignSelf={"center"} mr={5}>
+            <Heading lineHeight={"lg"} fontSize={"lg"}>
+            {params.title}
             </Heading>
-            <Text fontSize={"sm"}>{"Psikologi Anak dan Remaja"}</Text>
+            <Text fontSize={"md"} mt={1}>{params.job}</Text>
           </Box>
       </Box>
       <Box  p={"2"} mt={"5"} bg={"#D9E8ED"} >
-      <Button onPress={() => console.log("hello world")}>Chat</Button>
+      <Button onPress={() => console.log("Fitur Chat")}>Chat</Button>
       </Box>
       <Box  p={"2"} mt={"3"} bg={"#D9E8ED"} >
-      <Button onPress={() => console.log("hello world")}>Voice Call</Button>
+      <Button onPress={() => console.log("Fitur Telpon")}>Voice Call</Button>
       </Box>
       <Box  p={"2"} mt={"3"} bg={"#D9E8ED"} >
-      <Button onPress={() => console.log("hello world")}>Video Call</Button>
+      <Button onPress={() => console.log("Fitur VideoCall")}>Video Call</Button>
       </Box>
         </ScrollView>
     </>
@@ -47,5 +49,3 @@ const Konsultasi = () => {
 };
 
 export default Konsultasi;
-
-     

@@ -1,59 +1,52 @@
-import { Heading, Center, Text, Box, Image, ScrollView, Button, HStack } from "native-base";
+import React from "react";
+import { Heading, Box, Image, ScrollView, Button } from "native-base";
 import { Header } from "../components";
 import { useNavigation } from "@react-navigation/native";
 
-
 const AboutPsikolog = ({ route }) => {
   const navigation = useNavigation();
- const params = route.params.item; 
- 
-//  <Box bg={"#28AADC"} w={'90%'} mt={5} rounded={20}
-//  flexDirection="row"
-//  alignSelf="center"
-//  shadow="4"
-// >
-//  <Box flex={1}>
-//    <Image
-//      source={{ uri: item.image }}
-//      w="32"
-//      h="32"
-//      m="5"
-//      paddingLeft={10}
-//      borderRadius={20}
-//      alignSelf={"flex-start"}
-//      alignContent={"center"}
-//      alt="Image Data"
-//    />
-//  </Box>
+  const params = route.params?.item; 
+  
   return (
     <>
-      <Header title={"About"} withBack="true"/>
-      <ScrollView >
-        <Image source={{uri: params.image}} w={"full"} h={"80"} alt="Image"/>
-        <Box  p={"4"} borderBottomColor={"#28AADC"} bg={"#28AADC"} mt={2} rounded={20} borderBottomWidth={1}>
-          <Heading color={"white"}>{params.title}</Heading>
-          <Text color={"white"}>{params.job}</Text>
-          <Text color={"white"}>{params.keahlian}</Text>
-          <Text bold fontSize={"lg"} color={"white"}>
+      <Header title={"About"} withBack={true} />
+      <ScrollView>
+        <Image source={{ uri: params.image }} w={"full"} h={"80"} mt={2} alt="Image" />
+        <Box p={4} borderBottomColor={"#28AADC"} bg={"#28AADC"} mt={5} rounded={10} borderBottomWidth={1} mx={5}>
+          <Heading color={"white"} fontSize={"xl"}>{params.title}</Heading>
+          <Box>
+            <Heading fontSize={"md"} color={"white"} mt={1}>
+              {params.job}
+            </Heading>
+            <Heading fontSize={"md"} color={"white"}>
+              {params.keahlian}
+            </Heading>
+          </Box>
+          <Heading bold fontSize={"lg"} mt={6} color={"white"}>
             {params.harga}
-          </Text>
+          </Heading>
         </Box>
-        {/* <Box p={"4"} bg={"#28AADC"} mt={2} rounded={20}>
-          <Text bold fontSize={"17"} color={"white"}>
-            {params.harga}
-          </Text>
-        </Box> */}
-        <Box  p={"4"}  bg={"#28AADC"} mt={2} rounded={20}>
-          <Text color={"white"} fontSize={"sm"}>
+
+        <Box p={4} bg={"#28AADC"} mt={3} rounded={10} mx={5}>
+          <Heading color={"white"} fontSize={"sm"}>
             {params.content}
-          </Text>
+          </Heading>
         </Box>
-        <Button onPress={() => navigation.navigate( "Pembayaran" )}  alignSelf="flex-end"  borderRadius="full" 
-         w={"150"} h={"12"} mr={"5"} mt={"7"} bg={"#28AADC"}>Pembayaran</Button>
-        <Box  p={"4"}>
-        
-        </Box>
-        </ScrollView>
+
+        <Button
+          onPress={() => navigation.navigate("Pembayaran", { item: params })} // Perhatikan penggunaan params
+          alignSelf="flex-end"
+          borderRadius="full"
+          w={"150"}
+          h={"12"}
+          mr={"5"}
+          mt={"7"}
+          bg={"#28AADC"}
+        >
+          Pembayaran
+        </Button>
+        <Box p={4}></Box>
+      </ScrollView>
     </>
   );
 };

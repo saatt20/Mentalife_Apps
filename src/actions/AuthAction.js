@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import FIREBASE from "../../config/FIREBASE";
-import { clearStorage, getData, storeData } from "../utils/localStorage";
+import { clearStorage, storeData } from "../utils/localStorage";
 
 export const registerUser = async (data, password) => {
   try {
@@ -147,3 +147,36 @@ export const deleteObat = (key) => {
       console.error("Error deleting data: ", error);
     });
 };
+
+export const addBerita = (namaBerita, keteranganBerita) => {
+  const beritaRef = FIREBASE.database().ref("obat");
+
+  const newBeritaEntry = {
+    namaBerita: namaBerita,
+    keteranganBerita: keteranganBerita,
+  };
+
+  beritaRef.push(newBeritaEntry)
+    .then(() => {
+      console.log("Data added successfully");
+    })
+    .catch((error) => {
+      console.error("Error adding data: ", error);
+    });
+};
+
+export const getBeritaData = () => {
+  const  beritaRef = FIREBASE.database().ref("berita");
+
+  beritaRef.once("value")
+    .then((snapshot) => {
+      // The data is available in snapshot.val()
+      const data = snapshot.val();
+      console.log("Data retrieved successfully:", data);
+      // You can update your React component state with the retrieved data here
+    })
+    .catch((error) => {
+      console.error("Error retrieving data: ", error);
+    });
+};
+
