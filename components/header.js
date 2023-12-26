@@ -35,15 +35,6 @@ const Header = React.memo(({ title, withBack = false }) => {
             )}
             <Heading color="black">{title}</Heading>
           </HStack>
-          <Image
-            source={require('../assets/logosearch.png')}
-            w={7}
-            h={7}
-            marginBottom={4}
-            mr={5}
-            alt="Search Icon"
-            alignSelf="flex-end"
-          />
         </HStack>
       </Box>
     </SafeAreaView>
