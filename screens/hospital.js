@@ -1,29 +1,28 @@
 import React, { useState } from "react";
-import { VStack, Text, Center, Divider, Card, FlatList, HStack, Box, Button } from "native-base";
+import { VStack, Text, Center, Divider, Card, FlatList, HStack, Box,Ionicons,Button } from "native-base";
 import { Header } from '../components';
 import { useNavigation } from "@react-navigation/native";
-import datars from "../datars";
+import datas from "../datas";
 
 const HospitalList = () => {
   const navigation = useNavigation();
 
   const renderItem = ({ item }) => {
     return (
+      
+      
+      <Box background={'#C4E9F5'} w={'100%'} borderTopRadius={0} >
       <HStack
-        rounded={5}
         marginX={5}
         mt={30}
-        backgroundColor='#ffffff'
+        backgroundColor='#28AADC'
         shadow={2}
       >
-        <HStack space={5} flex={6} p={5}>
+        <HStack space={2} flex={3} p={2}>
           <Box>
-            <Text color="#0284c7" fontSize={20} fontWeight="bold">{item.hospital}</Text>
-            <Text fontSize={11} fontWeight={500}>{item.desc}</Text>
+            <Text color="white" fontSize={20} fontWeight="bold">{item.hospital}</Text>
             <Text color="black" fontSize={12} fontWeight={500} pt={2}>{item.location}</Text>
-            <Text color="black" fontSize={12} fontWeight={500} pt={2}>{item.phone}</Text>
             <Text color="#7F7F7F" fontSize={12} fontWeight={500} pt={3}>
-              Buka 24 jam {item.date}
             </Text>
             <Button
               width={75}
@@ -40,18 +39,21 @@ const HospitalList = () => {
           </Box>
         </HStack>
       </HStack>
+      </Box>
     );
   };
 
   return (
+    
     <VStack flex={1}>
-      <Header title={"List Rumah Sakit"} withBack={true} />
+      <Header withBack={true}  />
       <FlatList
-        data={datars}
+        data={datas}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
       />
     </VStack>
+    
   );
 };
 
