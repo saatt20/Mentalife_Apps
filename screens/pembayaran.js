@@ -13,7 +13,7 @@ const Pembayaran = () => {
   return (
     <>
       <Header title={"Pembayaran"} withBack= {"true"} />
-      <Box p={"4"} bg={"#D9E8ED"} >
+      <Box p={"4"} bg={"#28AADC"} >
         <HStack>
         <Image source={{ uri: "https://i.pinimg.com/564x/23/56/a9/2356a9f5370e67942a6c79a927fd30ad.jpg"}}
         w={"75"}
@@ -21,7 +21,7 @@ const Pembayaran = () => {
         borderRadius={10}
         alt="image"
         />
-        <Heading textAlign={"left"} ml={"3"} mt={"3"} fontSize={"md"}>Dr. Nadia Utami, M.Psi</Heading>
+        <Heading textAlign={"left"} ml={"3"} mt={"3"} fontSize={"lg"} color={"white"} >Dr. Nadia Utami, M.Psi</Heading>
         </HStack>
         <Box>
           <VStack>
@@ -29,22 +29,22 @@ const Pembayaran = () => {
           </VStack>
         </Box>
       </Box>
-      <Box mt="5" bg={"#D9E8ED"} >
+      <Box mt="5" bg={"#28AADC"} >
         <HStack>
-          <Text textAlign={"left"} ml={"5"} fontSize={"sm"}>Biaya Sesi 60 Menit </Text>
-          <Text textAlign={"left"} ml={"176"} fontSize={"sm"}>Rp.75.000 </Text>
+          <Text color="white" textAlign={"left"} ml={"5"} fontSize={"sm"}>Biaya Sesi 60 Menit </Text>
+          <Text color="white" textAlign={"left"} ml={"176"} fontSize={"sm"}>Rp.75.000 </Text>
         </HStack>
       </Box>
-      <Box  bg={"#D9E8ED"} >
+      <Box  bg={"#28AADC"} >
         <HStack>
-          <Text textAlign={"left"} ml={"5"} fontSize={"sm"}>Biaya Layanan </Text>
-          <Text textAlign={"left"} ml={"210"} fontSize={"sm"}>Rp.1.000 </Text>
+          <Text color="white" textAlign={"left"} ml={"5"} fontSize={"sm"}>Biaya Layanan </Text>
+          <Text color="white" textAlign={"left"} ml={"210"} fontSize={"sm"}>Rp.1.000 </Text>
         </HStack>
       </Box>
-      <Box p={"1"}  bg={"#D9E8ED"} >
+      <Box p={"1"}  bg={"#28AADC"} >
         <HStack>
-          <Heading textAlign={"left"} ml={"4"} fontSize={"sm"}>Total Biaya </Heading>
-          <Text textAlign={"left"} ml={"226"} fontSize={"sm"}>Rp.76.000 </Text>
+          <Heading color="white" textAlign={"left"} ml={"4"} fontSize={"sm"}>Total Biaya </Heading>
+          <Text color="white" textAlign={"left"} ml={"226"} fontSize={"sm"}>Rp.76.000 </Text>
         </HStack>
       </Box>
       <Box  p={"2"} mt={"5"} bg={"#D9E8ED"}  >
