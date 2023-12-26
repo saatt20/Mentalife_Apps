@@ -57,7 +57,7 @@ const Obat = () => {
             </Heading>
             <Text fontSize="sm" color={"white"} ml={-4}>{item.keteranganObat}</Text>
             <Text fontSize="sm" color={"white"} ml={-4}>{item.hargaObat}</Text>
-            <Button
+            <Button onPress={() => {alert('Pembelian Berhasil')}}
               //   onPress={() => navigation.navigate("about-psikolog", { item: item })}
               alignSelf="center"
               bgColor="white"
