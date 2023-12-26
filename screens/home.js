@@ -208,7 +208,18 @@ const Home = () => {
                   </Pressable>
                 </Box>
               </HStack>
-              <ScrollView horizontal marginLeft={6} showsHorizontalScrollIndicator={false} >
+              <ScrollView horizontal marginLeft={6} showsHorizontalScrollIndicator={false}>
+                <Pressable onPress={() => { navigation.navigate('berita'); }}>
+                <VStack maxW={'200'} marginRight={3} >
+                  <AspectRatio w="100%" ratio={16/ 9}>
+                    <Image source={{
+                      uri: "https://i.pinimg.com/564x/d5/74/2b/d5742b0380120719cf10fd95818716fb.jpg"
+                    }} alt="image" rounded={15} />
+                  </AspectRatio>
+                  <Text mt={2} bold>Cara tetap produktif di tempat kerja saat pikiran kacau</Text>
+                </VStack>
+                </Pressable>
+                <Pressable onPress={() => { navigation.navigate('berita'); }}>
                 <VStack maxW={'200'} marginRight={3} >
                   <AspectRatio w="100%" ratio={16 / 9}>
                     <Image source={{
@@ -217,6 +228,8 @@ const Home = () => {
                   </AspectRatio>
                   <Text mt={2} bold>New Therapist for mental health</Text>
                 </VStack>
+                </Pressable>
+                <Pressable onPress={() => { navigation.navigate('berita'); }}>
                 <VStack maxW={'200'} marginRight={3} >
                   <AspectRatio w="100%" ratio={16 / 9}>
                     <Image source={{
@@ -225,14 +238,7 @@ const Home = () => {
                   </AspectRatio>
                   <Text mt={2} bold>New Therapist for mental health</Text>
                 </VStack>
-                <VStack maxW={'200'} marginRight={3} >
-                  <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{
-                      uri: "https://rm.id/files/konten/berita/menkes-jaga-kesehatan-itu-mudah-cukup-atur-2-hal-ini_196639.jpg"
-                    }} alt="image" rounded={15} />
-                  </AspectRatio>
-                  <Text mt={2} bold>New Therapist for mental health</Text>
-                </VStack>
+                </Pressable>
               </ScrollView>
               <HStack mt={10}>
                 <Box ml={5} >

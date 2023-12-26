@@ -195,6 +195,7 @@ const App = () => {
           <Stack.Screen name="admin-obat" component={AdminObat} options={noHead}/>
           <Stack.Screen name="edit-profile" component={Edit} options={noHead}/>
           <Stack.Screen name="obat" component={Obat} options={noHead}/>
+          <Stack.Screen name="berita" component={Berita} options={noHead}/>
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
