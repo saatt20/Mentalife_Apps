@@ -1,89 +1,148 @@
-import { Heading, Image, Box, Input, Pressable, Button, ScrollView } from "native-base";
+import React, { useState, useEffect } from "react";
+import { StatusBar, Image, Box, Heading, Text,  Pressable } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Header from "../components/header";
-import { useNavigation } from "@react-navigation/native";
+import Ionicons from "@expo/vector-icons/Ionicons"
+import { Header } from "../components";
+import FIREBASE from "../config/FIREBASE";
+import { clearStorage, getData } from "../src/utils/localStorage";
 
-const Edit = () => {
-  const navigation = useNavigation();
+const EditProfile = ({navigation}) => {
+    const [Profile, setProfile] = useState(null);
+    const getUserData = () => {
+        getData("user").then((res) => {
+          const data = res;
+          if (data) {
+            console.log("isi data", data);
+            setProfile(data);
+          } else {
+            // navigation.replace('Login');
+          }
+        });
+      };
+
+      const onSubmit = (Profile) => {
+        if (Profile) {
+        FIREBASE.auth()
+            .signOut()
+            .then(() => {
+            // Sign-out successful.
+            clearStorage();
+            navigation.replace("Login");
+            })
+            .catch((error) => {
+            // An error happened.
+            alert(error);
+            });
+        } else {
+        navigation.replace("Login");
+        }
+    };
+    
+      useEffect(() => {
+        const unsubscribe = navigation.addListener("focus", () => {
+          getUserData();
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, [navigation]);
+
   return (
     <>
-      <ScrollView>
-      <Header title={"Edit Profile"} withBack={"true"} />
-      <SafeAreaView>
-      <Box mt={-20} borderWidth={"0"} borderColor={"black"} >
-
-      <Box mt={"0"} padding={"0"} w="100%">
-          <Image source={require("../assets/RS.jpeg")} blurRadius={2} borderRadius={0} resizeMode="cover" h={180} w= "100%"/>
-      </Box>
-
-      <Box borderColor={"black"} borderWidth={"0"} flex={""} alignItems={"flex-start"} ml={4}
-          h={32} w={32} mt={"-20"} borderRadius={"full"} shadow={"7"} > 
+    <Header title={"Profile"}/>
+    <SafeAreaView>
+        <StatusBar backgroundColor= "#ffffff" />
+            <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
                 <Image
-                    source={require("../assets/beckham.jpg")} h={"32"} w={"32"} mt={"-6"} borderRadius={"full"} borderColor={"light.100"}/>
-      </Box>
-
-      <Box alignSelf="center" w={"100%"} bgColor={"white"} h={110}  mt={"-2"} 
-          shadow={""} mb={"0"} borderBottomWidth={"1"} borderBottomColor={"gray.500"}  borderRadius={0}>
+                    source={require("../assets/admin.png")} 
+                    borderRadius={5} h={200} w= "100%"
+                    alt="-"/>
+            </Box>
                 
-          <Box alignContent={"center"} w={"100%"} h={"100%"} mt={"0"}>
-                <Heading ml={6} mt={2} fontSize={27} fontWeight={"thin"} color={"gray.500"}>
-                  Nama Pasien
+            {/*Identitas */}
+        <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"30%"} 
+            shadow={"9"} mb={280} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
+
+            <Box alignItems={"start"} >
+                <Box alignItems={"center"} w={58} h={58} bgColor={"blue.400"} borderRadius={90} borderColor={"blue.100"} borderWidth={8} mt={1} ml={2}>
+                    <Ionicons name="person-circle-outline" color={"white"} size={39}/>
+                </Box>
+                <Heading shadow={5} alignSelf={"center"} ml={8} mt={-41} fontSize={20} fontWeight={"extrabold"} color={"black"}>
+                DETAIL USER
                 </Heading>
 
-                <Input borderColor={"white"} ml={5} mt={"4"} w={"85%"}
-                color={"blue.400"} fontWeight={"semibold"}  placeholder=" David Beckham El Matadore" fontSize={23}/>
+                <Box marginTop={6} ml={"16"}>
+                    <Ionicons name="information-circle" color={"red"} size={28}
+                    />
+                    <Text ml={"10"} mt={-6} fontSize={18} fontWeight={"normal"} 
+                        color={"black"}>
+                        {Profile?.name}
+                    </Text>
+                </Box>
 
-          </Box>
+                <Box marginTop={"6"} ml={"16"}>
+                    <Ionicons name="mail" color={"red"} size={28}/>
+                    <Text ml={"10"} mt={-7} fontSize={18} fontWeight={"normal"} 
+                        color={"black"}>
+                        {Profile?.email}
+                    </Text>
+                </Box>
 
-      </Box>
-      
-      <Box alignSelf="center" w={"100%"} bgColor={"white"} h={110}  mt={"3"} 
-          shadow={""} mb={"0"} borderBottomWidth={"1"} borderBottomColor={"gray.500"}  borderRadius={0}>
+                <Box marginTop={"6"} ml={"16"}>
+                    <Ionicons name="call" color={"red"} size={28}/>
+                     <Text  ml={"10"} mt={-7} fontSize={18} fontWeight={"normal"} 
+                        color={"black"}>
+                        {Profile?.nomorhp}
+                    </Text>
+                </Box>
+
+                    {/* Edit Profile */}
+                    <Box w={"100%"} bg={"#7dd3fc"} h={"75"}  mt={"10"} 
+                shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
+                    <Pressable onPress={() => navigation.navigate("edit-profile")} >
+
+                                <Box  w={"100%"} h={"100%"} mt={"0"}>
+                                    <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"} >
+                                    Edit Profile
+                                    </Heading>
+                        </Box>
+                        </Pressable>              
+                    </Box>
+                </Box>
+
                 
-          <Box alignContent={"center"} w={"100%"} h={"100%"} mt={"0"}>
-                <Heading ml={6} mt={2} fontSize={27} fontWeight={"thin"} color={"gray.500"}>
-                  Alamat Pasien
-                </Heading>
-
-                <Input borderColor={"white"} ml={5} mt={"4"} w={"85%"}
-                color={"blue.400"} fontWeight={"semibold"}  placeholder="Jl. yang pernah kita lewati bersama Surabaya, Jawa Timur 60231" fontSize={23}/>
-
-          </Box>
-
-      </Box>
-
-      <Box alignSelf="center" w={"100%"} bgColor={"white"} h={110}  mt={"3"} 
-          shadow={""} mb={"0"} borderBottomWidth={"1"} borderBottomColor={"gray.500"}  borderRadius={0}>
-                
-          <Box alignContent={"center"} w={"100%"} h={"100%"} mt={"0"}>
-                <Heading ml={6} mt={2} fontSize={27} fontWeight={"thin"} color={"gray.500"}>
-                  No. Telepon Pasien
-                </Heading>
-
-                <Input borderColor={"white"} ml={5} mt={"4"} w={"85%"}
-                color={"blue.400"} fontWeight={"semibold"}  placeholder="867092635156" fontSize={23}/>
-
-        </Box>
-
-        <Pressable>
-              <Button alignSelf={"flex-end"} p={4} mt={"6"} mr={2} w={"48"} mb={-20} title="Back" color={"amber.200"} borderColor={"white"}
-                shadow={"4"}  borderWidth={1} bgColor={"white"}
-                  onPress={() => navigation.navigate("Profile")}>
-                
-                <Heading size="md" color={"black"}>
-                  Save Change
-                </Heading>
-      
-              </Button>
-            </Pressable>
-
-      </Box>
-
-      </Box>
-      </SafeAreaView>
-      </ScrollView>
+                {/* Logout */}
+                <Box w={"100%"} bgColor={"red.500"} h={"75"}  mt={"5"} 
+                shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
+                    <Pressable onPress={() => onSubmit(Profile)} >
+                            
+                                <Box w={"100%"} h={"100%"} mt={"0"}>
+                                    <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"}>
+                                    Log Out
+                                    </Heading>
+                                </Box>
+                    </Pressable>
+                </Box>
+            </Box>
+    </SafeAreaView>
     </>
   );
 };
 
-export default Edit;
+export default EditProfile;
+
+ {/* Riwayat Transaksi
+            <Box alignSelf="center" w={"100%"} bgColor={"info.100"} h={"31%"}  mt={"3"} 
+                shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
+                <Pressable onPress={() => navigation.navigate("Transaksi")} >
+                <Box alignContent={"center"} w={"100%"} h={"100%"} mt={"0"}>
+                <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"gray.500"}>
+                 Riwayat Transaksi
+                 </Heading>
+                  <Box alignSelf={"flex-end"} mt={"-7"} mr={"4"}>
+                  <Ionicons name="time-outline" color={"gray"} size={28}/>
+                  </Box>
+               </Box>
+                </Pressable>
+            </Box> */}

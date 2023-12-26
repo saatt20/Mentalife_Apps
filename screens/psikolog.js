@@ -1,4 +1,4 @@
-import { Heading, Image, Text, FlatList, Button, Box, ScrollView, Pressable, HStack, Center} from "native-base";
+import { Heading, Image, Text, FlatList, Button, Box, ScrollView, Pressable } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../components";
 //datapsikolog//
@@ -13,21 +13,19 @@ const Psikolog = () => {
         activeOpacity={0.5}
         onPress={() => navigation.navigate("about-psikolog", { item: item })}
       >
-        <Box bg={"#28AADC"} w={'90%'} mt={5} rounded={20}
+        <Box
+          p={"4"}
+          borderBottomColor={"coolGray.300"}
+          borderBottomWidth={1}
           flexDirection="row"
-          alignSelf="center"
-          shadow="4"
+          flex={1}
         >
           <Box flex={1}>
             <Image
               source={{ uri: item.image }}
-              w="32"
-              h="32"
-              m="5"
-              paddingLeft={10}
-              borderRadius={20}
-              alignSelf={"flex-start"}
-              alignContent={"center"}
+              w="150"
+              h="40"
+              borderRadius={10}
               alt="Image Data"
             />
           </Box>
@@ -38,7 +36,7 @@ const Psikolog = () => {
             {/* <Text fontSize={"sm"}>{item.job}</Text> */}
             <Text fontSize={"sm"}>{item.keahlian}</Text>
             {/* <Text fontSize={"sm"}>{item.harga}</Text> */}
-            <Button onPress={() => navigation.navigate("about-psikolog", {item:item} )}  alignSelf="center" bgColor="white" borderRadius="full"  w={"100"} h={"10"} mt={"7"}><Text bold>Konsultasi</Text></Button>
+            <Button onPress={() => navigation.navigate("about-psikolog", {item:item} )}  alignSelf="flex-end"  borderRadius="full"  w={"100"} h={"10"} mt={"7"}>Konsultasi</Button>
           </Box>
         </Box>
       </Box>
