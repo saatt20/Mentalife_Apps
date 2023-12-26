@@ -15,7 +15,7 @@ const Lainnya = ({navigation}) => {
               p={"4"}
               flexDirection="row"
               flex={1} 
-              bg={"#7dd3fc"}
+              bg={"#C4E9F5"}
               borderRadius={25}
               mt={5}
               >
@@ -31,7 +31,7 @@ const Lainnya = ({navigation}) => {
               </Box>
 
               <Box flex={3}>
-                <Heading mt={8} lineHeight={"lg"} fontSize={"2xl"}>
+                <Heading mt={8} lineHeight={"lg"} fontSize={"2xl"}color={"#28AADC"}>
                   Berlangganan 
                 </Heading>
               </Box>
@@ -44,7 +44,7 @@ const Lainnya = ({navigation}) => {
           p={"4"}
           flexDirection="row"
           flex={1}
-          bg={"#7dd3fc"}
+          bg={"#C4E9F5"}
           borderRadius={25}
           mt={6}
         >
@@ -58,7 +58,7 @@ const Lainnya = ({navigation}) => {
               />
             </Box>
             <Box flex={3} >
-              <Heading mt={8} fontSize={"2xl"}>
+              <Heading mt={8} fontSize={"2xl"} color={"#28AADC"}>
                 Pengaturan
               </Heading>
             </Box>
@@ -73,7 +73,7 @@ const Lainnya = ({navigation}) => {
           p={"4"}
           flexDirection="row"
           flex={1}
-          bg={"#7dd3fc"}
+          bg={"#C4E9F5"}
           borderRadius={25}
           mt={6}
         >
@@ -88,7 +88,7 @@ const Lainnya = ({navigation}) => {
               />
             </Box>
             <Box flex={3} >
-              <Heading mt={10} fontSize={"2xl"}>
+              <Heading mt={10} fontSize={"2xl"} color={"#28AADC"}>
                 Pusat Bantuan
               </Heading>
             </Box>

@@ -52,10 +52,11 @@ const Obat = () => {
             />
           </Box>
           <Box flex={1} alignSelf="center">
-            <Heading lineHeight="md" fontSize="md">
+            <Heading lineHeight="md" fontSize="md" color={"white"} ml={-4}>
               {item.namaObat}
             </Heading>
-            <Text fontSize="sm">{item.keteranganObat}</Text>
+            <Text fontSize="sm" color={"white"} ml={-4}>{item.keteranganObat}</Text>
+            <Text fontSize="sm" color={"white"} ml={-4}>{item.hargaObat}</Text>
             <Button
               //   onPress={() => navigation.navigate("about-psikolog", { item: item })}
               alignSelf="center"
