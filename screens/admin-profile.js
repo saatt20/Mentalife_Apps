@@ -1,6 +1,5 @@
 import { Box, Text, Image, VStack, ScrollView, Pressable, Heading } from "native-base"
 import FIREBASE from '../config/FIREBASE';
-import Login from "./login";
 import { clearStorage, getData } from "../src/utils/localStorage";
 import React, { useState, useEffect } from "react";
 
@@ -48,16 +47,6 @@ const AdminProfile = ({ navigation }) => {
     }
   };
 
-  // return (
-  //     <>
-  //     <Text>
-  //         HALO INI ADMIN Profile
-  //     </Text>
-  //     <Button onPress={() => onSubmit(AdminProfile)} bg={"#38bdf8"} mt={7} h={50}>
-  //     <Heading color={"white"}>Keluar</Heading>
-  //   </Button>
-  //   </>
-  // )
   return (
     <Box
       mt={"5"}
@@ -87,6 +76,7 @@ const AdminProfile = ({ navigation }) => {
           </Text>
         </VStack>
         <Box
+        mt={-7}
           flexDirection="column"
           bgColor="white"
           shadowColor="black"
@@ -95,7 +85,7 @@ const AdminProfile = ({ navigation }) => {
           shadowRadius={"3.5"}
           justifyContent="space-evenly"
           p={"5"}
-          borderRadius={"xl"}
+          borderRadius={"lg"}
         >
           <Text color="black" fontWeight="semibold" fontSize={"xl"}alignSelf={"center"}>
             Data Pribadi Admin

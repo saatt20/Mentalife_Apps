@@ -1,96 +1,3 @@
-// import { Alert } from "react-native";
-// import FIREBASE from "../../config/FIREBASE";
-// import { clearStorage, getData, storeData } from "../../src/utils/localStorage";
-
-// export const registerUser = async (data, password) => {
-//   try {
-//     const success = await FIREBASE.auth().createUserWithEmailAndPassword(data.email, password);
-
-//     const dataBaru = {
-//       ...data,
-//       uid: success.user.uid,
-//     };
-
-//     await FIREBASE.database()
-//       .ref("users/" + success.user.uid)
-//       .set(dataBaru);
-//     //Local storage(Async Storage)
-//     storeData("user", dataBaru);
-//     return dataBaru;
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
-
-// export const loginUser = async (email, password) => {
-//   try {
-//     const success = await FIREBASE.auth().signInWithEmailAndPassword(email, password);
-//     const resDB = await FIREBASE.database()
-//       .ref("/users/" + success.user.uid)
-//       .once("value");
-
-//     if (resDB.val()) {
-//       // Local storage (Async Storage)
-//       await storeData("user", resDB.val());
-//       return resDB.val();
-//     } else {
-//       throw new Error("User data not found");
-//     }
-//   } catch (error) {
-//     throw error;
-//   }
-// };
-
-// // UNTUK LOG OUT
-// export const logoutUser = () => {
-//   FIREBASE.auth()
-//     .signOut()
-//     .then(() => {
-//       // Sign-out successful.
-//       clearStorage();
-//     })
-//     .catch((error) => {
-//       // An error happened.
-//       alert(error);
-//     });
-// };
-
-
-// // UNTUK EDIT PROFILE
-// export  const editProfile = async  (profile, navigation) => {
-//   try {
-//     const user = FIREBASE.auth().currentUser;
-
-//     // Update user profile in Firebase
-//     await user.updateProfile({
-//       displayName: profile.name,
-//     });
-
-//     // Update user data in Firebase database
-//     await FIREBASE.database()
-//       .ref(`users/${user.uid}`)
-//       .update({
-//         name: profile.name,
-//         notelephone: profile.notelephone,
-//         adress: profile.adress,
-//       });
-
-//     // Update user data in local storage
-//     const updatedUserData = {
-//       ...profile,
-//       name: user.displayName,
-//     };
-
-//     await storeData('user', updatedUserData);
-
-//     // Navigate back to the Profile screen
-//     navigation.goBack();
-//   } catch (error) {
-//     console.error('Error updating profile:', error);
-//   }
-// };
-
 import { Alert } from "react-native";
 import FIREBASE from "../../config/FIREBASE";
 import { clearStorage, getData, storeData } from "../utils/localStorage";
@@ -107,7 +14,8 @@ export const registerUser = async (data, password) => {
     await FIREBASE.database()
       .ref("users/" + success.user.uid)
       .set(dataBaru);
-    //Local storage(Async Storage)
+
+    // Local storage (Async Storage)
     storeData("user", dataBaru);
     return dataBaru;
   } catch (error) {
@@ -143,12 +51,12 @@ export const logoutUser = () => {
     })
     .catch((error) => {
       // An error happened.
-      alert(error);
+      Alert.alert("Error", error.message);
     });
 };
 
 // UNTUK EDIT PROFILE
-export  const editProfile = async  (profile, navigation) => {
+export const editProfile = async (profile, navigation) => {
   try {
     const user = FIREBASE.auth().currentUser;
 
@@ -163,7 +71,7 @@ export  const editProfile = async  (profile, navigation) => {
       .update({
         name: profile.name,
         notelephone: profile.notelephone,
-        adress: profile.adress,
+        address: profile.address,
       });
 
     // Update user data in local storage
@@ -181,108 +89,61 @@ export  const editProfile = async  (profile, navigation) => {
   }
 };
 
+export const addObat = (namaObat, keteranganObat, hargaObat) => {
+  const obatRef = FIREBASE.database().ref("obat");
 
-export const addNote = async (data) => {
-  try {
-    // Ambil data yg sudah login dari fungsi 'getData'
-    const userData = await getData("user");
+  const newObatEntry = {
+    namaObat: namaObat,
+    keteranganObat: keteranganObat,
+    hargaObat: hargaObat,
+  };
 
-    if (userData) {
-      // Tambah note sesuai uid
-      const dataBaru = {
-        ...data,
-        uid: userData.uid,
-      };
-
-      await FIREBASE.database()
-        .ref("notes/" + userData.uid)
-        .push(dataBaru);
-
-      console.log("Note added successfully");
-    } else {
-      Alert.alert("Error", "Login Terlebih Dahulu");
-    }
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const getNote = async () => {
-  const userData = await getData("user");
-  const notesRef = FIREBASE.database().ref("notes/" + userData.uid);
-
-  return notesRef
-    .once("value")
-    .then((snapshot) => {
-      const notesData = snapshot.val();
-      if (notesData) {
-        const notesArray = Object.entries(notesData).map(([noteId, noteData]) => ({
-          noteId,
-          ...noteData,
-        }));
-        return notesArray;
-      } else {
-        return [];
-      }
+  obatRef.push(newObatEntry)
+    .then(() => {
+      console.log("Data added successfully");
     })
     .catch((error) => {
-      console.error("Error fetching user notes:", error);
-      return [];
+      console.error("Error adding data: ", error);
     });
 };
 
-export const editNote = async (noteId, updatedData) => {
-  try {
-    // Ambil data pengguna yang sudah login dari fungsi 'getData'
-    const userData = await getData("user");
+export const getObatData = () => {
+  const obatRef = FIREBASE.database().ref("obat");
 
-    if (userData) {
-      // Perbarui catatan berdasarkan noteId
-      const noteRef = FIREBASE.database().ref(`notes/${userData.uid}/${noteId}`);
-      const snapshot = await noteRef.once("value");
-      const existingNote = snapshot.val();
-
-      if (existingNote) {
-        const updatedNote = {
-          ...existingNote,
-          ...updatedData,
-        };
-
-        await noteRef.update(updatedNote);
-        console.log("Note updated successfully");
-      } else {
-        console.log("Note not found");
-      }
-    } else {
-      Alert.alert("Error", "Login Terlebih Dahulu");
-    }
-  } catch (error) {
-    throw error;
-  }
+  obatRef.once("value")
+    .then((snapshot) => {
+      // The data is available in snapshot.val()
+      const data = snapshot.val();
+      console.log("Data retrieved successfully:", data);
+      // You can update your React component state with the retrieved data here
+    })
+    .catch((error) => {
+      console.error("Error retrieving data: ", error);
+    });
 };
 
-export const deleteNote = async (noteId) => {
-  try {
-    const userData = await getData("user");
+// Function to edit data in Firebase
+export const editObat = (key, updatedData) => {
+  const obatRef = FIREBASE.database().ref(`obat/${key}`);
 
-    if (!userData) {
-      Alert.alert("Error", "Login Terlebih Dahulu");
-      return;
-    }
+  obatRef.update(updatedData)
+    .then(() => {
+      console.log("Data updated successfully");
+    })
+    .catch((error) => {
+      console.error("Error updating data: ", error);
+    });
+};
 
-    const noteRef = FIREBASE.database().ref(`notes/${userData.uid}/${noteId}`);
-    const snapshot = await noteRef.once("value");
-    const existingNote = snapshot.val();
+// Function to delete data from Firebase
+export const deleteObat = (key) => {
+  const obatRef = FIREBASE.database().ref(`obat/${key}`);
 
-    if (!existingNote) {
-      console.log("Note not found");
-      return;
-    }
-
-    // Hapus catatan dari database
-    await noteRef.remove();
-    console.log("Note deleted successfully");
-  } catch (error) {
-    throw error;
-  }
+  obatRef.remove()
+    .then(() => {
+      console.log("Data deleted successfully");
+    })
+    .catch((error) => {
+      console.error("Error deleting data: ", error);
+    });
 };

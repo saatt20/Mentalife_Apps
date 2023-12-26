@@ -51,7 +51,7 @@ const login = () => {
     return (
     <SafeAreaView>
       <Box mt={"0"}  bgColor={"blue.100"}>
-      <StatusBar backgroundColor="" barStyle="dark-content" />
+      <StatusBar barStyle="dark-content" />
 
       <Box alignItems={"flex-end"}
       w={"container"} mr={-5} mt={0} h={"container"}>

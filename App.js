@@ -18,6 +18,7 @@ import {
   Lainnya,
   Pengaturan,
   Splash,
+  Obat,
 } from "./screens"
 import Bantuan from "./screens/bantuan";
 import Berita from "./screens/berita";
@@ -26,6 +27,7 @@ import AdminBerita from "./screens/admin-berita"
 import AdminPsikolog from "./screens/admin-psikolog"
 import AdminObat from "./screens/admin-obat"
 import Edit from "./screens/edit-profile";
+
 // import Pembayaran from "./screens/pembayaran";
 
 // Navigator Declaration
@@ -192,6 +194,7 @@ const App = () => {
           <Stack.Screen name="admin-psikolog" component={AdminPsikolog} options={noHead}/>
           <Stack.Screen name="admin-obat" component={AdminObat} options={noHead}/>
           <Stack.Screen name="edit-profile" component={Edit} options={noHead}/>
+          <Stack.Screen name="obat" component={Obat} options={noHead}/>
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
