@@ -180,7 +180,8 @@ const Home = () => {
                   </Pressable>
                 </Box>
               </HStack>
-              <ScrollView horizontal marginLeft={6} showsHorizontalScrollIndicator={false} >
+
+              {/* <ScrollView horizontal marginLeft={6} showsHorizontalScrollIndicator={false} >
                 <VStack maxW={'200'} marginRight={3} >
                   <AspectRatio w="100%" ratio={16 / 9}>
                     <Image source={{
@@ -205,7 +206,49 @@ const Home = () => {
                   </AspectRatio>
                   <Text mt={2} bold>New Therapist for mental health</Text>
                 </VStack>
-              </ScrollView>
+              </ScrollView> */}
+              
+              <Box py={"4"} bg={"#C4E9F5"}>
+              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          {databerita.slice(0).map((item, index) => {
+            return (
+              <TouchableOpacity
+                activeOpacity={0.5}
+                key={index}
+                onPress={() =>
+                  navigation.navigate("Article", { item: item })
+                }
+              >
+                <Box w={"48"} mr={"4"} ml={index == 0 ? "4" : "0"}>
+                  <Image
+                    source={{ uri: item.image }}
+                    w="full"
+                    h="24"
+                    alt="Image Data"
+                    mb={"2"}
+                  />
+                  <Text fontSize={"xs"} color="black">
+                    {item.date}
+                  </Text>
+                  <Heading
+                    fontSize={"md"}
+                    lineHeight={"xs"}
+                    ellipsizeMode="tail"
+                    numberOfLines={2}
+                    bold
+                  >
+                    {item.title}
+                  </Heading>
+                </Box>
+              </TouchableOpacity>
+            );
+          })}
+        </ScrollView>
+        </Box>
+
+
+
+              {/* Emergency */}
               <HStack mt={10}>
                 <Box ml={5} >
                   <Ionicons name="megaphone-outline" size={30} color="#28AADC" />
