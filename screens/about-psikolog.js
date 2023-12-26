@@ -31,22 +31,25 @@ const AboutPsikolog = ({ route }) => {
       <ScrollView >
         <Image source={{uri: params.image}} w={"full"} h={"80"} alt="Image"/>
         <Box  p={"4"} borderBottomColor={"#28AADC"} bg={"#28AADC"} mt={2} rounded={20} borderBottomWidth={1}>
-          <Heading>{params.title}</Heading>
-          <Text>{params.job}</Text>
-          <Text>{params.keahlian}</Text>
-        </Box>
-        <Box p={"4"} bg={"#28AADC"} mt={2} rounded={20}>
-          <Text bold fontSize={"17"}>
+          <Heading color={"white"}>{params.title}</Heading>
+          <Text color={"white"}>{params.job}</Text>
+          <Text color={"white"}>{params.keahlian}</Text>
+          <Text bold fontSize={"lg"} color={"white"}>
             {params.harga}
           </Text>
         </Box>
-        <Box  p={"4"} >
-          <Text>
+        {/* <Box p={"4"} bg={"#28AADC"} mt={2} rounded={20}>
+          <Text bold fontSize={"17"} color={"white"}>
+            {params.harga}
+          </Text>
+        </Box> */}
+        <Box  p={"4"}  bg={"#28AADC"} mt={2} rounded={20}>
+          <Text color={"white"} fontSize={"sm"}>
             {params.content}
           </Text>
         </Box>
         <Button onPress={() => navigation.navigate( "Pembayaran" )}  alignSelf="flex-end"  borderRadius="full" 
-         w={"150"} h={"12"} mr={"5"} mt={"2"} bg={"#28AADC"}>Pembayaran</Button>
+         w={"150"} h={"12"} mr={"5"} mt={"7"} bg={"#28AADC"}>Pembayaran</Button>
         <Box  p={"4"}>
         
         </Box>

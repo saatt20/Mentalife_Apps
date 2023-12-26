@@ -32,11 +32,11 @@ const Psikolog = () => {
             />
           </Box>
           <Box flex={1} alignSelf={"center"}>
-            <Heading lineHeight={"md"} fontSize={"md"}>
+            <Heading lineHeight={"md"} fontSize={"md"} color={"white"} >
               {item.title}
             </Heading>
             {/* <Text fontSize={"sm"}>{item.job}</Text> */}
-            <Text fontSize={"sm"}>{item.keahlian}</Text>
+            <Text fontSize={"sm"} color={"white"}>{item.keahlian}</Text>
             {/* <Text fontSize={"sm"}>{item.harga}</Text> */}
             <Button onPress={() => navigation.navigate("about-psikolog", {item:item} )}  alignSelf="center" bgColor="white" borderRadius="full"  w={"100"} h={"10"} mt={"7"}><Text bold>Konsultasi</Text></Button>
           </Box>
