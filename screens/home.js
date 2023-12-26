@@ -3,12 +3,38 @@ import { Header } from "../components";
 import { MaterialIcons, Ionicons, FontAwesome5,MaterialCommunityIcons  } from '@expo/vector-icons';
 import { VStack } from 'native-base';
 import { AspectRatio } from "native-base";
-import { ScrollViewBase, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import React, {useEffect, useState} from "react";
+import { getData } from "../src/utils/localStorage";
 
 const Home = () => {
   const navigation = useNavigation();
+  const [Home, setHome] = useState(null);
+
+  const getUserData = () => {
+    getData("user").then((res) => {
+      const data = res;
+      if (data) {
+        console.log("isi data", data);
+        setHome(data);
+      } else {
+        // navigation.replace('Login');
+      }
+    });
+  };
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", () => {
+      getUserData();
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [navigation]);
+
 
   return (
     <>
@@ -16,8 +42,8 @@ const Home = () => {
         <ScrollView >
           <Box flex={1} background={'#27AAE1'}>
             <Box m={5} mt={20}>
-              <Text fontWeight={'bold'} fontSize={20} marginBottom={1} color={'white'}>Hi, Belinda</Text>
-              <Text fontSize={20} color={'white'} marginBottom={8}>Get various information about the latest mental healt information</Text>
+              <Text fontWeight={'bold'} fontSize={20} marginBottom={1} color={'white'}>HI {Home?.name}</Text>
+              <Text fontSize={20} color={'white'} marginBottom={8}>Selamat Datang Di Mentalife</Text>
             </Box>
             <Box background={'white'} w={'100%'} borderTopRadius={40} >
               <Box alignItems={'center'}>
@@ -56,21 +82,21 @@ const Home = () => {
                     h={'90'}
                     borderRadius={20}
                     alt="image" />
-                  <Text fontSize={13} w={"20"} color={'#A49999'} textAlign={"center"}>Depresi</Text>
+                  <Text fontSize={13} w={"20"} color={'#A49999'} textAlign={"center"}>Psikosis</Text>
                 </VStack>
                 <VStack alignItems={'center'}>
                   <Image source={{ uri: "https://i.pinimg.com/originals/e3/eb/c7/e3ebc7d142c98b1ea141a8797d934f37.jpg" }} w={'90'}
                     h={'90'}
                     borderRadius={20}
                     alt="image" />
-                  <Text fontSize={13} w={"20"} color={'#A49999'} textAlign={"center"}>Depresi</Text>
+                  <Text fontSize={13} w={"20"} color={'#A49999'} textAlign={"center"}>Skizofrenia</Text>
                 </VStack>
                 <VStack alignItems={'center'}>
                   <Image source={{ uri: "https://i.pinimg.com/originals/e3/eb/c7/e3ebc7d142c98b1ea141a8797d934f37.jpg" }} w={'90'}
                     h={'90'}
                     borderRadius={20}
                     alt="image" />
-                  <Text fontSize={13} w={"20"} color={'#A49999'} textAlign={"center"}>Depresi</Text>
+                  <Text fontSize={13} w={"20"} color={'#A49999'} textAlign={"center"}>Demensia</Text>
                 </VStack>
 
 
@@ -213,7 +239,7 @@ const Home = () => {
                   <Ionicons name="megaphone-outline" size={30} color="#28AADC" />
                 </Box>
                 <VStack flex={2}>
-                  <Text bold fontSize={20} w={"300"}  > Emergency</Text>
+                  <Text bold fontSize={20} w={"300"}  >Emergency</Text>
                   <Text fontSize={13} mb={5} color={'#A49999'} ml={1}> Information & Article on mental health</Text>
                 </VStack>
               </HStack>
@@ -258,7 +284,7 @@ const Home = () => {
                     </Center>
                   </Box>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { navigation.navigate('Medication'); }}>
+                <TouchableOpacity onPress={() => { navigation.navigate('obat'); }}>
                   <Box w={350} h={70} mt={15} borderRadius={10} p={3} backgroundColor={"#C4E9F5"}  >
                     <Center>
                       <HStack>

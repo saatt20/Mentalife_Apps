@@ -6,7 +6,7 @@ import { Header } from "../components";
 import FIREBASE from "../config/FIREBASE";
 import { clearStorage, getData } from "../src/utils/localStorage";
 
-const Profile = ({navigation}) => {
+const EditProfile = ({navigation}) => {
     const [Profile, setProfile] = useState(null);
     const getUserData = () => {
         getData("user").then((res) => {
@@ -52,7 +52,7 @@ const Profile = ({navigation}) => {
     <>
     <Header title={"Profile"}/>
     <SafeAreaView>
-        <StatusBar backgroundColor= "#ffffff" barStyle='dark-content'/>
+        <StatusBar backgroundColor= "#ffffff" />
             <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
                 <Image
                     source={require("../assets/admin.png")} 
@@ -130,7 +130,7 @@ const Profile = ({navigation}) => {
   );
 };
 
-export default Profile;
+export default EditProfile;
 
  {/* Riwayat Transaksi
             <Box alignSelf="center" w={"100%"} bgColor={"info.100"} h={"31%"}  mt={"3"} 
