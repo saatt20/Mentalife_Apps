@@ -82,7 +82,7 @@ const AdminObat = () => {
       setNamaObat("");
       setImage(null);
       setHargaObat("");
-      setKeteranganObat("");
+      setKeterangaObat("");
   
       alert("Data Obat added successfully");
     } catch (error) {
