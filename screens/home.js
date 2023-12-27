@@ -8,6 +8,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import React, { useEffect, useState } from "react";
 import { getData } from "../src/utils/localStorage";
 import databerita from "../databerita";
+import datapsikolog from "../datapsikolog";
 
 const Home = () => {
   const navigation = useNavigation();
@@ -29,13 +30,12 @@ const Home = () => {
     const unsubscribe = navigation.addListener("focus", () => {
       getUserData();
     });
-
+  
     return () => {
       unsubscribe();
     };
   }, [navigation]);
 
-  const renderitem = ({ item }) => {
     return (
       <SafeAreaView >
         <ScrollView >
@@ -127,126 +127,47 @@ const Home = () => {
               </Box>
 
               {/* Popular Psikolog */}
-              <Text bold fontSize={20} w={"300"} pt={"5"} mt={5} ml={6} >Popular Psikolog</Text>
-              <HStack marginLeft={6} mt={5} space={2}>
-                <VStack bgColor={'#28AADC'} rounded={20} width={'30%'} >
-                  <Box mt={3} alignItems={'center'}>
-                    <Image source={{ uri: "https://media.licdn.com/dms/image/D4E03AQFwuUyfXHCeew/profile-displayphoto-shrink_800_800/0/1697614422617?e=2147483647&v=beta&t=j229bYy5NfolBOZeHVLEG0WfoIS4HnNyDRu6DOO6NFI" }} w={'100'}
-                      h={'100'}
-                      borderRadius={20}
-                      alt="image" />
-                  </Box>
-                  <Box bgColor={'#C4E9F5'} p={3} alignItems={'center'} rounded={20}>
-                    <Text bold fontSize={10} >Psikologi Klinis anak dan remaja</Text>
-                  </Box>
-                </VStack>
-                <VStack bgColor={'#28AADC'} rounded={20} width={'30%'}  >
-                  <Box mt={3} alignItems={'center'}>
-                    <Image source={{ uri: "https://media.licdn.com/dms/image/D4E03AQFwuUyfXHCeew/profile-displayphoto-shrink_800_800/0/1697614422617?e=2147483647&v=beta&t=j229bYy5NfolBOZeHVLEG0WfoIS4HnNyDRu6DOO6NFI" }} w={'100'}
-                      h={'100'}
-                      borderRadius={20}
-                      alt="image" />
-                  </Box>
-                  <Box bgColor={'#C4E9F5'} p={3} alignItems={'center'} rounded={20}>
-                    <Text bold fontSize={10} >Psikologi Klinis anak dan remaja</Text>
-                  </Box>
-                </VStack>
-                <VStack bgColor={'#28AADC'} rounded={20} width={'30%'} >
-                  <Box mt={3} alignItems={'center'}>
-                    <Image source={{ uri: "https://media.licdn.com/dms/image/D4E03AQFwuUyfXHCeew/profile-displayphoto-shrink_800_800/0/1697614422617?e=2147483647&v=beta&t=j229bYy5NfolBOZeHVLEG0WfoIS4HnNyDRu6DOO6NFI" }} w={'100'}
-                      h={'100'}
-                      borderRadius={20}
-                      alt="image" />
-                  </Box>
-                  <Box bgColor={'#C4E9F5'} p={3} alignItems={'center'} rounded={20}>
-                    <Text bold fontSize={10} >Psikologi Klinis anak dan remaja</Text>
-                  </Box>
-                </VStack>
-              </HStack>
-
-              {/* Article */}
-              <HStack mt={10}>
-                <Box ml={5} >
-                  <MaterialIcons name="article" size={30} color="#28AADC" />
-                </Box>
-                <VStack flex={2}>
-                  <Text bold fontSize={20} w={"300"}  > Article</Text>
-                  <Text fontSize={12} mb={5} color={'#A49999'} ml={1}> Information & Article on mental health</Text>
-                </VStack>
-                <Box flex={1}>
-                  <Pressable onPress={() => navigation.navigate("article")}>
-
-                    <Text bold marginLeft={7} color={'#28AADC'}>See all</Text>
-                  </Pressable>
-                </Box>
-              </HStack>
-
-              {/* <ScrollView horizontal marginLeft={6} showsHorizontalScrollIndicator={false} >
-                <VStack maxW={'200'} marginRight={3} >
-                  <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{
-                      uri: "https://rm.id/files/konten/berita/menkes-jaga-kesehatan-itu-mudah-cukup-atur-2-hal-ini_196639.jpg"
-                    }} alt="image" rounded={15} />
-                  </AspectRatio>
-                  <Text mt={2} bold>New Therapist for mental health</Text>
-                </VStack>
-                <VStack maxW={'200'} marginRight={3} >
-                  <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{
-                      uri: "https://rm.id/files/konten/berita/menkes-jaga-kesehatan-itu-mudah-cukup-atur-2-hal-ini_196639.jpg"
-                    }} alt="image" rounded={15} />
-                  </AspectRatio>
-                  <Text mt={2} bold>New Therapist for mental health</Text>
-                </VStack>
-                <VStack maxW={'200'} marginRight={3} >
-                  <AspectRatio w="100%" ratio={16 / 9}>
-                    <Image source={{
-                      uri: "https://rm.id/files/konten/berita/menkes-jaga-kesehatan-itu-mudah-cukup-atur-2-hal-ini_196639.jpg"
-                    }} alt="image" rounded={15} />
-                  </AspectRatio>
-                  <Text mt={2} bold>New Therapist for mental health</Text>
-                </VStack>
-              </ScrollView> */}
               
-              <Box py={"4"} bg={"#C4E9F5"}>
-              <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {databerita.slice(0).map((item, index) => {
-            return (
-              <TouchableOpacity
-                activeOpacity={0.5}
-                key={index}
-                onPress={() =>
-                  navigation.navigate("Article", { item: item })
-                }
-              >
-                <Box w={"48"} mr={"4"} ml={index == 0 ? "4" : "0"}>
-                  <Image
-                    source={{ uri: item.image }}
-                    w="full"
-                    h="24"
-                    alt="Image Data"
-                    mb={"2"}
-                  />
-                  <Text fontSize={"xs"} color="black">
-                    {item.date}
-                  </Text>
-                  <Heading
-                    fontSize={"md"}
-                    lineHeight={"xs"}
-                    ellipsizeMode="tail"
-                    numberOfLines={2}
-                    bold
-                  >
-                    {item.title}
-                  </Heading>
-                </Box>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
-        </Box>
-
-
+                <Box py={"3"} bg={"#C4E9F5"}mt={5}>
+                <Text bold fontSize={20} w={"300"}ml={6} >Popular Psikolog</Text>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+            {datapsikolog.slice(4).map((item, index) => {
+              return (
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  key={index}
+                  onPress={() =>
+                    navigation.navigate("Article", { item: item })
+                  }
+                >
+                  <Box w={"48"} mr={"4"} mt={4} ml={index == 0 ? "4" : "0"}>
+                    <Image
+                      source={{ uri: item.image }}
+                      alignSelf={"center"}
+                      size={"xl"}
+                      alt="Image Data"
+                      mb={"2"}
+                      borderRadius={10}
+                    />
+                    <Heading
+                      fontSize={"md"}
+                      lineHeight={"xs"}
+                      ellipsizeMode="tail"
+                      numberOfLines={1}
+                      bold
+                      alignSelf={"center"}
+                    >
+                      {item.title}
+                    </Heading>
+                    <Text fontSize={"xs"} color="black" ml={3}numberOfLines={1}>
+                      {item.keahlian}
+                    </Text>
+                  </Box>
+                </TouchableOpacity>
+              );
+            })}
+          </ScrollView>
+          </Box>
 
               {/* Emergency */}
               <HStack mt={10}>
@@ -258,28 +179,26 @@ const Home = () => {
                   <Text fontSize={13} mb={5} color={'#A49999'} ml={1}> Information & Article on mental health</Text>
                 </VStack>
               </HStack>
-
-
               <Center mb={150}>
-                <TouchableOpacity onPress={() => { navigation.navigate('Psikolog'); }}>
+                <TouchableOpacity onPress={() => navigation.navigate("article")}>
                   <Box w={350} h={70} mt={15} borderRadius={10} p={3} backgroundColor={"#C4E9F5"}  >
                     <Center>
                       <HStack>
                         <Box mt={1} flex={1} alignItems={'center'} >
-                          <FontAwesome5 name="brain" size={34} color={'#28AADC'} />
+                          <FontAwesome5 name="newspaper" size={34} color={'#28AADC'} />
                         </Box>
                         <VStack ml={5} mr={10} flex={2}>
-                          <Text bold color={"#28AADC"} >Choose Psikolog</Text>
-                          <Text color={"white"}>bantuan konseling</Text>
+                          <Text bold color={"#28AADC"} >Artikel Mentalife</Text>
+                          <Text color={"white"}>Berita dan Informasi </Text>
                         </VStack>
                         <Box mt={1} flex={1}>
                           <Ionicons name="chevron-forward-outline" color={"#28AADC"} size={30} />
                         </Box>
-
                       </HStack>
                     </Center>
                   </Box>
                 </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => { navigation.navigate('Hospital'); }}>
                   <Box w={350} h={70} mt={15} borderRadius={10} p={3} backgroundColor={"#C4E9F5"}  >
                     <Center>
@@ -294,11 +213,11 @@ const Home = () => {
                         <Box mt={1} flex={1}>
                           <Ionicons name="chevron-forward-outline" color={"#28AADC"} size={30} />
                         </Box>
-
                       </HStack>
                     </Center>
                   </Box>
                 </TouchableOpacity>
+
                 <TouchableOpacity onPress={() => { navigation.navigate('obat'); }}>
                   <Box w={350} h={70} mt={15} borderRadius={10} p={3} backgroundColor={"#C4E9F5"}  >
                     <Center>
@@ -313,19 +232,18 @@ const Home = () => {
                         <Box mt={1} flex={1}>
                           <Ionicons name="chevron-forward-outline" color={"#28AADC"} size={30} />
                         </Box>
-
                       </HStack>
                     </Center>
                   </Box>
                 </TouchableOpacity>
               </Center>
+
             </Box>
           </Box>
         </ScrollView >
-      </SafeAreaView >
+      </SafeAreaView > 
     );
-  };
-
+  
   return (
     <>
       <FlatList
@@ -337,5 +255,6 @@ const Home = () => {
     </>
   );
 };
+  
 
 export default Home;
