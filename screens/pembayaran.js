@@ -74,7 +74,7 @@ const Pembayaran = ({ route }) => {
             Sesi Konsultasi
           </Text>
           <Text color="white" textAlign="left" mt={2} bold ml={155} fontSize="md">
-            60 Menit
+            30 Menit
           </Text>
         </HStack>
         <HStack mt={2}>
