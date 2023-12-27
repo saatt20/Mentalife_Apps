@@ -40,7 +40,7 @@ const Obat = () => {
         >
           <Box flex={1}>
             <Image
-              source={{ uri: 'https://cdn1-production-images-kly.akamaized.net/vv_AF_WvQDxjEnG4ngiSWOAra2w=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/3394456/original/008890200_1614980718-myriam-zilles-KltoLK6Mk-g-unsplash.jpg' }}
+              source={{ uri: item.imageURL }}
               w="32"
               h="32"
               m={5}
