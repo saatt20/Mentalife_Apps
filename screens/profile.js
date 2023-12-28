@@ -98,7 +98,7 @@ const Profile = ({navigation}) => {
                 </Box>
 
                     {/* Edit Profile */}
-                    <Box w={"100%"} bg={"#7dd3fc"} h={"75"}  mt={"10"} 
+                    {/* <Box w={"100%"} bg={"#7dd3fc"} h={"75"}  mt={"10"} 
                 shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>  
                     <Pressable onPress={() => navigation.navigate("edit-profile")} >
 
@@ -108,7 +108,7 @@ const Profile = ({navigation}) => {
                                     </Heading>
                         </Box>
                         </Pressable>              
-                    </Box>
+                    </Box> */}
                 </Box>
 
                 

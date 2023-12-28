@@ -114,12 +114,12 @@ const login = () => {
            </Button>
 
            <Box mt={"10"} alignSelf={"center"} ml={""} >
-      <Heading fontSize={16} color={"white"} fontWeight={"light"} shadow={"4"} bold>
+      {/* <Heading fontSize={16} color={"white"} fontWeight={"light"} shadow={"4"} bold>
       _______ Login menggunakan Akun Sosial Media _______
-      </Heading>
+      </Heading> */}
     </Box>
 
-    <Pressable>
+    {/* <Pressable>
     <Box h={"12"}  borderColor={"white"} borderWidth={"1"} 
       mt={2} ml={5} mr={5} borderRadius={20} shadow={""}>
       <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"10"} fontWeight={"semibold"}>
@@ -129,9 +129,9 @@ const login = () => {
           <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/145/145802.png'}} 
             alignSelf={"center"} mr={"20"} mt={"-6"} h={6} w={6} alt="image2"/>
     </Box>
-    </Pressable>
+    </Pressable> */}
 
-    <Pressable>
+    {/* <Pressable>
     <Box h={"12"}  borderColor={"white"} borderWidth={"1"} 
       mt={2} ml={5} mr={5} borderRadius={20} shadow={""}>
       <Text fontSize={18} mt={"2"} alignSelf={"center"} ml={"10"} fontWeight={"semibold"}>
@@ -141,7 +141,7 @@ const login = () => {
           <Image source={{ uri: 'https://cdn-icons-png.flaticon.com/128/300/300221.png'}} 
             alignSelf={"center"} mr={"16"} mt={"-6"} h={6} w={6} alt="image3"/>
     </Box>
-    </Pressable>
+    </Pressable> */}
 
               <HStack mt="2" justifyContent="center">
                 <Text fontSize={15} color={"white"} fontWeight={"light"} shadow={"4"} bold>

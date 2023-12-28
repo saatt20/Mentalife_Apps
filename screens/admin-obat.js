@@ -99,10 +99,8 @@ const AdminObat = () => {
         <SafeAreaView>
           <Box flex={1} borderWidth={0} borderColor={"black"} >
 
-          <Text fontSize={16} mt={2} mb={2}>
-          Gambar Wisata
-        </Text>
-        <Button backgroundColor="#0383A2" onPress={pickImage}>
+          <Heading ml={4}  fontSize={27}  bold color={"gray.500"}> Gambar Obat :</Heading>
+        <Button backgroundColor="#28AADC" onPress={pickImage}>
           <Text fontWeight="bold" color="white">Pilih Gambar</Text>
         </Button>
         {image && (
