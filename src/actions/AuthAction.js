@@ -55,37 +55,26 @@ export const logoutUser = () => {
     });
 };
 
-// UNTUK EDIT PROFILE
-export const editProfile = async (profile, navigation) => {
+
+export const updateUserData = async (uid, updatedData) => {
   try {
-    const user = FIREBASE.auth().currentUser;
+    const userRef = FIREBASE.database().ref(`users/${uid}`);
+    const snapshot = await userRef.once("value");
+    const existingUserData = snapshot.val();
 
-    // Update user profile in Firebase
-    await user.updateProfile({
-      displayName: profile.name,
-    });
+    if (existingUserData) {
+      const updatedUser = {
+        ...existingUserData,
+        ...updatedData,
+      };
 
-    // Update user data in Firebase database
-    await FIREBASE.database()
-      .ref(`users/${user.uid}`)
-      .update({
-        name: profile.name,
-        notelephone: profile.notelephone,
-        address: profile.address,
-      });
-
-    // Update user data in local storage
-    const updatedUserData = {
-      ...profile,
-      name: user.displayName,
-    };
-
-    await storeData('user', updatedUserData);
-
-    // Navigate back to the Profile screen
-    navigation.goBack();
+      await userRef.update(updatedUser);
+      console.log("User data updated successfully");
+    } else {
+      console.log("User data not found");
+    }
   } catch (error) {
-    console.error('Error updating profile:', error);
+    throw error;
   }
 };
 
@@ -148,35 +137,35 @@ export const deleteObat = (key) => {
     });
 };
 
-export const addBerita = (namaBerita, keteranganBerita) => {
-  const beritaRef = FIREBASE.database().ref("obat");
+// export const addBerita = (namaBerita, keteranganBerita) => {
+//   const beritaRef = FIREBASE.database().ref("obat");
 
-  const newBeritaEntry = {
-    namaBerita: namaBerita,
-    keteranganBerita: keteranganBerita,
-  };
+//   const newBeritaEntry = {
+//     namaBerita: namaBerita,
+//     keteranganBerita: keteranganBerita,
+//   };
 
-  beritaRef.push(newBeritaEntry)
-    .then(() => {
-      console.log("Data added successfully");
-    })
-    .catch((error) => {
-      console.error("Error adding data: ", error);
-    });
-};
+//   beritaRef.push(newBeritaEntry)
+//     .then(() => {
+//       console.log("Data added successfully");
+//     })
+//     .catch((error) => {
+//       console.error("Error adding data: ", error);
+//     });
+// };
 
-export const getBeritaData = () => {
-  const  beritaRef = FIREBASE.database().ref("berita");
+// export const getBeritaData = () => {
+//   const beritaRef = FIREBASE.database().ref("berita");
 
-  beritaRef.once("value")
-    .then((snapshot) => {
-      // The data is available in snapshot.val()
-      const data = snapshot.val();
-      console.log("Data retrieved successfully:", data);
-      // You can update your React component state with the retrieved data here
-    })
-    .catch((error) => {
-      console.error("Error retrieving data: ", error);
-    });
-};
+//   beritaRef.once("value")
+//     .then((snapshot) => {
+//       // The data is available in snapshot.val()
+//       const data = snapshot.val();
+//       console.log("Data retrieved successfully:", data);
+//       // You can update your React component state with the retrieved data here
+//     })
+//     .catch((error) => {
+//       console.error("Error retrieving data: ", error);
+//     });
+// };
 

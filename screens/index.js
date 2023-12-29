@@ -14,6 +14,7 @@ import Pengaturan from "./pengaturan";
 import AdminObat from "./admin-obat";
 import Obat from "./obat";
 import Article from "./article";
+import RiwayatTransaksi from "./riwayat-transaksi";
 
 export {Home, Psikolog, Profile, AboutPsikolog, Pembayaran, Konsultasi, Login, Register, 
-    AdminHome, AdminProfile, Splash, Lainnya, Pengaturan, AdminObat, Obat, Article};
+    AdminHome, AdminProfile, Splash, Lainnya, Pengaturan, AdminObat, Obat, Article, RiwayatTransaksi};
