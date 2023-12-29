@@ -3,6 +3,7 @@ import { Box, Text, Image, HStack, Button, Heading, VStack, Modal, Radio } from 
 import { useNavigation } from "@react-navigation/native";
 import { Header } from "../components";
 import { getData } from "../src/utils/localStorage";
+import firebase from "firebase/compat";
 
 const Pembayaran = ({ route }) => {
   const navigation = useNavigation();
@@ -10,7 +11,6 @@ const Pembayaran = ({ route }) => {
 
   const [showModal, setShowModal] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
-
   const [Pembayaran, setPembayaran] = useState(null);
 
   const getUserData = () => {
@@ -35,6 +35,30 @@ const Pembayaran = ({ route }) => {
     };
   }, [navigation]);
 
+  const handleSaveChange = () => {
+    addPayment(params.title, params.job, params.harga);
+    setShowModal(true);
+  };
+
+  const addPayment = (itemName, itemJob, itemPrice) => {
+    const paymentRef = firebase.database().ref("payment");
+  
+    const newPaymentEntry = {
+      itemName: itemName,
+      itemJob: itemJob,
+      itemPrice: itemPrice,
+    };
+  
+    paymentRef.push(newPaymentEntry)
+      .then(() => {
+        console.log("Data added successfully");
+      })
+      .catch((error) => {
+        console.error("Error adding data: ", error);
+      });
+  };
+  
+
 
   return (
     <>
@@ -45,27 +69,27 @@ const Pembayaran = ({ route }) => {
       </Box>
 
       <Box
-          p={"4"}
-          bg="#28AADC"
-          borderBottomColor={"#D9E8ED"}
-          borderBottomWidth={1}
-          flexDirection="row"
-        >
-          <Box flex={1}>
-            <Image
-              source={{ uri: params.image }}
-              w="150"
-              h="40"
-              borderRadius={10}
-              alt="image"
-            />
-          </Box>
-          <Box flex={1} alignSelf={"center"} mr={5}>
-            <Heading lineHeight={"lg"} fontSize={"lg"} color={"white"}>
+        p={"4"}
+        bg="#28AADC"
+        borderBottomColor={"#D9E8ED"}
+        borderBottomWidth={1}
+        flexDirection="row"
+      >
+        <Box flex={1}>
+          <Image
+            source={{ uri: params.image }}
+            w="150"
+            h="40"
+            borderRadius={10}
+            alt="image"
+          />
+        </Box>
+        <Box flex={1} alignSelf={"center"} mr={5}>
+          <Heading lineHeight={"lg"} fontSize={"lg"} color={"white"}>
             {params.title}
-            </Heading>
-            <Text fontSize={"md"} mt={1} color={"white"}>{params.job}</Text>
-          </Box>
+          </Heading>
+          <Text fontSize={"md"} mt={1} color={"white"}>{params.job}</Text>
+        </Box>
       </Box>
 
       <Box mt={5} bg="#28AADC" p={4} mx={5} borderRadius={10}>
@@ -89,9 +113,16 @@ const Pembayaran = ({ route }) => {
       </Box>
 
       <Box p={2} mt={10} mx={5} bg="#D9E8ED">
-        <Button onPress={() => setShowModal(true)} bg="#28AADC">
+        <Button
+          onPress={() => {
+            setShowModal(true);
+            handleSaveChange(); // Call the function to save data when the button is pressed
+          }}
+          bg="#28AADC"
+        >
           Bayar Sekarang
         </Button>
+
         <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
           <Modal.Content maxWidth={350}>
             <Modal.CloseButton />
@@ -104,7 +135,7 @@ const Pembayaran = ({ route }) => {
                 </HStack>
                 <HStack alignItems="center" justifyContent="space-between">
                   <Text fontWeight="medium">Total Bayar</Text>
-                  <Text color="green.500"bold >{params.harga}</Text>
+                  <Text color="green.500" bold >{params.harga}</Text>
                 </HStack>
               </VStack>
             </Modal.Body>
@@ -179,13 +210,9 @@ const Pembayaran = ({ route }) => {
           </Modal.Content>
         </Modal>
       </Box>
-      {/* <Box p={16} mt={72} bg="#D9E8ED">
-        <Button onPress={() => navigation.navigate("Konsultasi")} bg="#28AADC">
-          Konsultasi Sekarang
-        </Button>
-      </Box> */}
     </>
   );
 };
+
 
 export default Pembayaran;
