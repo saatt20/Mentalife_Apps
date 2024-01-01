@@ -78,23 +78,6 @@ export const updateUserData = async (uid, updatedData) => {
   }
 };
 
-export const addObat = (namaObat, keteranganObat, hargaObat) => {
-  const obatRef = FIREBASE.database().ref("obat");
-
-  const newObatEntry = {
-    namaObat: namaObat,
-    keteranganObat: keteranganObat,
-    hargaObat: hargaObat,
-  };
-
-  obatRef.push(newObatEntry)
-    .then(() => {
-      console.log("Data added successfully");
-    })
-    .catch((error) => {
-      console.error("Error adding data: ", error);
-    });
-};
 
 export const getObatData = () => {
   const obatRef = FIREBASE.database().ref("obat");
@@ -124,48 +107,4 @@ export const editObat = (key, updatedData) => {
     });
 };
 
-// Function to delete data from Firebase
-export const deleteObat = (key) => {
-  const obatRef = FIREBASE.database().ref(`obat/${key}`);
-
-  obatRef.remove()
-    .then(() => {
-      console.log("Data deleted successfully");
-    })
-    .catch((error) => {
-      console.error("Error deleting data: ", error);
-    });
-};
-
-// export const addBerita = (namaBerita, keteranganBerita) => {
-//   const beritaRef = FIREBASE.database().ref("obat");
-
-//   const newBeritaEntry = {
-//     namaBerita: namaBerita,
-//     keteranganBerita: keteranganBerita,
-//   };
-
-//   beritaRef.push(newBeritaEntry)
-//     .then(() => {
-//       console.log("Data added successfully");
-//     })
-//     .catch((error) => {
-//       console.error("Error adding data: ", error);
-//     });
-// };
-
-// export const getBeritaData = () => {
-//   const beritaRef = FIREBASE.database().ref("berita");
-
-//   beritaRef.once("value")
-//     .then((snapshot) => {
-//       // The data is available in snapshot.val()
-//       const data = snapshot.val();
-//       console.log("Data retrieved successfully:", data);
-//       // You can update your React component state with the retrieved data here
-//     })
-//     .catch((error) => {
-//       console.error("Error retrieving data: ", error);
-//     });
-// };
 

@@ -29,6 +29,7 @@ import AdminBerita from "./screens/admin-berita"
 import AdminPsikolog from "./screens/admin-psikolog"
 import AdminObat from "./screens/admin-obat"
 import Edit from "./screens/edit-profile";
+import AdminDataObat from "./screens/admin-data-obat";
 
 // import Pembayaran from "./screens/pembayaran";
 
@@ -199,6 +200,7 @@ const App = () => {
           <Stack.Screen name="obat" component={Obat} options={noHead}/>
           <Stack.Screen name="article" component={Article} options={noHead}/>
           <Stack.Screen name="riwayat-transaksi" component={RiwayatTransaksi} options={noHead}/>
+          <Stack.Screen name="admin-data-obat" component={AdminDataObat} options={noHead}/>
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

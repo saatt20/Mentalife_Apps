@@ -67,113 +67,118 @@ const AdminObat = () => {
         alert("Please fill in all fields");
         return;
       }
-  
+
       const dataObat = {
         namaObat,
         image,
         hargaObat: parseInt(hargaObat, 10), // Convert harga to integer
         keteranganObat,
       };
-  
+
       // Add obat data
       await addDataObat(dataObat);
-  
+
       // Clear input fields after adding data
       setNamaObat("");
       setImage(null);
       setHargaObat("");
       setKeterangaObat("");
-  
+
       alert("Data Obat added successfully");
     } catch (error) {
       console.error("Error adding data Obat:", error);
       // Handle the error here, e.g., display an error message
-      
+
     }
   };
-  
+
   return (
     <>
-      <Header title={"AdminObat"} withBack={true} />
+      <Box bgColor={"white"} h={20}>
+        <Header title={"Admin Obat"} withBack={true} />
+        <Button onPress={() => navigation.navigate("admin-data-obat")}
+          alignSelf="flex-end"
+          bgColor="info.500"
+          borderRadius="full"
+          w={"100"} h={"10"} mr={10}
+          mt={-10}><Text bold color={"white"}>Data Obat</Text>
+        </Button>
+      </Box>
+
       <ScrollView>
         <SafeAreaView>
-          <Box flex={1} borderWidth={0} borderColor={"black"} >
+          <Box flex={1} p={3} borderWidth={1} borderRadius={50} borderColor={"black"} bgColor={"info.100"} mx={5} mt={5}>
 
-          <Heading ml={4}  fontSize={27}  bold color={"gray.500"}> Gambar Obat :</Heading>
-        <Button backgroundColor="#28AADC" onPress={pickImage}>
-          <Text fontWeight="bold" color="white">Pilih Gambar</Text>
-        </Button>
-        {image && (
-          <Image
-            source={{ uri: image }}
-            alt="gambarwisata"
-            size="lg"
-            resizeMode="cover"
-          />
-        )}
-
-            {/* IMAGE
-            <Box mt={0} padding={0} w="100%">
-              <Image source={require("../assets/medicine.png")} blurRadius={2} borderRadius={0} resizeMode="cover" h={180} w="100%" alt="imgg" />
+            {/* GAMBAR OBAT */}
+            <Box alignSelf="center" w={"100%"} h={120} 
+              borderBottomWidth={1} borderBottomColor={"info.500"}>
+              <Box alignContent={"center"} w={"100%"} h={"100%"} >
+                <Heading ml={4} mt={2} fontSize={27} bold> Gambar Obat :</Heading>
+                <Button backgroundColor="#28AADC" borderRadius={"full"} w={150} mt={3} alignSelf={"center"} onPress={pickImage}>
+                  <Text fontWeight="bold" color="white" >Pilih Gambar</Text>
+                </Button>
+                {image && (
+                  <Image
+                    source={{ uri: image }}
+                    alt="gambarwisata"
+                    size="lg"
+                    resizeMode="cover"
+                  />
+                )}
+              </Box>
             </Box>
-            <Box borderColor={"black"} borderWidth={0} alignItems={"flex-start"} ml={4}
-              h={32} w={32} mt={-20} borderRadius={"full"} shadow={7} >
-              <Image
-                source={require("../assets/admin1.jpg")} h={32} w={32} mt={-6} borderRadius={"full"} borderColor={"light.100"} alt="imgg" />
-            </Box> */}
+
 
             {/* NAMA OBAT */}
-            <Box alignSelf="center" w={"100%"} bgColor={"white"} h={110} mt={-2}
-              mb={0} borderBottomWidth={1} borderBottomColor={"gray.500"} borderRadius={0}>
-              <Box alignContent={"center"} w={"100%"} h={"100%"} mt={0}>
-                <Heading ml={6} mt={2} fontSize={27}  bold color={"gray.500"}>
+            <Box alignSelf="center" w={"100%"} h={120} 
+              mb={0} borderBottomWidth={1} borderBottomColor={"info.500"}>
+              <Box alignContent={"center"} w={"100%"} h={"100%"}>
+                <Heading ml={6} mt={2} fontSize={27} bold >
                   Nama Obat :
                 </Heading>
-                <Input borderColor={"white"} ml={5} mt={4} w={"85%"}
-                  color={"blue.400"} placeholder="Nama Obat" fontSize={23} value={namaObat} onChangeText={(namaObat) => setNamaObat(namaObat)} />
+                <Input borderColor={"white"} ml={5} mt={4} w={"85%"}  borderRadius={10}
+                  bgColor={"white"} placeholder="Masukan Nama Obat" fontSize={23} value={namaObat} onChangeText={(namaObat) => setNamaObat(namaObat)} />
               </Box>
             </Box>
 
             {/* KETERANGAN OBAT */}
-            <Box alignSelf="center" w={"100%"} bgColor={"white"} h={110} mt={3}
-              mb={0} borderBottomWidth={1} borderBottomColor={"gray.500"} borderRadius={0}>
-              <Box alignContent={"center"} w={"100%"} h={"100%"} mt={0}>
-                <Heading ml={6} mt={2} fontSize={27} bold fontWeight={"thin"} color={"gray.500"}>
+            <Box alignSelf="center" w={"100%"} h={120} 
+              mb={0} borderBottomWidth={1} borderBottomColor={"info.500"}>
+              <Box alignContent={"center"} w={"100%"} h={"100%"}>
+                <Heading ml={6} mt={2} fontSize={27} bold>
                   Keterangan Obat :
                 </Heading>
-                <Input borderColor={"white"} ml={5} mt={4} w={"85%"}
-                  color={"blue.400"} placeholder="Keterangan Obat" value={keteranganObat} fontSize={23} onChangeText={(keteranganObat) => setKeterangaObat(keteranganObat)} />
+                <Input borderColor={"white"} ml={5} mt={4} w={"85%"} borderRadius={10}
+                  bgColor={"white"} placeholder="Masukan Keterangan" value={keteranganObat} fontSize={23} onChangeText={(keteranganObat) => setKeterangaObat(keteranganObat)} />
               </Box>
             </Box>
 
             {/* HARGA OBAT */}
-            <Box alignSelf="center" w={"100%"} bgColor={"white"} h={110} mt={3}
-              mb={0} borderBottomWidth={1} borderBottomColor={"gray.500"} borderRadius={0}>
-              <Box alignContent={"center"} w={"100%"} h={"100%"} mt={0}>
-                <Heading ml={6} mt={2} fontSize={27} bold fontWeight={"thin"} color={"gray.500"}>
+            <Box alignSelf="center" w={"100%"} h={120} >
+              <Box alignContent={"center"} w={"100%"} h={"100%"}>
+                <Heading ml={6} mt={2} fontSize={27} bold>
                   Harga Obat :
                 </Heading>
-                <Input borderColor={"white"} ml={5} mt={4} w={"85%"}
-                  color={"blue.400"} placeholder="Harga Obat" value={hargaObat} fontSize={23} onChangeText={(hargaObat) => setHargaObat(hargaObat)} />
+                <Input borderColor={"white"} ml={5} mt={4} w={"85%"}  borderRadius={10}
+                  bgColor={"white"} placeholder="Masukan Harga Obat" value={hargaObat} fontSize={23} onChangeText={(hargaObat) => setHargaObat(hargaObat)} />
               </Box>
             </Box>
+          </Box>
 
-            {/* tombol save */}
-            <Button
+          {/* tombol save */}
+          <Button
               alignSelf={"flex-end"}
               p={4}
               mt={5}
               mr={5}
               w={"48"}
-              bgColor={"blue.400"}
+              backgroundColor="#28AADC"
               onPress={handleSaveChange}
             >
-              <Heading size="md" color={"black"}>
+              <Heading size="md" color={"white"}>
                 Save Change
               </Heading>
             </Button>
-
-          </Box>
         </SafeAreaView>
       </ScrollView>
 

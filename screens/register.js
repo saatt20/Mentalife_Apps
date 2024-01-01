@@ -130,36 +130,3 @@ const Register = ({ navigation }) => { // Tambahkan parameter props
 
 export default Register;
 
-
-{/* <Button alignSelf={"center"} bgColor={"violet.100"} w={300} borderColor={"indigo.200"} borderWidth={"2"} borderRadius={15} fontSize={"xl"} 
-          mt={-9} h={"12%"} onPress={() => setShowModal(true)}></Button>
-
-      <Modal isOpen={showModal} onClose={() => setShowModal(false)} size="lg">
-        <Modal.Content maxWidth="350">
-          <Modal.CloseButton />
-          <Modal.Header>Order</Modal.Header>
-          <Modal.Body>
-            <VStack space={3}>
-              <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Sub Total</Text>
-                <Text color="blueGray.400">$298.77</Text>
-              </HStack>
-              <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Tax</Text>
-                <Text color="blueGray.400">$38.84</Text>
-              </HStack>
-              <HStack alignItems="center" justifyContent="space-between">
-                <Text fontWeight="medium">Total Amount</Text>
-                <Text color="green.500">$337.61</Text>
-              </HStack>
-            </VStack>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button flex="1" onPress={() => {
-            setShowModal2(true);
-          }}>
-              Continue
-            </Button>
-          </Modal.Footer>
-        </Modal.Content>
-      </Modal>  */}
