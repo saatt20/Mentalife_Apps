@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar, Image, Box, Heading, Pressable, Input } from "native-base";
+import { StatusBar, Image, Box, Heading, Pressable, Input, VStack, Text } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Header } from "../components";
@@ -92,15 +92,16 @@ const EditProfile = ({ navigation }) => {
 
         {/* Identitas */}
         <Box
+          mt={6}
           alignSelf="center"
-          w="90%"
-          bgColor="info.100"
-          h="30%"
-          shadow={9}
+          w="95%"
+          bgColor="gray.100"
+          h={377}
+          shadow={"0"}
           mb={280}
-          borderColor="white"
-          borderWidth={1}
-          borderRadius={10}
+          borderColor="gray.100"
+          borderWidth={"0"}
+          borderRadius={0}
         >
           <Box alignItems="start">
             <Box
@@ -127,16 +128,21 @@ const EditProfile = ({ navigation }) => {
             >
               DETAIL USER
             </Heading>
-
+    
             {/* Editable Fields */}
             {["name", "email", "nomorhp"].map((field) => (
-              <Box key={field} marginTop={6} ml={16}>
-                <Ionicons name="information-circle" color="red" size={28} />
-                <Input
-                  ml={10}
-                  mt={-6}
+              <Box key={field} marginTop={6} ml={""} w={"100%"} borderBottomRadius={2} borderBottomWidth={3} borderBottomColor={"gray.300"}>
+                {/* <Ionicons name="information-circle" color="red" size={28} /> */}
+                <Input 
+                  alignSelf={"center"}
+                  borderWidth={"0"}
+                  borderRadius={5}
+                  borderBottomColor={"info.400"}
+                  ml={""}
+                  w={"100%"}
+                  mt={10}
                   fontSize={18}
-                  fontWeight="normal"
+                  fontWeight="semibold"
                   color="black"
                   placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                   value={profile?.[field]}
@@ -145,23 +151,36 @@ const EditProfile = ({ navigation }) => {
               </Box>
             ))}
 
+              <VStack space={86} mt={-290} ml={3}>
+                <Text fontWeight={"bold"} fontSize={16} color={"gray.400"}>
+                  Username
+                </Text>
+                <Text fontWeight={"bold"} fontSize={16} color={"gray.400"}>
+                  Email
+                </Text>
+                <Text fontWeight={"bold"} fontSize={16} color={"gray.400"}>
+                  No. Handphone
+                </Text>
+              </VStack>
+
             {/* Submit */}
             <Box
-              w="100%"
+              alignSelf={"flex-end"}
+              w="40%"
               bgColor="red.500"
-              h={75}
-              mt={10}
-              shadow={9}
+              h={"12%"}
+              mt={16}
+              shadow={0}
               mb={0}
               borderColor="white"
               borderWidth={1}
-              borderRadius={10}
+              borderRadius={32}
             >
               <Pressable onPress={onSubmit}>
                 <Box w="100%" h="100%" mt={0}>
                   <Heading
-                    ml={2}
-                    mt={5}
+                    ml={0}
+                    mt={3}
                     fontSize={20}
                     fontWeight="bold"
                     color="white"
