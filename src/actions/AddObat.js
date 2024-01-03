@@ -47,3 +47,5 @@ const addDataObat = async (dataObat) => {
 };
 
 export default addDataObat;
+
+

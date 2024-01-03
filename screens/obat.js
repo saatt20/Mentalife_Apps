@@ -3,6 +3,7 @@ import { Heading, Image, Text, FlatList, Box, Button, Modal } from "native-base"
 import { useNavigation } from "@react-navigation/native";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { Header } from "../components";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Obat = () => {
   const navigation = useNavigation();
@@ -58,6 +59,7 @@ const Obat = () => {
 
   const renderItem = ({ item }) => {
     return (
+      <SafeAreaView>
       <Box
         activeOpacity={0.5}
         onPress={() => navigation.navigate("about-psikolog", { item: item })}
@@ -105,6 +107,8 @@ const Obat = () => {
           </Box>
         </Box>
       </Box>
+      </SafeAreaView>
+      
     );
   };
 
