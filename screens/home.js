@@ -209,7 +209,7 @@ useEffect(() => {
                 </Box>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => { navigation.navigate('Hospital'); }}>
+              <TouchableOpacity onPress={() => { navigation.navigate('user-hospital'); }}>
                 <Box w={350} h={70} mt={15} borderRadius={10} p={3} backgroundColor={"#C4E9F5"}  >
                   <Center>
                     <HStack>
