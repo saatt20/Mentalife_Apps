@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import FIREBASE from "../../config/FIREBASE";
-import { clearStorage, storeData } from "../utils/localStorage";
+import { clearStorage, storeData, getData } from "../utils/localStorage";
 
 export const registerUser = async (data, password) => {
   try {
@@ -26,14 +26,17 @@ export const registerUser = async (data, password) => {
 export const loginUser = async (email, password) => {
   try {
     const success = await FIREBASE.auth().signInWithEmailAndPassword(email, password);
-    const resDB = await FIREBASE.database()
-      .ref("/users/" + success.user.uid)
-      .once("value");
+    
+    // Retrieve user data from the database
+    const userRef = FIREBASE.database().ref(`/users/${success.user.uid}`);
+    const userSnapshot = await userRef.once("value");
+    const userData = userSnapshot.val();
 
-    if (resDB.val()) {
+    if (userData) {
       // Local storage (Async Storage)
-      await storeData("user", resDB.val());
-      return resDB.val();
+      await storeData("user", userData);
+      
+      return userData;
     } else {
       throw new Error("User data not found");
     }
@@ -41,6 +44,7 @@ export const loginUser = async (email, password) => {
     throw error;
   }
 };
+
 
 export const logoutUser = () => {
   FIREBASE.auth()
@@ -78,7 +82,6 @@ export const updateUserData = async (uid, updatedData) => {
   }
 };
 
-
 export const getObatData = () => {
   const obatRef = FIREBASE.database().ref("obat");
 
@@ -94,17 +97,60 @@ export const getObatData = () => {
     });
 };
 
-// Function to edit data in Firebase
-export const editObat = (key, updatedData) => {
-  const obatRef = FIREBASE.database().ref(`obat/${key}`);
 
-  obatRef.update(updatedData)
-    .then(() => {
-      console.log("Data updated successfully");
+export const addHospital = async (data) => {
+  try {
+    await FIREBASE.database().ref("hospitals").push(data);
+    console.log("Hospital added successfully");
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getHospital = async () => {
+  const hospitalRef = FIREBASE.database().ref("hospitals");
+
+  return hospitalRef
+    .once("value")
+    .then((snapshot) => {
+      const hospitalsData = snapshot.val();
+      if (hospitalsData) {
+        const hospitalsArray = Object.entries(hospitalsData).map(([hospitalId, hospitalData]) => ({
+          hospitalId,
+          ...hospitalData,
+        }));
+        return hospitalsArray;
+      } else {
+        return [];
+      }
     })
     .catch((error) => {
-      console.error("Error updating data: ", error);
+      console.error("Error fetching hospitals data:", error);
+      return [];
     });
 };
 
+export const editHospital = async (hospitalId, updatedData) => {
+  try {
+    await FIREBASE.database()
+      .ref(`hospitals/${hospitalId}`)
+      .update(updatedData);
+
+    console.log("Hospital updated successfully");
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteHospital = async (hospitalId) => {
+  try {
+    await FIREBASE.database()
+      .ref(`hospitals/${hospitalId}`)
+      .remove();
+
+    console.log("Hospital deleted successfully");
+  } catch (error) {
+    throw error;
+  }
+};
 

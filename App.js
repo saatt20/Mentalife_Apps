@@ -3,7 +3,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { NativeBaseProvider, Text } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Home,
   Psikolog,
@@ -21,10 +20,12 @@ import {
   Obat,
   Article,
   RiwayatTransaksi,
+  AdminHospital,
+  AdminDataHospital,
+  UserHospital,
 } from "./screens"
 import Bantuan from "./screens/bantuan";
 import Berita from "./screens/berita";
-import Hospital from "./screens/hospital";
 import AdminBerita from "./screens/admin-berita" 
 import AdminPsikolog from "./screens/admin-psikolog"
 import AdminObat from "./screens/admin-obat"
@@ -192,7 +193,6 @@ const App = () => {
           <Stack.Screen name="Bantuan" component={Bantuan} options={noHead} />
           <Stack.Screen name="Pengaturan" component={Pengaturan} options={noHead} />
           <Stack.Screen name="Berita" component={Berita} options={noHead} />
-          <Stack.Screen name="Hospital" component={Hospital} options={noHead} />
           <Stack.Screen name="admin-berita" component={AdminBerita} options={noHead}/>
           <Stack.Screen name="admin-psikolog" component={AdminPsikolog} options={noHead}/>
           <Stack.Screen name="admin-obat" component={AdminObat} options={noHead}/>
@@ -201,6 +201,9 @@ const App = () => {
           <Stack.Screen name="article" component={Article} options={noHead}/>
           <Stack.Screen name="riwayat-transaksi" component={RiwayatTransaksi} options={noHead}/>
           <Stack.Screen name="admin-data-obat" component={AdminDataObat} options={noHead}/>
+          <Stack.Screen name="AdminHospital" component={AdminHospital} options={noHead}/>
+          <Stack.Screen name="admin-data-hospital" component={AdminDataHospital} options={noHead}/>
+          <Stack.Screen name="user-hospital" component={UserHospital} options={noHead} />
         </Stack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>

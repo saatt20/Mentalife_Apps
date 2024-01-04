@@ -16,9 +16,12 @@ import Obat from "./obat";
 import Article from "./article";
 import RiwayatTransaksi from "./riwayat-transaksi";
 import AdminDataObat from "./admin-data-obat";
+import AdminHospital from "./admin-hospital";
+import AdminDataHospital from "./admin-data-hospital";
+import UserHospital from "./user-hospital";
 
 export {
     Home, Psikolog, Profile, AboutPsikolog, Pembayaran, Konsultasi, Login, Register,
     AdminHome, AdminProfile, Splash, Lainnya, Pengaturan, AdminObat, Obat, Article, RiwayatTransaksi,
-    AdminDataObat
+    AdminDataObat, AdminHospital, AdminDataHospital, UserHospital
 };
