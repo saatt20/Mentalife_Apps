@@ -4,38 +4,52 @@ import {
 } from "native-base";
 import { Header } from "../components";
 import { useState, React, useEffect } from "react";
-import {  getData } from "../src/utils/localStorage";
+import { getData } from "../src/utils/localStorage";
+import { Linking } from "react-native";
 
-const Bantuan = ({navigation}) => {
+const Bantuan = ({ navigation }) => {
     const flexDir = useBreakpointValue({
         base: "row",
         lg: "row"
     });
     const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible1, setModalVisible1] = useState(false);
     const { isOpen, onOpen, onClose } = useDisclose();
 
     const [Bantuan, setBantuan] = useState(null);
     const getUserData = () => {
         getData("user").then((res) => {
-          const data = res;
-          if (data) {
-            console.log("isi data", data);
-            setBantuan(data);
-          } else {
-            // navigation.replace('Login');
-          }
+            const data = res;
+            if (data) {
+                console.log("isi data", data);
+                setBantuan(data);
+            } else {
+                // navigation.replace('Login');
+            }
         });
-      };
-   
+    };
+
+    const openWhatsApp = () => {
+        const phoneNumber = "6281333487157";  // Replace with your WhatsApp number
+
+        // Use the Linking module to open the WhatsApp app with the provided phone number
+        Linking.openURL(`whatsapp://send?phone=${phoneNumber}`)
+            .then(() => console.log('WhatsApp opened'))
+            .catch((error) => console.error('Error opening WhatsApp:', error));
+
+        // Close the modal if needed
+        setModalVisible(false);
+    };
+
     useEffect(() => {
         const unsubscribe = navigation.addListener("focus", () => {
-          getUserData();
+            getUserData();
         });
-    
+
         return () => {
-          unsubscribe();
+            unsubscribe();
         };
-      }, [navigation]);
+    }, [navigation]);
 
     return (
         <>
@@ -57,46 +71,60 @@ const Bantuan = ({navigation}) => {
                                 </Text>
                             </Box>
                             <Actionsheet.Item startIcon={<InfoIcon size="5" mt="0.5" color="blue.500" />} >
-                            {Bantuan?.name}
+                                {Bantuan?.name}
                             </Actionsheet.Item>
                             <Actionsheet.Item startIcon={<FavouriteIcon size="5" mt="0.5" color="blue.500" />} >
-                            {Bantuan?.nomorhp}
+                                {Bantuan?.nomorhp}
                             </Actionsheet.Item>
                             <Actionsheet.Item startIcon={<CheckIcon size="5" mt="0.5" color="blue.500" />} >
-                            {Bantuan?.email}
+                                {Bantuan?.email}
                             </Actionsheet.Item>
                         </Actionsheet.Content>
                     </Actionsheet>
 
                     {/* HUBUNGI KAMI */}
-                    <Button  marginBottom={5} bgColor={"blue.500"} onPress={() => { setModalVisible(!modalVisible); }}>
+                    <Button marginBottom={5} bgColor={"blue.500"} onPress={() => { setModalVisible(!modalVisible); }}>
                         <Text fontSize={"lg"} color={"white"}>Hubungi Kami</Text>
                     </Button>
                     <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)} avoidKeyboard justifyContent="center" bottom="4" size="lg">
                         <Modal.Content>
                             <Modal.CloseButton />
                             <Modal.Header>
-                                <Text fontSize={"lg"} bold>Hubungi Customer Support</Text>   
-                           </Modal.Header>
+                                <Text fontSize={"lg"} bold>Hubungi Customer Support</Text>
+                            </Modal.Header>
                             <Modal.Body >
-                                <Text fontSize={"lg"}>Anda dapat menghubungi kami melalui email "mentalife@gmail.com" atau melalui telepon "031-129915"</Text>
+                                <Text fontSize={"md"}>Anda dapat menghubungi kami melalui email "mentalife@gmail.com" atau melalui WhatsApp dibawah ini.</Text>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button bgColor={"blue.500"} onPress={() => { setModalVisible(false); }}>Kembali </Button>
+                                <Button bgColor={"blue.500"} onPress={() => openWhatsApp()}>Hubungi Via WhatsApp </Button>
                             </Modal.Footer>
                         </Modal.Content>
                     </Modal>
 
                     {/* KEBIJAKAN DUMMY */}
-                    <Button marginBottom={5} bgColor={"blue.500"}
-                        onPress={() => { }}>
-                        <Text fontSize={"lg"} color={"white"}>Kebijakan Privasi Mentalife</Text>
+                    <Button marginBottom={5} bgColor={"blue.500"} onPress={() => { setModalVisible1(!modalVisible1); }}>
+                        <Text fontSize={"lg"} color={"white"}>Kebijakan Mentalife</Text>
                     </Button>
-                    <Button  bgColor={"blue.500"}
+                    <Modal isOpen={modalVisible1} onClose={() => setModalVisible1(false)} avoidKeyboard justifyContent="center" bottom="4" size="lg">
+                        <Modal.Content>
+                            <Modal.CloseButton />
+                            <Modal.Header>
+                                <Text fontSize={"lg"} bold>Kebijakan Mentalife</Text>
+                            </Modal.Header>
+                            <Modal.Body >
+                                <Text fontSize={"lg"}>- Kami tidak akan menjual, menyewakan, atau membagikan informasi pribadi Anda kepada pihak ketiga tanpa izin Anda, kecuali yang diwajibkan oleh hukum. -</Text>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button bgColor={"blue.500"} onPress={() => { setModalVisible1(false); }}>Kembali </Button>
+                            </Modal.Footer>
+                        </Modal.Content>
+                    </Modal>
+
+                    <Button bgColor={"blue.500"}
                         onPress={() => { }}>
                         <Text fontSize={"lg"} color={"white"}>Ketentuan Penggunaan Mentalife</Text>
                     </Button>
-                    
+
                 </Box>
 
                 {/* FOOTER */}
