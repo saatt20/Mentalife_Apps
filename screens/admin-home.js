@@ -19,7 +19,6 @@ const AdminHome = ({ navigation }) => {
     });
   };
 
-  
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", () => {
       getUserData();
@@ -69,7 +68,7 @@ const AdminHome = ({ navigation }) => {
           Berita
         </Heading>
 
-        <Pressable onPress={() => { navigation.navigate('admin-berita'); }}>
+        <Pressable onPress={() => { navigation.navigate('AdminHospital'); }}>
         <Box alignSelf={"center"} mt={0} w={"90%"} h={"20"} 
           bgColor={"info.50"}>
           <Image h={16} w={16} ml={1} mt={2}
@@ -78,11 +77,11 @@ const AdminHome = ({ navigation }) => {
         <Box ml={"24"} mt={"-16"}>
           <VStack space={""}>
           <Text  fontWeight={"semibold"} fontSize={"xl"}>
-            Berita MentaLife
+            Hospital MentaLife
           </Text>
 
           <Text color={"blue.600"} fontSize={12} fontWeight={"bold"}>
-            Untuk mengelola berita yang ditampilkan pada pengguna 
+            Untuk mengelola data rumah sakit MentaLife 
           </Text>
           </VStack>
         </Box>
