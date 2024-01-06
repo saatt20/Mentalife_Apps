@@ -10,7 +10,7 @@ const Lainnya = ({navigation}) => {
         <Stack direction="column">
 
         {/* home */}
-        <TouchableOpacity onPress={() => navigation.navigate("Langganan")} >
+        {/* <TouchableOpacity onPress={() => navigation.navigate("Langganan")} >
           <Box
               p={"4"}
               flexDirection="row"
@@ -36,7 +36,7 @@ const Lainnya = ({navigation}) => {
                 </Heading>
               </Box>
             </Box>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         
         {/* Pengaturan */}
         <TouchableOpacity onPress={() => navigation.navigate("Pengaturan")}>

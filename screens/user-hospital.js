@@ -22,20 +22,6 @@ const Hospital = () => {
     fetchData();
 }, []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const { success, data, error } = await getHospital();
-
-      if (success) {
-        setHospitals(data);
-      } else {
-        console.error("Error fetching hospitals data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   const renderItem = ({ item }) => {
     return (
       <SafeAreaView>
