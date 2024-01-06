@@ -107,6 +107,7 @@ export const addHospital = async (data) => {
   }
 };
 
+
 export const getHospital = async () => {
   const hospitalRef = FIREBASE.database().ref("hospitals");
 

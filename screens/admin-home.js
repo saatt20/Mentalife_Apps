@@ -62,17 +62,17 @@ const AdminHome = ({ navigation }) => {
        
 
       </Box>
-      <Box shadow={"4"} alignSelf={"center"} w={"100%"} h={"32"} mt={-2} 
+      <Box shadow={"4"} alignSelf={"center"} w={"100%"} h={"32"} mt={10} 
       bgColor={"white"}>
         <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
-          Berita
+        Hospital
         </Heading>
 
         <Pressable onPress={() => { navigation.navigate('AdminHospital'); }}>
         <Box alignSelf={"center"} mt={0} w={"90%"} h={"20"} 
           bgColor={"info.50"}>
           <Image h={16} w={16} ml={1} mt={2}
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/128/2540/2540832.png'}}alt="-"/>
+          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2197/2197059.png'}}alt="-"/>
 
         <Box ml={"24"} mt={"-16"}>
           <VStack space={""}>
@@ -91,7 +91,7 @@ const AdminHome = ({ navigation }) => {
 
       </Box>
 
-      <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
+      {/* <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
       bgColor={"white"} >
         <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
           Psikolog
@@ -118,7 +118,7 @@ const AdminHome = ({ navigation }) => {
         </Pressable>
         
       </Box>
-     
+      */}
       <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
       bgColor={"white"} >
         <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>

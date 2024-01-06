@@ -4,6 +4,7 @@ import "firebase/compat/firestore";
 import "firebase/compat/database";
 import "firebase/compat/storage";
 
+
 firebase.initializeApp({
   apiKey: "AIzaSyDy9r3oUYuLLSlGR9JQJ523iNLfI_aRx6c",
   authDomain: "uas-mentalife.firebaseapp.com",
