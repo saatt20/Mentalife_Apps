@@ -1,18 +1,19 @@
-import { Button, Box, VStack, Input, Center, Image, Heading, Pressable, StatusBar, ScrollView, Text, Alert } from "native-base";
+import { Button, Box, VStack, Input, Center, FormControl, Select, Image, Heading, Pressable, StatusBar, ScrollView, Text, Alert } from "native-base";
 import React, { useState, useEffect } from "react";
 import { Header } from "../components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Modal } from "native-base";
 import { addHospital, getHospital } from "../src/actions/AuthAction";
 
-const AdminHospital = ({ navigation }) => { // Tambahkan parameter props
+const AdminHospital = ({ navigation }) => {
     const [namaRs, setNamaRs] = useState('');
     const [telepon, setTelepon] = useState('');
     const [alamat, setAlamat] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-
+    const [provinces, setProvinces] = useState([]);
+    const [selectedProvinceName, setSelectedProvinceName] = useState("");
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -40,14 +41,42 @@ const AdminHospital = ({ navigation }) => { // Tambahkan parameter props
         };
     }, [navigation]);
 
+    const fetchProvinces = async () => {
+        try {
+            const response = await fetch(
+                "https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json"
+            );
+            if (response.ok) {
+                const data = await response.json();
+                setProvinces(data);
+            } else {
+                throw new Error("Gagal mengambil data provinsi");
+            }
+        } catch (error) {
+            console.error(error);
+            // Handle error, bisa menampilkan pesan kepada pengguna
+        }
+    };
+
+    useEffect(() => {
+        fetchProvinces(); // Moved fetchProvinces into a separate useEffect
+    }, []); // Run only once when the component mounts
+
+    const handleProvinceChange = (provinceName) => {
+        setSelectedProvinceName(provinceName);
+    };
+
+
 
     const onAddHospital = async () => {
-        if (namaRs && alamat && telepon) {
+        if (namaRs && alamat && telepon && selectedProvinceName) {
             const data = {
                 namaRs: namaRs,
                 alamat: alamat,
                 telepon: telepon,
+                provinceName: selectedProvinceName, // Ambil ID provinsi yang dipilih
             };
+    
 
             console.log(data);
             try {
@@ -106,8 +135,8 @@ const AdminHospital = ({ navigation }) => { // Tambahkan parameter props
                                 opacity={"20"} alignSelf={"center"} h={450} w={350} />
 
                             <Box mt={-450} alignSelf={"center"} h={450} w={350}>
-                                <VStack space={4} mt="0">
-
+                                <VStack space={2} mt="0">
+                                <FormControl>
                                     <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
                                         bgColor={"info.100"} mt={7} h={"12%"} placeholder="Nama Rumah Sakit" value={namaRs} onChangeText={(namaRs) => setNamaRs(namaRs)} />
 
@@ -115,12 +144,36 @@ const AdminHospital = ({ navigation }) => { // Tambahkan parameter props
                                         bgColor={"info.100"} mt={5} h={"12%"} placeholder="No Telepon Rumah Sakit" value={telepon} onChangeText={(telepon) => setTelepon(telepon)} />
 
                                     <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
-                                        bgColor={"info.100"} mt={5} h={"28%"} placeholder="Alamat Rumah Sakit" value={alamat} onChangeText={(alamat) => setAlamat(alamat)} />
+                                        bgColor={"info.100"} mt={5} h={"20%"} placeholder="Alamat Rumah Sakit" value={alamat} onChangeText={(alamat) => setAlamat(alamat)} />
+
+                                        <Select
+                                            selectedValue={selectedProvinceName}
+                                            onValueChange={(itemValue) => handleProvinceChange(itemValue)}
+                                            h={12}
+                                            backgroundColor={"info.100"}
+                                            shadow={4}
+                                            mt={5}
+                                            w={300}
+                                            borderRadius={15} 
+                                            alignSelf={"center"}
+                                        >
+                                            <Select.Item label="Pilih Provinsi Untuk RS" value="" />
+                                            {provinces.map((province) => (
+                                                <Select.Item
+                                                    key={province.name}
+                                                    label={province.name}
+                                                    value={province.name}
+                                                    onChangeText={setProvinces}
+                                                />
+                                            ))}
+                                        </Select>
+                                    
 
                                     <Button alignSelf={"center"} bgColor={"white"} w={300} borderColor={"indigo.300"} borderWidth={"2"} borderRadius={15} fontSize={"xl"}
                                         mt={5} h={"15%"} onPress={() => { onAddHospital(); }} >
                                         <Text color={"blue.400"} fontWeight={"semibold"} fontSize={"xl"}>Tambahkan</Text>
                                     </Button>
+                                    </FormControl>
                                 </VStack>
                             </Box>
                         </Box>

@@ -7,16 +7,35 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const Hospital = () => {
   const [hospitals, setHospitals] = useState([]);
 
+  
   useEffect(() => {
     const fetchData = async () => {
-      const hospitalsData = await getHospital();
-      setHospitals(hospitalsData);
+        try {
+            const hospitals = await getHospital();
+            console.log('Hospitals Data:', hospitals);
+            setHospitals(hospitals);
+        } catch (error) {
+            console.error('Error fetching hospitals data:', error);
+        }
+    };
+
+    fetchData();
+}, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { success, data, error } = await getHospital();
+
+      if (success) {
+        setHospitals(data);
+      } else {
+        console.error("Error fetching hospitals data:", error);
+      }
     };
 
     fetchData();
   }, []);
 
-  
   const renderItem = ({ item }) => {
     return (
       <SafeAreaView>
@@ -39,6 +58,9 @@ const Hospital = () => {
                 </Text>
                 <Text fontSize="md" color="white" numberOfLines={1}>
                   No. Telepon: {item.telepon}
+                </Text>
+                <Text fontSize="md" color="white" numberOfLines={1}>
+                  Provinsi : {item.provinceName}
                 </Text>
                 <Button alignSelf={"flex-end"} w={20} mt={1} bgColor={"white"}>
                   <Text bold>Detail</Text>

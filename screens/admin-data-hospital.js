@@ -11,10 +11,15 @@ const AdminDataHospital = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const hospitalsData = await getHospital();
-            setHospitalsData(hospitalsData);
+            try {
+                const hospitalsData = await getHospital();
+                console.log('Hospitals Data:', hospitalsData);
+                setHospitalsData(hospitalsData);
+            } catch (error) {
+                console.error('Error fetching hospitals data:', error);
+            }
         };
-
+    
         fetchData();
     }, []);
 
@@ -92,7 +97,9 @@ const AdminDataHospital = () => {
                                 <Text fontSize="md" color="white" numberOfLines={1}>
                                     No. Telepon: {item.telepon}
                                 </Text>
-                                
+                                 <Text fontSize="md" color="white" numberOfLines={1}>
+                                    Provinsi: {item.provinceName}
+                                </Text>
                                 <HStack space={2} mt={2} alignSelf={'flex-end'}>
                                 <Button
                                     onPress={() => handleEditHospital(item)}
