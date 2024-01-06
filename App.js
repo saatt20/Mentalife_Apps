@@ -108,7 +108,7 @@ const Tabs = () => {
       <Tab.Screen name="Home" component={Home} options={noHead} />
       <Tab.Screen name="Psikolog" component={Psikolog} options={noHead} />
       <Tab.Screen name="Profile" component={Profile} options={noHead} />
-      <Tab.Screen name="Lainnya" component={Lainnya} options={noHead} />
+      {/* <Tab.Screen name="Lainnya" component={Lainnya} options={noHead} /> */}
     
     </Tab.Navigator>
 
