@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar, Image, Box, Heading, Text, Pressable } from "native-base";
+import { StatusBar, Image, Box, Heading, Text, Pressable, ScrollView } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { Header } from "../components";
@@ -63,6 +63,7 @@ const Profile = ({ navigation }) => {
         <>
             <Header title={"Profile"} />
             <SafeAreaView>
+                <ScrollView>
                 <StatusBar backgroundColor="#ffffff" barStyle='dark-content' />
                 <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
                     <Image
@@ -71,7 +72,7 @@ const Profile = ({ navigation }) => {
                         alt="-" />
                 </Box>
 
-                <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"33%"}
+                <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"37%"}
                     shadow={"9"} mb={16} borderColor={"white"}
                     borderWidth={"1"} borderRadius={10}>
 
@@ -152,6 +153,7 @@ const Profile = ({ navigation }) => {
 
 
                 </Box>
+                </ScrollView>
             </SafeAreaView>
         </>
     );

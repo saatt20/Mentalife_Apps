@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Text } from "native-base";
+import { Box, ScrollView, Text } from "native-base";
 import firebase from "firebase/compat";
 import { Header } from "../components";
 
@@ -31,10 +31,12 @@ const RiwayatTransaksi = () => {
     return (
         <>
         <Header title={"Kembali"} withBack={true}  />
+        <ScrollView>
         <Box>
         <Box bgColor={"info.100"}>
         <Text fontWeight="bold" fontSize={18} p={4}>Riwayat Transaksi</Text>
         </Box>
+        
       <Box >
         {paymentHistory.map((payment, index) => (
           <Box key={index} borderBottomWidth={4} borderColor="info.200" p={3}>
@@ -45,6 +47,7 @@ const RiwayatTransaksi = () => {
         ))}
       </Box>
       </Box>
+      </ScrollView>
       </>
     );
   };
