@@ -69,6 +69,7 @@ return (
                 keyExtractor={(item) => item.hospitalId}
                 showsVerticalScrollIndicator={false}
             />
+            <Box h={50}/>
     </>
 );
 };
