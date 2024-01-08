@@ -1,17 +1,36 @@
 import {
-    Text, Box, Actionsheet, Button, useDisclose, CheckIcon, Modal,
-    InfoIcon, SunIcon, Image, VStack, Heading, useBreakpointValue, View, Center
+    Text,
+    Box,
+    Button,
+    useDisclose,
+    Switch,
+    Image,
+    VStack,
+    Heading,
+    useBreakpointValue,
+    View,
+    Modal,
 } from "native-base";
 import { Header } from "../components";
-import { useState, React } from "react";
+import React, { useState } from "react";
 
 const Pengaturan = () => {
     const flexDir = useBreakpointValue({
         base: "row",
-        lg: "row"
+        lg: "row",
     });
-    const [modalVisible, setModalVisible] = useState(false);
-    const { isOpen, onOpen, onClose } = useDisclose();
+    const [settingEnabled, setSettingEnabled] = useState(false);
+    const [settingEnabled1, setSettingEnabled1] = useState(false);
+    const { isOpen: isOpenNotifikasi, onOpen: onOpenNotifikasi, onClose: onCloseNotifikasi } = useDisclose();
+    const { isOpen: isOpenBahasa, onOpen: onOpenBahasa, onClose: onCloseBahasa } = useDisclose();
+
+    const toggleSetting = () => {
+        setSettingEnabled(!settingEnabled);
+    };
+    const toggleSetting1 = () => {
+        setSettingEnabled1(!settingEnabled1);
+    };
+
     return (
         <>
             <Header title={"Mental Health"} withBack={true} />
@@ -19,23 +38,77 @@ const Pengaturan = () => {
                 <Heading p={5}>Pengaturan</Heading>
 
                 <Box alignSelf={"center"} w={"sm"}>
-                    {/* TENTANG SAYA */}
-                    <Button marginBottom={5} bgColor={"blue.500"} >
-                        <Text fontSize={"lg"} color={"white"}>Pengaturan Bahasa</Text>
+                    {/* Notifikasi*/}
+                    <Button marginBottom={5} bgColor={"blue.500"} onPress={onOpenNotifikasi}>
+                        <Text fontSize={"lg"} color={"white"}>
+                            Pengaturan Notifikasi
+                        </Text>
                     </Button>
-                    
 
-                    {/* HUBUNGI KAMI */}
-                    <Button  marginBottom={5} bgColor={"blue.500"} onPress={() => { setModalVisible(!modalVisible); }}>
-                        <Text fontSize={"lg"} color={"white"}>Pengaturan Privasi</Text>
+                    {/* Modal for Pengaturan Notifikasi */}
+                    <Modal isOpen={isOpenNotifikasi} onClose={onCloseNotifikasi}>
+                        <Modal.Content >
+                            <Modal.CloseButton />
+                            <Modal.Header bgColor={"blue.500"}>
+                                <Text color={"white"} fontSize={"lg"}>Pengaturan Notifikasi</Text>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Text fontSize="lg" mb={4}>
+                                    Hidupkan Notifikasi
+                                </Text>
+                                <Switch
+                                    size="lg"
+                                    isChecked={settingEnabled}
+                                    onToggle={toggleSetting}
+                                    accessibilityLabel="Toggle Setting"
+                                    alignSelf={"center"}
+                                />
+                                <Text fontSize="md" mt={2}>
+                                    {settingEnabled ? "Notifikasi: On" : "Notifikasi: Off"}
+                                </Text>
+                            </Modal.Body>
+                        </Modal.Content>
+                    </Modal>
+
+                    {/* Bahasa*/}
+                    <Button marginBottom={5} bgColor={"blue.500"} onPress={onOpenBahasa}>
+                        <Text fontSize={"lg"} color={"white"}>
+                            Pengaturan Bahasa
+                        </Text>
                     </Button>
+
+                    {/* Modal for Pengaturan Bahasa */}
+                    <Modal isOpen={isOpenBahasa} onClose={onCloseBahasa}>
+                        <Modal.Content >
+                            <Modal.CloseButton />
+                            <Modal.Header bgColor={"blue.500"}>
+                                <Text color={"white"} fontSize={"lg"}>Pengaturan Bahasa</Text>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Text fontSize="lg" mb={4}>
+                                    Ganti Bahasa
+                                </Text>
+                                <Switch
+                                    size="lg"
+                                    isChecked={settingEnabled1}
+                                    onToggle={toggleSetting1}
+                                    accessibilityLabel="Toggle Setting"
+                                    alignSelf={"center"}
+                                />
+                                <Text fontSize="md" mt={2}>
+                                    {settingEnabled1 ? "English" : "Bahasa Indonesia"}
+                                </Text>
+                            </Modal.Body>
+                        </Modal.Content>
+                    </Modal>
 
                     {/* KEBIJAKAN DUMMY */}
-                    <Button  bgColor={"blue.500"}>
-                        <Text fontSize={"lg"} color={"white"}>Pengaturan Notifikasi</Text>
+                    <Button bgColor={"blue.500"}>
+                        <Text fontSize={"lg"} color={"white"}>
+                            Pengaturan Privasi
+                        </Text>
                     </Button>
                 </Box>
-
                 {/* FOOTER */}
                 <VStack mt={20} h={"40%"} space={10} bgColor={"gray.400"} paddingLeft={8} paddingRight={8} alignItems="center" justifyContent="center">
                     <Heading fontSize={"2xl"} marginBottom={-5} >Kenapa Mentalife?</Heading>

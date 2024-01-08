@@ -3,8 +3,6 @@ import { Heading, Image, Box, Input, Pressable, Button, HStack, Text, ScrollView
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../components/header";
 import { useNavigation } from "@react-navigation/native";
-import Ionicons from '@expo/vector-icons/Ionicons';
-import { addObat } from "../src/actions/AuthAction";
 import * as ImagePicker from 'expo-image-picker';
 import addDataObat from "../src/actions/AddObat";
 
@@ -21,11 +19,36 @@ const AdminObat = () => {
     setModalVisible(!isModalVisible);
   };
 
-  const handleSaveChange = () => {
-    addDataObat(namaObat, keteranganObat, hargaObat, image);
-    handleAddObat(); // Call handleAddObat to process the data
-    toggleModal(); // Show the modal after saving the data
+  const handleSaveChange = async () => {
+    try {
+      // Validate input data (add more validation as needed)
+      if (!namaObat || !image || !hargaObat || !keteranganObat) {
+        return;
+      }
+
+      const dataObat = {
+        namaObat,
+        image,
+        hargaObat: parseInt(hargaObat, 10), // Convert harga to integer
+        keteranganObat,
+      };
+
+      // Add obat data
+      await addDataObat(dataObat);
+
+      // Clear input fields after adding data
+      setNamaObat("");
+      setImage(null);
+      setHargaObat("");
+      setKeterangaObat("");
+
+      toggleModal(); // Show the modal after saving the data
+    } catch (error) {
+      console.error("Error adding data Obat:", error);
+      // Handle the error here, e.g., display an error message
+    }
   };
+
 
   const handleModalOK = () => {
     toggleModal(); // Hide the modal
@@ -60,38 +83,6 @@ const AdminObat = () => {
     }
   };
 
-  const handleAddObat = async () => {
-    try {
-      // Validate input data (add more validation as needed)
-      if (!namaObat || !image || !hargaObat || !keteranganObat) {
-        alert("Please fill in all fields");
-        return;
-      }
-
-      const dataObat = {
-        namaObat,
-        image,
-        hargaObat: parseInt(hargaObat, 10), // Convert harga to integer
-        keteranganObat,
-      };
-
-      // Add obat data
-      await addDataObat(dataObat);
-
-      // Clear input fields after adding data
-      setNamaObat("");
-      setImage(null);
-      setHargaObat("");
-      setKeterangaObat("");
-
-      alert("Data Obat added successfully");
-    } catch (error) {
-      console.error("Error adding data Obat:", error);
-      // Handle the error here, e.g., display an error message
-
-    }
-  };
-
   return (
     <>
       <Box bgColor={"white"} h={20}>
@@ -114,7 +105,7 @@ const AdminObat = () => {
               borderBottomWidth={1} borderBottomColor={"info.500"}>
               <Box alignContent={"center"} w={"100%"} h={"100%"} >
                 <Heading ml={4} mt={2} fontSize={27} bold> Gambar Obat :</Heading>
-                <Button backgroundColor="#28AADC" borderRadius={"full"} w={150} mt={3} alignSelf={"center"} onPress={pickImage}>
+                <Button backgroundColor="#28AADC" borderRadius={"full"} w={150} mt={3} ml={5} alignSelf={"start"} onPress={pickImage}>
                   <Text fontWeight="bold" color="white" >Pilih Gambar</Text>
                 </Button>
                 {image && (
@@ -123,6 +114,10 @@ const AdminObat = () => {
                     alt="gambarwisata"
                     size="lg"
                     resizeMode="cover"
+                    alignSelf={"flex-end"}
+                    mr={5}
+                    mt={-20}
+                    borderRadius={15}
                   />
                 )}
               </Box>
@@ -160,7 +155,7 @@ const AdminObat = () => {
                   Harga Obat :
                 </Heading>
                 <Input borderColor={"white"} ml={5} mt={4} w={"85%"}  borderRadius={10}
-                  bgColor={"white"} placeholder="Masukan Harga Obat" value={hargaObat} fontSize={23} onChangeText={(hargaObat) => setHargaObat(hargaObat)} />
+                  bgColor={"white"} placeholder="Masukan Harga Obat" value={hargaObat} fontSize={23} onChangeText={(hargaObat) => setHargaObat(hargaObat)} keyboardType="numeric"/>
               </Box>
             </Box>
           </Box>

@@ -2,6 +2,7 @@ import { Box, Text, Image, VStack, ScrollView, Pressable, Heading } from "native
 import FIREBASE from '../config/FIREBASE';
 import { clearStorage, getData } from "../src/utils/localStorage";
 import React, { useState, useEffect } from "react";
+import { Header } from "../components";
 
 const AdminProfile = ({ navigation }) => {
   const [AdminProfile, setAdminProfile] = useState(null);
@@ -48,14 +49,9 @@ const AdminProfile = ({ navigation }) => {
   };
 
   return (
-    <Box
-      mt={"5"}
-      mx={"5"}
-      backgroundColor="blueGray100"
-      flex={1}
-      marginTop={"20"}
-      flexDirection="column"
-    >
+    <>
+    <Header title={"Admin Profile"}/>
+   
       <ScrollView>
         <VStack backgroundColor="blueGray100" width={"full"} mb={"10"}>
           <Image
@@ -65,6 +61,7 @@ const AdminProfile = ({ navigation }) => {
             bgColor={"black"}
             alignSelf="center"
             alt="Foto Profil"
+            mt={5}
           />
           <Text
             fontSize={"xl"}
@@ -107,7 +104,7 @@ const AdminProfile = ({ navigation }) => {
             </Text>
           </Box>
         </Box>
-        <Box w={"100%"} bgColor={"red.500"} h={"75"} mt={"5"}
+        <Box w={"90%"} bgColor={"red.500"} h={"75"} mt={"5"} alignSelf={"center"}
           shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
           <Pressable onPress={() => onSubmit(AdminProfile)} >
               <Heading mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"}>
@@ -115,8 +112,10 @@ const AdminProfile = ({ navigation }) => {
               </Heading>
           </Pressable>
         </Box>
+        <Box h={150}/>
       </ScrollView>
-    </Box>
+    
+    </>
   );
 }
 

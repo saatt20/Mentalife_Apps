@@ -61,7 +61,8 @@ const AdminDataObat = () => {
           <Box
             bg="#28AADC"
             w="90%"
-            mt={5}
+            mb={2}
+            mt={2}
             rounded={20}
             flexDirection="row"
             alignSelf="center"
@@ -120,6 +121,7 @@ const AdminDataObat = () => {
           }
           showsVerticalScrollIndicator={false}
         />
+        <Box h={50}/>
 
         {/* Modal for verification */}
         <Modal isOpen={isModalVisible} onClose={closeModal}>

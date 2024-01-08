@@ -16,35 +16,35 @@ const Home = () => {
 
   const getUserData = async () => {
     try {
-        const userData = await getData("user");
+      const userData = await getData("user");
 
-        if (userData) {
-            // Fetch the latest data from Firebase
-            const userRef = FIREBASE.database().ref(`users/${userData.uid}`);
-            const snapshot = await userRef.once("value");
-            const updatedUserData = snapshot.val();
+      if (userData) {
+        // Fetch the latest data from Firebase
+        const userRef = FIREBASE.database().ref(`users/${userData.uid}`);
+        const snapshot = await userRef.once("value");
+        const updatedUserData = snapshot.val();
 
-            if (updatedUserData) {
-                console.log("Updated user data:", updatedUserData);
-                setHome(updatedUserData);
-            } else {
-                console.log("User data not found");
-            }
+        if (updatedUserData) {
+          console.log("Updated user data:", updatedUserData);
+          setHome(updatedUserData);
         } else {
-            // Handle the case when user data is not available
+          console.log("User data not found");
         }
+      } else {
+        // Handle the case when user data is not available
+      }
     } catch (error) {
-        console.error("Error fetching user data:", error);
+      console.error("Error fetching user data:", error);
     }
-};
-
-useEffect(() => {
-  const unsubscribe = navigation.addListener("focus", getUserData);
-
-  return () => {
-      unsubscribe();
   };
-}, [navigation]);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener("focus", getUserData);
+
+    return () => {
+      unsubscribe();
+    };
+  }, [navigation]);
 
   return (
     <SafeAreaView >
@@ -130,7 +130,10 @@ useEffect(() => {
                   <Box flex={1} justifyContent={'center'}>
                     <Text bold fontSize={"15"} color={"white"}>What is Mental health? </Text>
                     <Text fontSize={13} color={"white"}> Let’s find out information about mental health</Text>
-                    <Button width={'50%'} shadow={3} rounded={20} bgColor={'white'} height={10} mt={2}><Text bold>Let’s Go!</Text></Button>
+                    <Button width={'50%'} shadow={3} rounded={20} bgColor={'white'} height={10} mt={2}
+                     onPress={() =>
+                      navigation.navigate("article")
+                    }><Text bold>Let’s Go!</Text></Button>
                   </Box>
                 </HStack>
               </Box>
@@ -252,17 +255,6 @@ useEffect(() => {
         </Box>
       </ScrollView >
     </SafeAreaView >
-  );
-
-  return (
-    <>
-      <FlatList
-        data={databerita}
-        renderItem={renderitem}
-        keyExtractor={(item) => item.id}
-        showsVerticalScrollIndicator={false}
-      />
-    </>
   );
 };
 

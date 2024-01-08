@@ -4,6 +4,7 @@ import { Header } from "../components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Modal } from "native-base";
 import { addHospital, getHospital } from "../src/actions/AuthAction";
+import axios from 'axios';
 
 const AdminHospital = ({ navigation }) => {
     const [namaRs, setNamaRs] = useState('');
@@ -12,8 +13,9 @@ const AdminHospital = ({ navigation }) => {
     const [showAlert, setShowAlert] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-    const [provinces, setProvinces] = useState([]);
-    const [selectedProvinceName, setSelectedProvinceName] = useState("");
+    const [selectProvinsi, setSelectProvinsi] = useState('');
+    const [cityList, setCityList] = useState([]);
+    const [provinceList, setProvinceList] = useState([]);
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -33,7 +35,6 @@ const AdminHospital = ({ navigation }) => {
         const fetchData = async () => {
             const hospitals = await getHospital();
         };
-
         const unsubscribe = navigation.addListener("focus", fetchData);
 
         return () => {
@@ -41,42 +42,43 @@ const AdminHospital = ({ navigation }) => {
         };
     }, [navigation]);
 
-    const fetchProvinces = async () => {
-        try {
-            const response = await fetch(
-                "https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json"
-            );
-            if (response.ok) {
-                const data = await response.json();
-                setProvinces(data);
-            } else {
-                throw new Error("Gagal mengambil data provinsi");
-            }
-        } catch (error) {
-            console.error(error);
-            // Handle error, bisa menampilkan pesan kepada pengguna
-        }
-    };
+    useEffect(() => {
+        // Ambil data provinsi dari API
+        axios.get('https://wilayah.id/api/provinces.json')
+            .then(response => {
+                setProvinceList(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching province data:', error);
+            });
+    }, []);
 
     useEffect(() => {
-        fetchProvinces(); // Moved fetchProvinces into a separate useEffect
-    }, []); // Run only once when the component mounts
+        // Ambil data kota dari API berdasarkan kode provinsi
+        if (selectProvinsi) {
+            const provinceCode = provinceList.find((province) => province.name === selectProvinsi)?.code;
 
-    const handleProvinceChange = (provinceName) => {
-        setSelectedProvinceName(provinceName);
-    };
-
-
+            if (provinceCode) {
+                axios.get(`https://wilayah.id/api/regencies/${provinceCode}.json`)
+                    .then(response => {
+                        setCityList(response.data.data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching city data:', error);
+                    });
+            }
+        }
+    }, [selectProvinsi]);
 
     const onAddHospital = async () => {
-        if (namaRs && alamat && telepon && selectedProvinceName) {
+        if (namaRs && alamat && telepon && selectProvinsi) {
             const data = {
                 namaRs: namaRs,
                 alamat: alamat,
                 telepon: telepon,
-                provinceName: selectedProvinceName, // Ambil ID provinsi yang dipilih
+                provinceName: selectProvinsi, // Ambil ID provinsi yang dipilih
             };
-    
+
 
             console.log(data);
             try {
@@ -136,54 +138,44 @@ const AdminHospital = ({ navigation }) => {
 
                             <Box mt={-450} alignSelf={"center"} h={450} w={350}>
                                 <VStack space={2} mt="0">
-                                <FormControl>
-                                    <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
-                                        bgColor={"info.100"} mt={7} h={"12%"} placeholder="Nama Rumah Sakit" value={namaRs} onChangeText={(namaRs) => setNamaRs(namaRs)} />
+                                    <FormControl>
+                                        <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
+                                            bgColor={"info.100"} mt={7} h={"12%"} placeholder="Nama Rumah Sakit" value={namaRs} onChangeText={(namaRs) => setNamaRs(namaRs)} />
 
-                                    <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
-                                        bgColor={"info.100"} mt={5} h={"12%"} placeholder="No Telepon Rumah Sakit" value={telepon} onChangeText={(telepon) => setTelepon(telepon)} />
+                                        <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
+                                            bgColor={"info.100"} mt={5} h={"12%"} placeholder="No Telepon Rumah Sakit" value={telepon} onChangeText={(telepon) => setTelepon(telepon)} keyboardType="numeric" />
 
-                                    <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
-                                        bgColor={"info.100"} mt={5} h={"20%"} placeholder="Alamat Rumah Sakit" value={alamat} onChangeText={(alamat) => setAlamat(alamat)} />
+                                        <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
+                                            bgColor={"info.100"} mt={5} h={"20%"} placeholder="Alamat Rumah Sakit" value={alamat} onChangeText={(alamat) => setAlamat(alamat)} />
 
                                         <Select
-                                            selectedValue={selectedProvinceName}
-                                            onValueChange={(itemValue) => handleProvinceChange(itemValue)}
-                                            h={12}
-                                            backgroundColor={"info.100"}
-                                            shadow={4}
-                                            mt={5}
-                                            w={300}
-                                            borderRadius={15} 
-                                            alignSelf={"center"}
+                                            selectedValue={selectProvinsi}
+                                            alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
+                                            bgColor={"info.100"} mt={5} h={"50"} placeholder="Pilih Provinsi"
+                                            onValueChange={(itemValue) => setSelectProvinsi(itemValue)}
                                         >
-                                            <Select.Item label="Pilih Provinsi Untuk RS" value="" />
-                                            {provinces.map((province) => (
-                                                <Select.Item
-                                                    key={province.name}
-                                                    label={province.name}
-                                                    value={province.name}
-                                                    onChangeText={setProvinces}
-                                                />
+                                            {provinceList.map((province, index) => (
+                                                <Select.Item key={index} label={province.name} value={province.name} />
                                             ))}
                                         </Select>
-                                    
 
-                                    <Button alignSelf={"center"} bgColor={"white"} w={300} borderColor={"indigo.300"} borderWidth={"2"} borderRadius={15} fontSize={"xl"}
-                                        mt={5} h={"15%"} onPress={() => { onAddHospital(); }} >
-                                        <Text color={"blue.400"} fontWeight={"semibold"} fontSize={"xl"}>Tambahkan</Text>
-                                    </Button>
+
+                                        <Button alignSelf={"center"} bgColor={"white"} w={300} borderColor={"indigo.300"} borderWidth={"2"} borderRadius={15} fontSize={"xl"}
+                                            mt={5} h={"15%"} onPress={() => { onAddHospital(); }} >
+                                            <Text color={"blue.400"} fontWeight={"semibold"} fontSize={"xl"}>Tambahkan</Text>
+                                        </Button>
                                     </FormControl>
                                 </VStack>
                             </Box>
                         </Box>
 
-                        <Box mt={5}>
-                            <Text alignSelf={"center"} fontSize={"md"} ml={0}>
-                                Cek kembali
-                                <Text color={"red.500"} fontWeight={"bold"}> Data </Text>
-                                yang akan di tambahkan!
+                        <Box mt={5} alignSelf={"center"} >
+                            <Text fontSize={"md"}>
+                            Cek kembali Data
                             </Text>
+                            <Text color={"red.500"} fontWeight={"bold"} ml={-4}> 
+                             yang akan di tambahkan!
+                             </Text>
                         </Box>
 
                         <Modal isOpen={isModalVisible} onClose={toggleModal}>
@@ -196,6 +188,8 @@ const AdminHospital = ({ navigation }) => {
                                 </Button>
                             </Box>
                         </Modal>
+
+                        <Box h={150}/>
                     </Box>
                 </ScrollView>
             </SafeAreaView>

@@ -66,7 +66,7 @@ const AdminDataHospital = () => {
                     <Modal.Body>
                         <Input value={selectedHospital.namaRs} onChangeText={(text) => setSelectedHospital({ ...selectedHospital, namaRs: text })} placeholder="Nama Rumah Sakit" />
                         <Input value={selectedHospital.alamat} onChangeText={(text) => setSelectedHospital({ ...selectedHospital, alamat: text })} placeholder="Alamat" />
-                        <Input value={selectedHospital.telepon} onChangeText={(text) => setSelectedHospital({ ...selectedHospital, telepon: text })} placeholder="No Telepon" />
+                        <Input value={selectedHospital.telepon} onChangeText={(text) => setSelectedHospital({ ...selectedHospital, telepon: text })} placeholder="No Telepon" keyboardType='numeric'/>
                         <Button onPress={() => handleUpdateHospital(selectedHospital)}>Perbarui Data</Button>
                     </Modal.Body>
                 </Modal.Content>
@@ -82,10 +82,10 @@ const AdminDataHospital = () => {
                         <Box
                             bg="#28AADC"
                             w="88%"
-                            mt={5}
                             rounded={20}
                             flexDirection="row"
                             alignSelf="center"
+                            mb={5}
                         >
                             <Box mx={5} my={5} flex={1}>
                                 <Heading lineHeight="lg" fontSize="lg" color="white">
@@ -135,6 +135,7 @@ const AdminDataHospital = () => {
                 keyExtractor={(item) => item.hospitalId}
                 showsVerticalScrollIndicator={false}
             />
+            <Box h={50}/>
             {renderEditModal()}
         </>
     );

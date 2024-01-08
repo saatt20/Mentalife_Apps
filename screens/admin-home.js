@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import { Box, Image,Text, Heading, StatusBar, VStack,  ScrollView, Pressable} from "native-base";
+import { Box, Image,Text, Heading, VStack,  ScrollView, Pressable} from "native-base";
 import { getData } from "../src/utils/localStorage";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ImageBackground } from "react-native";
+import { Header } from "../components";
 
 const AdminHome = ({ navigation }) => {
   const [AdminHome, setAdminHome] = useState(null);
@@ -31,43 +31,39 @@ const AdminHome = ({ navigation }) => {
 
   return (
     <ScrollView>
-    <SafeAreaView>
-    <StatusBar barStyle="dark-content" />
-    <Box marginTop="0" >
+    <Header title={"Mentalife"}/>
+    <Box p={3} >
 
-      <Box w={"100%"} h={"40%"} >
+      <Box w={"100%"} h={"42%"} >
       <ImageBackground
       source={{ uri: 'https://i.pinimg.com/1200x/7f/98/02/7f9802af9537f3231ba27012c0ae6b7d.jpg'}}
       alt="-"
       resizeMode="cover"
-      style={{ height: 250, width: '100%' }}
+      style={{ height: 250, width: '100%' }} 
+      />
+      </Box>
 
-    >
       <Box
-        position="absolute"
         bg="blue.400" 
         bottom={0}
-        p={3}
+        mt={-5}
         w="full"
+        h={20}
       >
-        <Heading fontWeight={"bold"} alignSelf={"center"} fontSize={"2xl"} color={"white"} >
+        <Heading fontWeight={"bold"} alignSelf={"center"} fontSize={"2xl"} color={"white"} mt={2}>
        SELAMAT DATANG ADMIN
        </Heading>
        <Heading fontWeight={"bold"} alignSelf={"center"} fontSize={"2xl"} color={"white"} >
        {AdminHome?.name}
        </Heading>
       </Box>
-    </ImageBackground>
 
-       
-
-      </Box>
-      <Box shadow={"4"} alignSelf={"center"} w={"100%"} h={"32"} mt={10} 
+      {/* Hospital Admin */}
+      <Box shadow={"4"} alignSelf={"center"} w={"100%"} h={"32"} mt={5} 
       bgColor={"white"}>
-        <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
-        Hospital
+        <Heading mt={2} fontWeight={"semibold"} fontSize={"xl"} ml={5}>
+        Admin Hospital
         </Heading>
-
         <Pressable onPress={() => { navigation.navigate('AdminHospital'); }}>
         <Box alignSelf={"center"} mt={0} w={"90%"} h={"20"} 
           bgColor={"yellow.50"}>
@@ -76,7 +72,7 @@ const AdminHome = ({ navigation }) => {
 
         <Box ml={"24"} mt={"-16"}>
           <VStack space={""}>
-          <Text  fontWeight={"semibold"} fontSize={"xl"}>
+          <Text  fontWeight={"semibold"} fontSize={"lg"}>
             Hospital MentaLife
           </Text>
 
@@ -91,10 +87,11 @@ const AdminHome = ({ navigation }) => {
 
       </Box>
 
-      <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
+      {/* Obat Admin */}
+      <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} mb={5}
       bgColor={"white"} >
-        <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
-          Resep & Obat
+        <Heading mt={2} fontWeight={"semibold"} fontSize={"xl"} ml={5} mb={1}>
+         Admin Obat
         </Heading>
 
         <Pressable onPress={() => { navigation.navigate('admin-obat'); }}>
@@ -105,12 +102,12 @@ const AdminHome = ({ navigation }) => {
 
         <Box ml={"24"} mt={"-16"}>
           <VStack>
-          <Text  fontWeight={"semibold"} fontSize={"xl"}>
-            Resep dan Obat MentaLife
+          <Text  fontWeight={"semibold"} fontSize={"lg"}>
+          Obat MentaLife
           </Text>
 
           <Text color={"blue.600"} fontSize={12} fontWeight={"bold"}>
-            Untuk mengelola resep dan obat yang ditampilkan pada pengguna 
+            Untuk mengelola data obat MentaLife 
           </Text>
           </VStack>
         </Box>
@@ -118,9 +115,8 @@ const AdminHome = ({ navigation }) => {
         </Box>
         </Pressable>
       </Box>
-
+      
     </Box>
-    </SafeAreaView>
     </ScrollView>
 
     

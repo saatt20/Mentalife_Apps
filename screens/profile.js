@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar, Image, Box, Heading, Text, Pressable, ScrollView } from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons"
 import { Header } from "../components";
 import FIREBASE from "../config/FIREBASE";
@@ -60,11 +59,11 @@ const Profile = ({ navigation }) => {
     }, [navigation]);
 
     return (
-        <>
+         <ScrollView>
             <Header title={"Profile"} />
-            <SafeAreaView>
-                <ScrollView>
+               
                 <StatusBar backgroundColor="#ffffff" barStyle='dark-content' />
+                
                 <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
                     <Image
                         source={require("../assets/admin.png")}
@@ -72,8 +71,8 @@ const Profile = ({ navigation }) => {
                         alt="-" />
                 </Box>
 
-                <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"37%"}
-                    shadow={"9"} mb={16} borderColor={"white"}
+                <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"25%"}
+                    shadow={"9"} mb={20} borderColor={"white"}
                     borderWidth={"1"} borderRadius={10}>
 
                     {/*Detail User */}
@@ -111,7 +110,7 @@ const Profile = ({ navigation }) => {
                     </Box>
                 </Box>
 
-                <Box mt={-16} mx={5}>
+                <Box mt={-20} mx={5}>
                     {/* Riwayat  Transaksi */}
                     <Box w={"100%"} bg={"info.500"} h={"75"} mt={"8"}
                         shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
@@ -151,11 +150,10 @@ const Profile = ({ navigation }) => {
                         </Pressable>
                     </Box>
 
-
+                   
                 </Box>
-                </ScrollView>
-            </SafeAreaView>
-        </>
+                <Box h={200}/>
+            </ScrollView>
     );
 };
 
