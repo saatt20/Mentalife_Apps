@@ -54,11 +54,7 @@ const Psikolog = () => {
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
       />
-<<<<<<< HEAD
       <Box h={130}/>
-=======
-      <Box h={125}/>
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
     </>
   );
 };

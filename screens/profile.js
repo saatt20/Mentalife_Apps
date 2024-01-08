@@ -61,11 +61,7 @@ const Profile = ({ navigation }) => {
     return (
          <ScrollView>
             <Header title={"Profile"} />
-<<<<<<< HEAD
                
-=======
-            <ScrollView>
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
                 <StatusBar backgroundColor="#ffffff" barStyle='dark-content' />
                 
                 <Box mt={"1"} padding={"1"} alignContent={"baseline"}>
@@ -75,13 +71,8 @@ const Profile = ({ navigation }) => {
                         alt="-" />
                 </Box>
 
-<<<<<<< HEAD
                 <Box alignSelf="center" w={"90%"} bgColor={"info.100"} h={"25%"}
                     shadow={"9"} mb={20} borderColor={"white"}
-=======
-                <Box alignSelf="center" w={"85%"} bgColor={"info.100"} h={"29%"}
-                    shadow={"9"} mb={10} borderColor={"white"}
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
                     borderWidth={"1"} borderRadius={10}>
 
                     {/*Detail User */}
@@ -119,7 +110,6 @@ const Profile = ({ navigation }) => {
                     </Box>
                 </Box>
 
-<<<<<<< HEAD
                 <Box mt={-20} mx={5}>
                     {/* Riwayat  Transaksi */}
                     <Box w={"100%"} bg={"info.500"} h={"75"} mt={"8"}
@@ -164,51 +154,6 @@ const Profile = ({ navigation }) => {
                 </Box>
                 <Box h={200}/>
             </ScrollView>
-=======
-                {/* Riwayat  Transaksi */}
-                <Box w={"85%"} bg={"info.500"} h={"75"} alignSelf={"center"}
-                    shadow={"9"} mb={0} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
-                    <Pressable onPress={() => navigation.navigate("riwayat-transaksi")} >
-
-                        <Box w={"100%"} h={"100%"} mt={"0"}>
-                            <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"} >
-                                Riwayat Transaksi
-                            </Heading>
-                        </Box>
-                    </Pressable>
-                </Box>
-
-                {/* Edit Profile */}
-                <Box w={"85%"} bg={"info.500"} h={"75"} mt={"5"} alignSelf={"center"}
-                    shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10}>
-                    <Pressable onPress={() => navigation.navigate("edit-profile")} >
-
-                        <Box w={"100%"} h={"100%"} mt={"0"}>
-                            <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"} >
-                                Edit Profile
-                            </Heading>
-                        </Box>
-                    </Pressable>
-                </Box>
-
-                {/* Logout */}
-                <Box w={"85%"} bgColor={"red.500"} h={"75"} mt={"5"} alignSelf={"center"}
-                    shadow={"9"} mb={"0"} borderColor={"white"} borderWidth={"1"} borderRadius={10} >
-                    <Pressable onPress={() => onSubmit(Profile)} >
-
-                        <Box w={"100%"} h={"100%"} mt={"0"} >
-                            <Heading ml={2} mt={5} fontSize={20} fontWeight={"bold"} color={"white"} alignSelf={"center"}>
-                                Log Out
-                            </Heading>
-                        </Box>
-                    </Pressable>
-                </Box>
-                <Box h={150}></Box>
-
-
-            </ScrollView>
-        </>
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
     );
 };
 
