@@ -70,7 +70,7 @@ const AdminHome = ({ navigation }) => {
 
         <Pressable onPress={() => { navigation.navigate('AdminHospital'); }}>
         <Box alignSelf={"center"} mt={0} w={"90%"} h={"20"} 
-          bgColor={"info.50"}>
+          bgColor={"yellow.50"}>
           <Image h={16} w={16} ml={1} mt={2}
           source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2197/2197059.png'}}alt="-"/>
 
@@ -91,34 +91,6 @@ const AdminHome = ({ navigation }) => {
 
       </Box>
 
-      {/* <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
-      bgColor={"white"} >
-        <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
-          Psikolog
-        </Heading>
-
-        <Pressable onPress={() => { navigation.navigate('admin-psikolog'); }}>
-        <Box alignSelf={"center"} mt={0} w={"90%"} h={"20"} 
-          bgColor={"green.50"} borderRadius={"5"}>
-          <Image h={16} w={16} ml={1} mt={2}
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/128/3997/3997819.png'}}alt="-"/>
-
-        <Box ml={"24"} mt={"-16"}>
-          <VStack >
-          <Text fontWeight={"semibold"} fontSize={"xl"}>
-            Psikolog MentaLife
-          </Text>
-
-          <Text color={"blue.600"} fontSize={12} fontWeight={"bold"}>
-            Untuk mengelola psikolog yang ditampilkan pada pengguna 
-          </Text>
-          </VStack>
-        </Box>
-        </Box>
-        </Pressable>
-        
-      </Box>
-      */}
       <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
       bgColor={"white"} >
         <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
