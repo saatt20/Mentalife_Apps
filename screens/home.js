@@ -131,16 +131,10 @@ const Home = () => {
 
                     <Text bold fontSize={"15"} color={"white"}>What is Mental health? </Text>
                     <Text fontSize={13} color={"white"}> Let’s find out information about mental health</Text>
-<<<<<<< HEAD
                     <Button width={'50%'} shadow={3} rounded={20} bgColor={'white'} height={10} mt={2}
                      onPress={() =>
                       navigation.navigate("article")
                     }><Text bold>Let’s Go!</Text></Button>
-=======
-                    <Button width={'50%'} shadow={3} rounded={20}
-                      bgColor={'white'} height={10} mt={2}
-                      onPress={() => { navigation.navigate('article'); }}><Text bold>Let’s Go!</Text></Button>
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
                   </Box>
                 </HStack>
               </Box>

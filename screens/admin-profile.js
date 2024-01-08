@@ -50,13 +50,8 @@ const AdminProfile = ({ navigation }) => {
 
   return (
     <>
-<<<<<<< HEAD
     <Header title={"Admin Profile"}/>
-   
-=======
-    <Header  title={"Admin Profile"} />
 
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
       <ScrollView>
         <VStack backgroundColor="blueGray100" width={"full"} mb={"10"}>
           <Image
@@ -118,18 +113,10 @@ const AdminProfile = ({ navigation }) => {
               </Heading>
           </Pressable>
         </Box>
-<<<<<<< HEAD
         <Box h={150}/>
       </ScrollView>
     
     </>
-=======
-        <Box h={150}>
-
-        </Box>
-      </ScrollView>
-      </>
->>>>>>> f1460fbce3521ca8368393b6ed5d489b847e666a
   );
 }
 
