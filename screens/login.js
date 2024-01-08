@@ -71,14 +71,14 @@ const login = () => {
         <Box bgColor={"info.400"} mt={4} width={"400"} h={"full"} 
           borderTopLeftRadius={"50"} borderTopRightRadius={"50"} shadow={"4"}>
           
-        <Box mt={"6"} alignSelf={"start"} ml={4} >
+        <Box mt={"6"} alignSelf={"start"} ml={10} >
           <Heading fontSize={"2xl"} color={"white"} fontWeight={"light"} shadow={"4"} ml={2} bold>
             Silahkan melakukan Login
           </Heading>
         </Box>  
 
         <Box>    
-            <VStack space={3} mt="3">
+            <VStack space={3} mt="3" mx={5}>
               
               <FormControl>
                 <Box mt={0} ml={7}>
@@ -87,8 +87,8 @@ const login = () => {
                   </FormControl.Label>
                 </Box>
                 <Box h={"12"} bgColor={"info.200"} borderColor={"blue.300"} 
-                    mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"}>
-                <Input h={12} mt={""} borderColor={"blue.200"} borderWidth={"2"} borderRadius={20} fontSize={"md"}
+                    mt={0} ml={5} mr={5} borderRadius={20} shadow={"4"} >
+                <Input h={12} w={"100%"} mt={"0"} borderColor={"blue.200"} borderWidth={"2"} borderRadius={20} fontSize={"md"}
                 placeholder="Masukan Email" value={email} onChangeText={(email) => setEmail(email)}/>
                 </Box>
               </FormControl>
