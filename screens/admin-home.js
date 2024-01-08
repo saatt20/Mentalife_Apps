@@ -58,23 +58,12 @@ const AdminHome = ({ navigation }) => {
                 </Heading>
               </Box>
             </ImageBackground>
-
-
-
-<<<<<<< HEAD
           </Box>
           <Box shadow={"4"} alignSelf={"center"} w={"100%"} h={"27%"} mt={4}
             bgColor={"white"}>
             <Heading my={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
               Hospital
             </Heading>
-=======
-        <Pressable onPress={() => { navigation.navigate('AdminHospital'); }}>
-        <Box alignSelf={"center"} mt={0} w={"90%"} h={"20"} 
-          bgColor={"yellow.50"}>
-          <Image h={16} w={16} ml={1} mt={2}
-          source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2197/2197059.png'}}alt="-"/>
->>>>>>> 2c0f581ec464910b4224b0bec150a964d16afd1a
 
             <Pressable onPress={() => { navigation.navigate('AdminHospital'); }}>
               <Box alignSelf={"center"} mt={1} w={"90%"} h={"20"}
@@ -96,8 +85,6 @@ const AdminHome = ({ navigation }) => {
 
               </Box>
             </Pressable>
-
-<<<<<<< HEAD
           </Box>
 
           {/* <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
@@ -128,13 +115,6 @@ const AdminHome = ({ navigation }) => {
         
       </Box>
       */}
-=======
-      <Box shadow={"4"} alignSelf={"center"} mt={2} w={"100%"} h={"32"} 
-      bgColor={"white"} >
-        <Heading mt={2} fontWeight={"semibold"} fontSize={"2xl"} ml={5}>
-          Resep & Obat
-        </Heading>
->>>>>>> 2c0f581ec464910b4224b0bec150a964d16afd1a
 
           <Box shadow={"4"} alignSelf={"center"} w={"100%"} h={"27%"} mt={5}
             bgColor={"white"}>
