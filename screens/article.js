@@ -6,6 +6,8 @@ import databerita from "../databerita";
 
 const Article = () => {
   const navigation = useNavigation();
+
+  
   const renderitem = ({ item }) => {
     return (
 
@@ -69,7 +71,7 @@ const Article = () => {
 
                       <Box w={"48"} mr={"4"} mt={4}>
                         <Image
-                          source={{ uri: 'https://i.pinimg.com/564x/e4/13/41/e413416f6d8e877798c98a028551ae64.jpg'}}
+                          source={{ uri: 'https://www.shutterstock.com/image-vector/newspaper-breaking-news-scraps-pages-600nw-2195536169.jpg'}}
                           alignSelf={"center"}
                           size={"xl"}
                           alt="Image Data"
@@ -94,7 +96,7 @@ const Article = () => {
 
                       <Box w={"48"} mr={"4"} mt={4}>
                         <Image
-                          source={{ uri: 'https://i.pinimg.com/564x/f6/ce/8c/f6ce8c916f0f9a8e03873c24269cd5d8.jpg'}}
+                          source={{ uri: 'https://www.shutterstock.com/image-vector/newspaper-breaking-news-scraps-pages-600nw-2195536169.jpg'}}
                           alignSelf={"center"}
                           size={"xl"}
                           alt="Image Data"

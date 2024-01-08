@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo1.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.bogarn18.Mentalife"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1cdfffa6-4fd2-4680-a12f-fdf1735ed76a"
+      }
     }
   }
 }
