@@ -96,7 +96,7 @@ const Register = ({ navigation }) => { // Tambahkan parameter props
           bgColor={"info.100"} mt={5} h={"12%"} placeholder="Masukan Nama" value={name} onChangeText={(name) => setName(name)} />
           
           <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"} 
-          bgColor={"info.100"} mt={5} h={"12%"} placeholder="Masukan No Telepon" value={nomorhp} onChangeText={(nomorhp) => setNomorhp(nomorhp)} />
+          bgColor={"info.100"} mt={5} h={"12%"} placeholder="Masukan No Telepon" value={nomorhp} onChangeText={(nomorhp) => setNomorhp(nomorhp)} keyboardType="numeric" />
 
           <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"} 
           bgColor={"info.100"} mt={5} h={"12%"} placeholder="Masukan Email" value={email} onChangeText={(email) => setEmail(email)} />
@@ -104,7 +104,7 @@ const Register = ({ navigation }) => { // Tambahkan parameter props
           <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"} 
           bgColor={"info.100"} mt={5} h={"12%"} placeholder="Masukan Password" value={password} onChangeText={(password) => setPassword(password)} secureTextEntry
           />
-          <Button alignSelf={"center"} bgColor={"white"} w={300} borderColor={"indigo.300"} borderWidth={"2"} borderRadius={15} fontSize={"xl"} 
+          <Button  alignSelf={"center"} bgColor={"white"} w={300} borderColor={"indigo.300"} borderWidth={"2"} borderRadius={15} fontSize={"xl"} 
           mt={5} h={"12%"} onPress={() => { onRegister();}} > 
             <Text color={"blue.400"} fontWeight={"semibold"} fontSize={"xl"}>Sign Up</Text>
           </Button>
@@ -112,12 +112,15 @@ const Register = ({ navigation }) => { // Tambahkan parameter props
       </Box>
       </Box>
 
-      <Box mt={2}>
-        <Text alignSelf={"center"} fontSize={"md"} ml={0}>
-          Harap mengisikan 
-          <Text color={"red.500"} fontWeight={"bold"}> Datadiri </Text> 
-          dengan baik dan benar!
+      <Box mt={2} mx={10} mb={10}>
+        <VStack alignSelf={"center"}>
+        <Text fontSize={"md"} ml={0}>
+          Harap mengisikan Datadiri
+          
+          
         </Text>
+        <Text   color={"red.500"} fontWeight={"bold"} >  dengan baik dan benar!</Text> 
+        </VStack>
       </Box>
 
       </Box>

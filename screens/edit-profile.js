@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar, Image, Box, Heading, Pressable, Input, VStack, Text } from "native-base";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar, Image, Box, Heading, Pressable, Input, VStack, Text, ScrollView } from "native-base";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Header } from "../components";
 import { getData } from "../src/utils/localStorage";
@@ -78,7 +77,7 @@ const EditProfile = ({ navigation }) => {
   return (
     <>
       <Header title={"Edit Profile"} withBack={true} />
-      <SafeAreaView>
+      <ScrollView>
         <StatusBar backgroundColor="#ffffff" />
         <Box mt={1} padding={1} alignContent="baseline">
           <Image
@@ -131,14 +130,13 @@ const EditProfile = ({ navigation }) => {
     
             {/* Editable Fields */}
             {["name", "email", "nomorhp"].map((field) => (
-              <Box key={field} marginTop={6} ml={""} w={"100%"} borderBottomRadius={2} borderBottomWidth={3} borderBottomColor={"gray.300"}>
+              <Box key={field} marginTop={6} w={"100%"} borderBottomRadius={2} borderBottomWidth={3} borderBottomColor={"gray.300"}>
                 {/* <Ionicons name="information-circle" color="red" size={28} /> */}
                 <Input 
                   alignSelf={"center"}
                   borderWidth={"0"}
                   borderRadius={5}
                   borderBottomColor={"info.400"}
-                  ml={""}
                   w={"100%"}
                   mt={10}
                   fontSize={18}
@@ -147,11 +145,12 @@ const EditProfile = ({ navigation }) => {
                   placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
                   value={profile?.[field]}
                   onChangeText={(value) => handleInputChange(field, value)}
+                  
                 />
               </Box>
             ))}
 
-              <VStack space={86} mt={-290} ml={3}>
+              <VStack space={86} mt={-290} ml={3} mb={10}>
                 <Text fontWeight={"bold"} fontSize={16} color={"gray.400"}>
                   Username
                 </Text>
@@ -193,7 +192,7 @@ const EditProfile = ({ navigation }) => {
             </Box>
           </Box>
         </Box>
-      </SafeAreaView>
+      </ScrollView>
     </>
   );
 };

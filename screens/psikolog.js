@@ -54,6 +54,7 @@ const Psikolog = () => {
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
       />
+      <Box h={125}/>
     </>
   );
 };

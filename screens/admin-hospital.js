@@ -4,6 +4,7 @@ import { Header } from "../components";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Modal } from "native-base";
 import { addHospital, getHospital } from "../src/actions/AuthAction";
+import axios from "axios";
 
 const AdminHospital = ({ navigation }) => {
     const [namaRs, setNamaRs] = useState('');
@@ -12,8 +13,9 @@ const AdminHospital = ({ navigation }) => {
     const [showAlert, setShowAlert] = useState(false);
     const [isModalVisible, setModalVisible] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-    const [provinces, setProvinces] = useState([]);
-    const [selectedProvinceName, setSelectedProvinceName] = useState("");
+    const [selectProvinsi, setSelectProvinsi] = useState('');
+    const [provinceList, setProvinceList] = useState([]);
+
 
     const toggleModal = () => {
         setModalVisible(!isModalVisible);
@@ -41,42 +43,52 @@ const AdminHospital = ({ navigation }) => {
         };
     }, [navigation]);
 
-    const fetchProvinces = async () => {
-        try {
-            const response = await fetch(
-                "https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json"
-            );
-            if (response.ok) {
-                const data = await response.json();
-                setProvinces(data);
-            } else {
-                throw new Error("Gagal mengambil data provinsi");
-            }
-        } catch (error) {
-            console.error(error);
-            // Handle error, bisa menampilkan pesan kepada pengguna
-        }
-    };
-
+    // const fetchProvinces = async () => {
+    //     try {
+    //         const response = await fetch(
+    //             "https://alamat.thecloudalert.com/api/provinsi/get/"
+    //         );
+    //         if (response.ok) {
+    //             const data = await response.json();
+    //             setProvinces(data);
+    //         } else {
+    //             throw new Error("Gagal mengambil data provinsi");
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //         // Handle error, bisa menampilkan pesan kepada pengguna
+    //     }
+    // };
     useEffect(() => {
-        fetchProvinces(); // Moved fetchProvinces into a separate useEffect
-    }, []); // Run only once when the component mounts
+        // Ambil data provinsi dari API
+        axios.get('https://wilayah.id/api/provinces.json')
+            .then(response => {
+                setProvinceList(response.data.data);
+            })
+            .catch(error => {
+                console.error('Error fetching province data:', error);
+            });
+    }, []);
+
+
+    // useEffect(() => {
+    //     fetchProvinces(); // Moved fetchProvinces into a separate useEffect
+    // }, []); // Run only once when the component mounts
 
     const handleProvinceChange = (provinceName) => {
-        setSelectedProvinceName(provinceName);
+        setSelectProvinsi(provinceName);
     };
-
 
 
     const onAddHospital = async () => {
-        if (namaRs && alamat && telepon && selectedProvinceName) {
+        if (namaRs && alamat && telepon && selectProvinsi) {
             const data = {
                 namaRs: namaRs,
                 alamat: alamat,
                 telepon: telepon,
-                provinceName: selectedProvinceName, // Ambil ID provinsi yang dipilih
+                provinceName: selectProvinsi, // Ambil ID provinsi yang dipilih
             };
-    
+
 
             console.log(data);
             try {
@@ -105,37 +117,36 @@ const AdminHospital = ({ navigation }) => {
                 </Button>
             </Box>
 
-            <SafeAreaView>
-                <ScrollView h={"full"}>
-                    <StatusBar barStyle="dark-content" />
+            <ScrollView>
+                <StatusBar barStyle="dark-content" />
 
-                    <Box bgColor={"blueGray.100"}>
+                <Box bgColor={"blueGray.100"}>
 
-                        <Box alignSelf={"flex-end"} w={"container"} mr={-5} mt={0} h={"container"}>
-                            <Box alignSelf="center" mb={1} mt={8}>
-                                <Image alt="4" source={require("../assets/logo1.png")}
-                                    w={200} h={100} />
-                            </Box>
+                    <Box alignSelf={"flex-end"} w={"container"} mr={-5} mt={0} h={"container"}>
+                        <Box alignSelf="center" mb={1} mt={3}>
+                            <Image alt="4" source={require("../assets/logo1.png")}
+                                w={200} h={100} />
                         </Box>
+                    </Box>
 
-                        <Box>
-                            <Heading fontSize={"3xl"} ml={"8"} mt={-11} color={"info.400"} alignSelf={"flex-start"}>
-                                Rumah Sakit
-                            </Heading>
-                        </Box>
+                    <Box>
+                        <Heading fontSize={"3xl"} ml={"8"} mt={-11} color={"info.400"} alignSelf={"flex-start"}>
+                            Rumah Sakit
+                        </Heading>
+                    </Box>
 
-                        <Box mt={"1"} alignSelf={"flex-start"} ml={8} >
-                            <Heading fontSize={"2xl"} color={"blue.300"} fontWeight={"light"} >
-                                Silahkan Masukan Data Baru
-                            </Heading>
-                        </Box>
+                    <Box mt={"1"} alignSelf={"flex-start"} ml={8} >
+                        <Heading fontSize={"2xl"} color={"blue.300"} fontWeight={"light"} >
+                            Silahkan Masukan Data Baru
+                        </Heading>
+                    </Box>
 
-                        <Box mt={"5"}>
-                            <Image source={require("../assets/RS.jpeg")} borderRadius={20} resizeMode="cover" alt="8"
-                                opacity={"20"} alignSelf={"center"} h={450} w={350} />
+                    <Box mt={"5"}>
+                        <Image source={require("../assets/RS.jpeg")} borderTopRadius={20} resizeMode="cover" alt="8"
+                            opacity={"20"} alignSelf={"center"} h={500} w={350} />
 
-                            <Box mt={-450} alignSelf={"center"} h={450} w={350}>
-                                <VStack space={2} mt="0">
+                        <Box mt={-450} alignSelf={"center"} h={450} w={350}>
+                            <VStack space={1} mt="0">
                                 <FormControl>
                                     <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
                                         bgColor={"info.100"} mt={7} h={"12%"} placeholder="Nama Rumah Sakit" value={namaRs} onChangeText={(namaRs) => setNamaRs(namaRs)} />
@@ -146,61 +157,51 @@ const AdminHospital = ({ navigation }) => {
                                     <Input alignSelf={"center"} borderColor={"blue.200"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
                                         bgColor={"info.100"} mt={5} h={"20%"} placeholder="Alamat Rumah Sakit" value={alamat} onChangeText={(alamat) => setAlamat(alamat)} />
 
-                                        <Select
-                                            selectedValue={selectedProvinceName}
-                                            onValueChange={(itemValue) => handleProvinceChange(itemValue)}
-                                            h={12}
-                                            backgroundColor={"info.100"}
-                                            shadow={4}
-                                            mt={5}
-                                            w={300}
-                                            borderRadius={15} 
-                                            alignSelf={"center"}
-                                        >
-                                            <Select.Item label="Pilih Provinsi Untuk RS" value="" />
-                                            {provinces.map((province) => (
-                                                <Select.Item
-                                                    key={province.name}
-                                                    label={province.name}
-                                                    value={province.name}
-                                                    onChangeText={setProvinces}
-                                                />
-                                            ))}
-                                        </Select>
-                                    
+                                    <Select
+                                        selectedValue={selectProvinsi}
+                                        
+                                        borderColor={"blue.200"}
+                                        placeholder="Pilih Provinsi"
+                                        onValueChange={(itemValue) => setSelectProvinsi(itemValue)}
+                                        alignSelf={"center"} w={300} borderWidth={"2"} borderRadius={15} fontSize={"md"}
+                                        bgColor={"info.100"} mt={5} h={"30%"} mb={-25}
+                                    >
+                                        {provinceList.map((province, index) => (
+                                            <Select.Item key={index} label={province.name} value={province.name} />
+                                        ))}
+                                    </Select>
 
                                     <Button alignSelf={"center"} bgColor={"white"} w={300} borderColor={"indigo.300"} borderWidth={"2"} borderRadius={15} fontSize={"xl"}
-                                        mt={5} h={"15%"} onPress={() => { onAddHospital(); }} >
-                                        <Text color={"blue.400"} fontWeight={"semibold"} fontSize={"xl"}>Tambahkan</Text>
+                                        h={"10%"} onPress={() => { onAddHospital(); }} mt={-5}>
+                                        <Text color={"blue.400"} fontWeight={"semibold"} fontSize={"xl"}mt={-1}>Tambahkan</Text>
                                     </Button>
-                                    </FormControl>
-                                </VStack>
+                                </FormControl>
+                            </VStack>
+
+                            <Box mt={-5}>
+                                <Text alignSelf={"center"} fontSize={"md"} ml={0}>
+                                    Cek kembali
+                                    <Text color={"red.500"} fontWeight={"bold"}> Data </Text>
+                                    yang akan di tambahkan!
+                                </Text>
                             </Box>
                         </Box>
-
-                        <Box mt={5}>
-                            <Text alignSelf={"center"} fontSize={"md"} ml={0}>
-                                Cek kembali
-                                <Text color={"red.500"} fontWeight={"bold"}> Data </Text>
-                                yang akan di tambahkan!
-                            </Text>
-                        </Box>
-
-                        <Modal isOpen={isModalVisible} onClose={toggleModal}>
-                            <Box p={5} bgColor={"white"} borderRadius={10}>
-                                <Text fontSize={20}>Data Berhasil Ditambahkan</Text>
-                                <Button mt={4} onPress={handleModalOK}>
-                                    <Text fontSize={18} color={"white"} bold>
-                                        Tutup
-                                    </Text>
-                                </Button>
-                            </Box>
-                        </Modal>
                     </Box>
-                </ScrollView>
-            </SafeAreaView>
-        </>
 
+                    <Modal isOpen={isModalVisible} onClose={toggleModal}>
+                        <Box p={5} bgColor={"white"} borderRadius={10}>
+                            <Text fontSize={20}>Data Berhasil Ditambahkan</Text>
+                            <Button mt={4} onPress={handleModalOK}>
+                                <Text fontSize={18} color={"white"} bold>
+                                    Tutup
+                                </Text>
+                            </Button>
+                        </Box>
+                    </Modal>
+
+                </Box>
+            </ScrollView>
+        </>
     );
 }
 
